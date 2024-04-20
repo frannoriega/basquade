@@ -6,7 +6,7 @@ import Logo from "@/components/logo";
 export default function Home() {
   return (
     <main className="size-full flex">
-      <div className="bg-red-500 flex flex-col w-3/12">
+      <div className="flex flex-col w-3/12">
         <Logo />
         <Aside />
       </div>

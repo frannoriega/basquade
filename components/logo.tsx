@@ -1,3 +1,7 @@
 export default function Logo() {
-  return <span className="bg-red-50 h-14">Logo</span>;
+  return (
+    <div className="bg-blue-200 h-14 flex items-center">
+      <span className="">Logo</span>
+    </div>
+  );
 }
