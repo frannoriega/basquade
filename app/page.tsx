@@ -1,9 +1,12 @@
 import Image from "next/image";
+import Header from "./components/layout/header";
+import Aside from "./components/layout/aside";
 
 export default function Home() {
   return (
     <main className="">
-      <h1>Biblioteca Basquadé</h1>
+      <Header />
+      <Aside />
     </main>
   );
 }
