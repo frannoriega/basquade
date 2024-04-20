@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Aside from "@/components/layout/aside";
+import Header from "@/components/layout/header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,8 +17,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="size-full">
-      <body className={`${inter.className} bg-blue-100 size-full`}>
+    <html lang="en" className="">
+      <body
+        className={`${inter.className} bg-blue-100 overscroll-none h-screen`}
+      >
+        <div className="sticky top-0 md:hidden">
+          <Header />
+          <span>mobile</span>
+          <Aside />
+        </div>
+
+        <div className="hidden">
+          <Header />
+
+          <Aside />
+        </div>
+
         {children}
       </body>
     </html>
