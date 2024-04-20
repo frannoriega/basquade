@@ -17,23 +17,27 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="">
-      <body
-        className={`${inter.className} bg-blue-100 overscroll-none h-screen`}
-      >
-        <div className="sticky top-0 md:hidden">
-          <Header />
-          <span>mobile</span>
-          <Aside />
+    <html lang="en" className="size-">
+      <body className={`${inter.className} size-full overflow-hidden`}>
+        <div className="md:hidden h-full">
+          <div className="overflow-hidden">
+            <Header />
+            <div className="overflow-auto">
+              <Aside />
+            </div>
+          </div>
+          <main className="h-full overflow-auto">{children}</main>
         </div>
 
-        <div className="hidden">
+        <div className="h-full md:block hidden">
           <Header />
-
-          <Aside />
+          <div className="flex overflow-hidden">
+            <Aside />
+            <main className="bg-purple-600 flex-1 overflow-auto">
+              {children}
+            </main>
+          </div>
         </div>
-
-        {children}
       </body>
     </html>
   );
