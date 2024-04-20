@@ -6,7 +6,9 @@ import Logo from "@/components/logo";
 export default function Home() {
   return (
     <div className="size-full bg-red-300">
-      <div className="bg-purple-400 h-[2000px] w-[2000px]">content</div>
+      <div className="bg-white h-[2000px] w-[2000px] border-4 border-red-800 border-dotted">
+        content
+      </div>
     </div>
   );
 }
