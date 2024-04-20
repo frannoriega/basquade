@@ -1,3 +1,3 @@
 export default function Logo() {
-  return <span>Logo</span>;
+  return <span className="bg-red-50 w-2/12">Logo</span>;
 }

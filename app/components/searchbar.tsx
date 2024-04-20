@@ -1,3 +1,3 @@
 export default function SearchBar() {
-  return <span>SearchBar</span>;
+  return <span className="bg-orange-400 flex-grow">SearchBar</span>;
 }

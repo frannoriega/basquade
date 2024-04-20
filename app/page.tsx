@@ -4,9 +4,12 @@ import Aside from "./components/layout/aside";
 
 export default function Home() {
   return (
-    <main className="">
+    <main className="size-full">
       <Header />
-      <Aside />
+      <div className=" bg-slate-600 size-full md:flex">
+        <Aside />
+        <div>content</div>
+      </div>
     </main>
   );
 }
