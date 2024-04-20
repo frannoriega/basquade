@@ -4,7 +4,7 @@ import SearchBar from "../searchbar";
 
 export default function Header() {
   return (
-    <header className="bg-blue-200 h-16 flex justify-between">
+    <header className="bg-blue-200 flex justify-between h-14">
       <Logo />
       <SearchBar />
       <Filters />
