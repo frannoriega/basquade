@@ -35,3 +35,5 @@ Los documentos están clasificados en las siguientes categorías:
 ## Ideas falopas
 
 1. A tiktok like experience by summarizing a document in a tweet like length and scroll trough the files with facts or intresting things about the files.
+
+2. Tag system for books and personalize clasification. 
