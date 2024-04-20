@@ -1,7 +1,13 @@
+import Filters from "../filters";
+import Logo from "../logo";
+import SearchBar from "../searchbar";
+
 export default function Header() {
   return (
     <header>
-      <h1>Biblioteca Basquadé</h1>
+      <Logo />
+      <SearchBar />
+      <Filters />
     </header>
   );
 }
