@@ -1,0 +1,830 @@
+{\rtf1\adeflang1025\ansi\ansicpg1252\uc1\adeff0\deff0\stshfdbch39\stshfloch39\stshfhich39\stshfbi0\deflang3082\deflangfe3082{\fonttbl{\f0\froman\fcharset0\fprq2{\*\panose 02020603050405020304}Times New Roman;}{\f2\fmodern\fcharset0\fprq1{\*\panose 02070309020205020404}Courier New;}
+{\f39\fswiss\fcharset0\fprq2{\*\panose 00000000000000000000}Calibri;}{\f40\fmodern\fcharset0\fprq1{\*\panose 00000000000000000000}Consolas;}{\f41\froman\fcharset238\fprq2 Times New Roman CE;}{\f42\froman\fcharset204\fprq2 Times New Roman Cyr;}
+{\f44\froman\fcharset161\fprq2 Times New Roman Greek;}{\f45\froman\fcharset162\fprq2 Times New Roman Tur;}{\f46\fbidi \froman\fcharset177\fprq2 Times New Roman (Hebrew);}{\f47\fbidi \froman\fcharset178\fprq2 Times New Roman (Arabic);}
+{\f48\froman\fcharset186\fprq2 Times New Roman Baltic;}{\f49\froman\fcharset163\fprq2 Times New Roman (Vietnamese);}{\f61\fmodern\fcharset238\fprq1 Courier New CE;}{\f62\fmodern\fcharset204\fprq1 Courier New Cyr;}
+{\f64\fmodern\fcharset161\fprq1 Courier New Greek;}{\f65\fmodern\fcharset162\fprq1 Courier New Tur;}{\f66\fbidi \fmodern\fcharset177\fprq1 Courier New (Hebrew);}{\f67\fbidi \fmodern\fcharset178\fprq1 Courier New (Arabic);}
+{\f68\fmodern\fcharset186\fprq1 Courier New Baltic;}{\f69\fmodern\fcharset163\fprq1 Courier New (Vietnamese);}{\f431\fswiss\fcharset238\fprq2 Calibri CE;}{\f432\fswiss\fcharset204\fprq2 Calibri Cyr;}{\f434\fswiss\fcharset161\fprq2 Calibri Greek;}
+{\f435\fswiss\fcharset162\fprq2 Calibri Tur;}{\f438\fswiss\fcharset186\fprq2 Calibri Baltic;}{\f441\fmodern\fcharset238\fprq1 Consolas CE;}{\f442\fmodern\fcharset204\fprq1 Consolas Cyr;}{\f444\fmodern\fcharset161\fprq1 Consolas Greek;}
+{\f445\fmodern\fcharset162\fprq1 Consolas Tur;}{\f448\fmodern\fcharset186\fprq1 Consolas Baltic;}}{\colortbl;\red0\green0\blue0;\red0\green0\blue255;\red0\green255\blue255;\red0\green255\blue0;\red255\green0\blue255;\red255\green0\blue0;
+\red255\green255\blue0;\red255\green255\blue255;\red0\green0\blue128;\red0\green128\blue128;\red0\green128\blue0;\red128\green0\blue128;\red128\green0\blue0;\red128\green128\blue0;\red128\green128\blue128;\red192\green192\blue192;}{\stylesheet{
+\ql \li0\ri0\sa200\sl276\slmult1\widctlpar\wrapdefault\aspalpha\aspnum\faauto\adjustright\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs22\alang1025 \ltrch\fcs0 \f39\fs22\lang3082\langfe1033\cgrid\langnp3082\langfenp1033 \snext0 \styrsid2579982 Normal;}{\*\cs10 
+\additive \ssemihidden Default Paragraph Font;}{\*
+\ts11\tsrowd\trftsWidthB3\trpaddl108\trpaddr108\trpaddfl3\trpaddft3\trpaddfb3\trpaddfr3\trcbpat1\trcfpat1\tblind0\tblindtype3\tscellwidthfts0\tsvertalt\tsbrdrt\tsbrdrl\tsbrdrb\tsbrdrr\tsbrdrdgl\tsbrdrdgr\tsbrdrh\tsbrdrv 
+\ql \li0\ri0\widctlpar\wrapdefault\aspalpha\aspnum\faauto\adjustright\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs20 \ltrch\fcs0 \fs20\lang1024\langfe1024\loch\f39\hich\af39\dbch\af39\cgrid\langnp1024\langfenp1024 \snext11 \ssemihidden Normal Table;}{
+\s15\ql \li0\ri0\widctlpar\wrapdefault\aspalpha\aspnum\faauto\adjustright\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs21\alang1025 \ltrch\fcs0 \f40\fs21\lang3082\langfe1033\cgrid\langnp3082\langfenp1033 \sbasedon0 \snext15 \slink16 Plain Text;}{\*\cs16 \additive 
+\rtlch\fcs1 \af0\afs21 \ltrch\fcs0 \f40\fs21 \sbasedon10 \slink15 \slocked Plain Text Char;}}
+{\*\latentstyles\lsdstimax156\lsdlockeddef0{\lsdlockedexcept Normal;heading 1;heading 2;heading 3;heading 4;heading 5;heading 6;heading 7;heading 8;heading 9;toc 1;toc 2;toc 3;toc 4;toc 5;toc 6;toc 7;toc 8;toc 9;caption;Title;Default Paragraph Font;Subtitle;Strong;Emphasis;Table Grid;}}
+{\*\rsidtbl \rsid32298\rsid730986\rsid1732395\rsid2099895\rsid2572600\rsid2579982\rsid6584086\rsid8605918\rsid9663508\rsid11810555\rsid13439701\rsid13768509\rsid15955629}{\*\generator Microsoft Word 11.0.0000;}{\info
+{\title                   O R D E N A N Z A   N\'ba  6 4 9 5}{\author fm9fytmf7qkckct}{\operator ADMI}{\creatim\yr2009\mo8\dy1\hr20\min48}{\revtim\yr2009\mo8\dy1\hr20\min48}{\version2}{\edmins2}{\nofpages23}{\nofwords9401}{\nofchars51710}
+{\*\company uso personal}{\nofcharsws60990}{\vern24615}{\*\password 00000000}}{\*\xmlnstbl {\xmlns1 http://schemas.microsoft.com/office/word/2003/wordml}}\paperw11906\paperh16838\margl1334\margr1335\margt1417\margb1417\gutter0\ltrsect 
+\deftab708\widowctrl\ftnbj\aenddoc\hyphhotz425\donotembedsysfont1\donotembedlingdata0\grfdocevents0\validatexml1\showplaceholdtext0\ignoremixedcontent0\saveinvalidxml0\showxmlerrors1\noxlattoyen\expshrtn
+\noultrlspc\dntblnsbdb\nospaceforul\formshade\horzdoc\dgmargin\dghspace180\dgvspace180\dghorigin1334\dgvorigin1417\dghshow1\dgvshow1
+\jexpand\viewkind1\viewscale100\pgbrdrhead\pgbrdrfoot\splytwnine\ftnlytwnine\htmautsp\nolnhtadjtbl\useltbaln\alntblind\lytcalctblwd\lyttblrtgr\lnbrkrule\nobrkwrptbl\snaptogridincell\allowfieldendsel\wrppunct
+\asianbrkrule\rsidroot2579982\newtblstyruls\nogrowautofit \fet0{\*\wgrffmtfilter 2450}\ilfomacatclnup0\ltrpar \sectd \ltrsect\linex0\headery708\footery708\colsx708\endnhere\sectlinegrid360\sectdefaultcl\sectrsid8605918\sftnbj {\*\pnseclvl1
+\pnucrm\pnstart1\pnindent720\pnhang {\pntxta .}}{\*\pnseclvl2\pnucltr\pnstart1\pnindent720\pnhang {\pntxta .}}{\*\pnseclvl3\pndec\pnstart1\pnindent720\pnhang {\pntxta .}}{\*\pnseclvl4\pnlcltr\pnstart1\pnindent720\pnhang {\pntxta )}}{\*\pnseclvl5
+\pndec\pnstart1\pnindent720\pnhang {\pntxtb (}{\pntxta )}}{\*\pnseclvl6\pnlcltr\pnstart1\pnindent720\pnhang {\pntxtb (}{\pntxta )}}{\*\pnseclvl7\pnlcrm\pnstart1\pnindent720\pnhang {\pntxtb (}{\pntxta )}}{\*\pnseclvl8\pnlcltr\pnstart1\pnindent720\pnhang 
+{\pntxtb (}{\pntxta )}}{\*\pnseclvl9\pnlcrm\pnstart1\pnindent720\pnhang {\pntxtb (}{\pntxta )}}\pard\plain \ltrpar\s15\ql \li0\ri0\widctlpar\wrapdefault\aspalpha\aspnum\faauto\adjustright\rin0\lin0\itap0\pararsid8605918 \rtlch\fcs1 \af0\afs21\alang1025 
+\ltrch\fcs0 \f40\fs21\lang3082\langfe1033\cgrid\langnp3082\langfenp1033 {\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid730986\charrsid13768509                   O R D E N A N Z A   N\'ba  6 4 9 5
+\par 
+\par }\pard \ltrpar\s15\qj \li0\ri0\widctlpar\wrapdefault\aspalpha\aspnum\faauto\adjustright\rin0\lin0\itap0\pararsid32298 {\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid730986\charrsid13768509 Visto       :
+\par 
+\par              El inter\'e9s primordial de la Municipalidad de Concepci\'f3n del Uruguay acerca de la preservaci\'f3n, mantenimiento, mejoramiento y recuperaci\'f3n de los recursos naturales y el ambiente humano, para lograr y mantener una \'f3
+ptima calidad de vida. Y en funci\'f3n de que una gesti\'f3n moderna del ambiente requiere la articulaci\'f3n del sector p\'fablico y del sector privado, generando para ello espacios de consenso y cooperaci\'f3n que requiere la gesti\'f3
+n ambiental, y hacer real y efectivos los principios rectores que sobre la materia tiene previsto nuestra Constituci\'f3n Nacional; y,
+\par 
+\par Considerando:
+\par             Que el Departamento Ejecutivo Municipal (DEM) debe fijar pol\'edtica sobre contaminaci\'f3n ambiental, asegurando un desarrollo equilibrado que conduzca al crecimiento econ\'f3mico y la generaci\'f3n de empleos sin perjudica
+r a la Salud Humana y su entorno.-
+\par 
+\par             Que corresponde al Poder Ejecutivo reglamentar el uso del espacio p\'fablico y privado.-
+\par 
+\par             Que el Departamento Ejecutivo Municipal, posee la indelegable obligaci\'f3n de requerir a las personas p\'fablicas 
+o privadas de presentar Estudios de Impacto Ambiental para proyectos que degraden o sean susceptibles de degradar o alterar el ambiente.-
+\par 
+\par             Que es necesario adecuar la actual estructura administrativa a criterios ambientales hoy en vigencia.-
+\par 
+\par             Que es necesario evitar, para el logro de una efectiva elevaci\'f3n de la calidad de vida de la poblaci\'f3
+n, las dificultades que provoca en el desarrollo, la falta de conocimientos anticipados de los efectos de las acciones humanas sobre el ambiente.-
+\par 
+\par             Que las sociedades modernas han comprendido la necesidad de instrumentar acciones preventivas y correctivas de resguardo ambiental, que hagan posible un desarrollo sostenible a mediano y largo plazo.-
+\par 
+\par             Que es necesario compatibilizar los intereses individuales con los objetivos sociales;
+\par Por ello,
+\par 
+\par EL HONORABLE CONCEJO DELIBERANTE DE LA MUNICIPALIDAD DE CONCEPCION DEL URUGUAY, SANCIONA CON FUERZA DE
+\par 
+\par O  R  D  E  N  A  N  Z  A
+\par 
+\par Art\'edculo 1\'ba: La Municipalidad de Concepci\'f3n del Uruguay, determina el Procedimiento T\'e9cnico-Administrativo de Evaluaci\'f3n de Impacto Ambiental (EIA) con el fin de contribuir a:
+\par Establecer el derecho de las personas a gozar de un ambiente sano, preservarlo y defenderlo en provecho de las generaciones presentes y futuras.
+\par Preservar el patrimonio natural, cultural, urban\'edstico, arquitect\'f3nico y de calidad visual y sonora.
+\par Proteger la fauna y flora urbanas no perjudiciales.
+\par Racionalizar el uso de materiales y energ\'eda en el desarrollo del habitat.                                                  
+\par Lograr un desarrollo sostenible y equitativo de la ciudad.
+\par Mejorar y preservar la calidad del aire, suelo y agua.
+\par Regular toda actividad que se considere necesaria para el logro de los objetivos ambientales antes mencionados.-
+\par 
+\par Art\'edculo 2\'ba: A los fines de la presente Ordenanza, ENTIENDASE por Evaluaci\'f3n de Impacto Ambiental (EIA), al proceso de administraci\'f3n ambiental y con perfil interdisciplinario, destinado a identificar e interpretar, as\'ed
+ como a prevenir o recomponer los efectos de corto, mediante y largo plazo que actividades, proyectos, programas o emprendimientos p\'fablicos o privados que con determinadas pol\'edticas pueden causar da\'f1
+os en la salud del hombre y/o en el ambiente. Quedan comprendidos en el t\'e9rmino "proceso de administraci\'f3n ambiental", la documentaci\'f3n ambiental definida por la autoridad de aplicaci\'f3n que constituir\'e1:
+\par un Aviso de Proyecto (AP);
+\par un Estudio de Impacto Ambiental (EsIA);
+\par una Auditor\'eda Ambiental (AA).
+\par Que deber\'e1 ser presentada por el proponente o interesado de la actividad, proyecto, programa o emprendimiento con car\'e1cter de Declaraci\'f3n Jurada. Conforman tambi\'e9n aspectos vinculados al proceso de administraci\'f3n ambiental la informaci\'f3
+n p\'fablica y la valoraci\'f3n cr\'edtica de las actuaciones con el pronunciamiento final, debidamente fundado por parte de la Direcci\'f3n de Medio Ambiente Municipal.-
+\par 
+\par Art\'edculo 3\'ba: Las disposiciones de esta Ordenanza ser\'e1n de aplicaci\'f3n dentro d los l\'edmites territoriales de la ciudad de Concepci\'f3n del Uruguay.-
+\par 
+\par Art\'edculo 4\'ba: El Poder Ejecutivo Municipal designa como Organo T\'e9cnico de Aplicaci\'f3n o Autoridad de Aplicaci\'f3n de la presente Ordenanza a la Direcci\'f3n de Medio Ambiente Municipal, p
+udiendo la misma contar con el asesoramiento de la Unidad de Gesti\'f3n Ambiental (UGA), que actualmente funciona en este municipio.-
+\par 
+\par Art\'edculo 5\'ba: Enti\'e9ndese por Impacto Ambiental a cualquier cambio neto, positivo o negativo, que se provoca sobre el ambiente como consecuencia, directa o indirecta, de acciones antr\'f3
+picas que puedan producir alteraciones susceptibles de afectar la salud y la calidad de vida, la capacidad productiva de los recursos naturales y los procesos ecol\'f3gicos esenciales.
+\par 
+\par Art\'edculo 6\'ba: Enti\'e9ndese por Evaluaci\'f3n de Impacto Ambiental (EIA) al procedimiento jur\'eddico administrativo, dictado por la autoridad correspondiente, que tiene por objetivo la identificaci\'f3n, predicci\'f3n e interpretaci\'f3
+n de los impactos ambientales que un proyecto, obra o actividad producir\'eda en caso de ser ejecutado, as\'ed como la prevenci\'f3n,correcci\'f3n y valoraci\'f3n de los mismos.-
+\par 
+\par Art\'edculo 7\'ba: Enti\'e9ndese por Estudio de Impacto Ambiental (EsIA) al estudio t\'e9cnico, de car\'e1cter interdisciplinario, que incorporado en el procedimiento de la Evaluaci\'f3n de Impacto Ambiental, est\'e1
+ destinado a predecir, identificar, valorar y corregir las consecuencias o efectos ambientales que determinadas acciones pueden causar sobre la calidad de vida del hombre y el ambiente en general. Los contenidos m\'ednimos ser\'e1
+n establecidos en la presente Ordenanza a trav\'e9s del Art\'edculo 14\'ba.-                                  
+\par Art\'edculo 8\'ba: Enti\'e9ndese por Auditor\'eda Ambiental (AA) al proceso de revisi\'f3n sistem\'e1tico e interdisciplinario, documentado, peri\'f3dico y objetivo de una actividad y/o acci\'f3n determinada, que consiste en la obtenci\'f3
+n de evidencias y su evaluaci\'f3n con el fin de determinar si las actividades, los incidentes, las condiciones y los sistemas de gesti\'f3n ambiental adoptados, o la informaci\'f3n sobre 
+estos temas, cumplen con criterios ambientales y normativas vigentes.-
+\par 
+\par Art\'edculo 9\'ba: Enti\'e9ndese por Proyecto a una propuesta a desarrollar en un determinado tiempo y lugar. Puede estar referido tanto a pol\'edticas de gobierno, generales o sectoriales, progra
+mas provinciales, regionales o locales, proyectos de construcciones o instalaciones, como a otras intervenciones sobre el medio natural o modificado, comprendidas entre otras las modificaciones del paisaje, la explotaci\'f3
+n de recursos naturales, los planes de desarrollo, las campa\'f1as de aplicaci\'f3n de biocidas, los cambios de uso de la tierra. Y que deben someterse a una Evaluaci\'f3n de Impacto Ambiental (EIA) como requisito previo a us ejecuci\'f3
+n o desarrollo, y cuando correspondiera, previo a su certificado de habilitaci\'f3n o autorizaci\'f3n.-
+\par Sus principales modalidades son: Aviso de Proyecto (AP), Evaluaci\'f3n de Impacto Ambiental (EIA) o Auditor\'eda Ambiental (AA), las que deben incluir:
+\par 1- Idea, prefactibilidad, factibilidad y dise\'f1o;
+\par 2- Concreci\'f3n, construcci\'f3n o materializaci\'f3n;
+\par 3- Desarrollo de acciones, Operaci\'f3n de las obras o instalaciones;
+\par 4- Clausura o desmantelamiento;
+\par 5- Post clausura o post desmantelamiento;
+\par 6- Auditor\'eda de cierre,
+\par 7- Estudios de Impacto Ambiental.
+\par 
+\par Art\'edculo 10\'ba: Enti\'e9ndese por Certificado de Licencia Ambiental de Funcionamiento al documento de autorizaci\'f3n emitido por la Direcci\'f3n de Medio Ambiente Municipal como resultado de la Evaluaci\'f3n del Impacto Ambiental o de la Auditor\'ed
+a Ambiental y avalado por pronunciamiento fundado mediante Resoluci\'f3n y verificaci\'f3n de cumplimiento de las condiciones requeridas en dicha Ordenanza.-
+\par 
+\par Art\'edculo 11\'ba: Las personas sean p\'fablicas o privadas, responsables de proyectos incluidos en la presente Ordenanza, deber\'e1n contar en forma previa a toda implementaci\'f3n, ejecuci\'f3n y/o acci\'f3n, con la correspondiente autorizaci\'f3
+n expedida por la Direcci\'f3n de Medio Ambiente Municipal, que acredite la concordancia de los mismos con los principios rectores para la preservaci\'f3n, conservaci\'f3n, defensa \ltrpar y mejoram
+iento del ambiente, establecidos en la presente Ordenanza y que se denominar\'e1 Certificado de Licencia Ambiental de Funcionamiento.
+\par 
+\par Art\'edculo 12\'ba: El documento de autorizaci\'f3n, para aquellos proyectos sujetos al alcance de la presente Ordenanza, al que se refiere el Art\'edculo anterior, deber\'e1 ser exigido por todos los organismos de la Administraci\'f3n P\'fa
+blica Municipal con competencia en la materia, quedando expresamente prohibido en el Ejido Municipal la autorizaci\'f3n de obras y/o acciones que no cumplan este requisito
+\par 
+\par Art\'edculo 13\'ba: Para la obtenci\'f3n de la autorizaci\'f3n a la que hace referencia el Art\'edculo 9\'ba, las personas p\'fablicas o privadas responsables de proyectos incluidos en la presente Ordenanza deber\'e1n efectuar la presentaci\'f3
+n y tramitaci\'f3n correspondiente ante la Direcci\'f3n de Medio Ambiente Municipal con jurisdicci\'f3n en el \'e1rea de desarrollo del proyecto. La Direcci\'f3n de Medio Ambiente Municipal, otorgar\'e1 la autorizaci\'f3n en cuesti\'f3n previa consideraci
+\'f3n del estudio de Evaluaci\'f3n del Impacto Ambiental.                }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid730986 
+\par }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid730986\charrsid13768509 
+\par Art\'edculo 14\'ba: S\'f3lo ser\'e1n admitidos para su consideraci\'f3n, aquellas propuestas de Evaluaci\'f3n de Impacto Ambiental que contengan como m\'ednimo y sin perjuicio de otros requisitos que como t\'e9rminos de referencia fije la Direcci\'f3
+n de Medio Ambiente Municipal, los siguientes datos:
+\par Descripci\'f3n general del proyecto y exigencias previsibles en el tiempo, con respecto al uso del suelo y otros recursos (combustibles, aguas, etc.) Relaci\'f3n del proyecto con el cuadro de usos del C\'f3digo de Planeamiento Urb
+ano y otras normas en vigencia.
+\par An\'e1lisis de la normativa espec\'edfica relacionada con la materia del proyecto.
+\par Factibilidad de localizaci\'f3n con opini\'f3n fundada por el organismo de la administraci\'f3n p\'fablica competente.
+\par Estimaci\'f3n de los tipos y cantidades de residuos que se generar\'e1n durante su funcionamiento y las formas previstas de tratamiento y/o disposici\'f3n final de los mismos.
+\par Estimaci\'f3n de los riesgos de inflamabilidad y de emisi\'f3n de materia y/o energ\'eda resultantes del funcionamiento, y formas previstas de tratamiento, minimizaci\'f3n y control.
+\par Fundamento cient\'edfico en los procedimientos tecnol\'f3gicos y normas t\'e9cnicas propuestas.
+\par Descripci\'f3n de los efectos previsibles, ya se trate de consecuencias directas o indirectas, sean \'e9stas presentes o futuras, sobre la poblaci\'f3
+n humana, la fauna urbana y no urbana, la flora, el suelo, el aire y el agua, incluido el patrimonio cultural, art\'edstico e hist\'f3rico.
+\par Descripci\'f3n de las medidas previstas para reducir, eliminar o mitigar los posibles efectos ambientales negativos.
+\par Descripci\'f3n de los impactos ocasionados durante las etapas previas a la actividad o construcci\'f3n del proyecto. Medidas para mitigar dichos impactos.
+\par Informe sobre la incidencia que el proyecto acarrear\'e1 a los servicios p\'fablicos y la infraestructura de servicios de la Ciudad.
+\par Descripci\'f3n ambiental del \'e1rea afectada y del entorno ambiental pertinente.
+\par Identificaci\'f3n de Puntos Cr\'edticos de Control y Programa de Vigilancia y Monitoreo de las variables ambientales durante su emplazamiento y funcionamiento.
+\par Programas de recomposici\'f3n y restauraci\'f3n ambientales previstos.
+\par Planes y programas a cumplir ante las emergencias ocasionadas por el proyecto o la actividad.
+\par Programas de capacitaci\'f3n ambiental para el personal.
+\par Previsiones a cumplir para el caso de paralizaci\'f3n, cese o desmantelamiento de la actividad.
+\par Identificaci\'f3n de domicilios real y legal del proponente o interesado de la actividad, proyecto, programa o emprendimiento, responsable de la propuesta pertinente.
+\par Descripci\'f3n y detalle curricular del equipo t\'e9cnico interdisciplinario, con incumbencias en \'e1reas de disciplinas ambientales, que lleva adelante el estudio.
+\par La documentaci\'f3n ser\'e1 suscrita en forma conjunta por el solicitante y por el profesional responsable t\'e9cnico, habilitado en la provincia de Entre R\'edos.
+\par 
+\par Las propuestas de Evaluaci\'f3n de Impacto Ambiental pueden contemplar compromisos ambientales voluntarios, no exigibles por esta u otra normativa. En tal caso el titular est\'e1 obligado a cumplirlos.-
+\par 
+\par Art\'edculo 15\'ba: El Manifiesto de Evaluaci\'f3n Impacto Ambiental y el correspondiente Estudio T\'e9cnico, con la firma del proponente o interesado de la actividad, proyecto, programa o emprendimiento y el responsable t\'e9
+cnico del proyecto, revisten el car\'e1cter de declaraci\'f3n jurada. El equipo interdisciplinario compuesto por los profesionales inscriptos en el rubro consultores y/o profesionales en Auditor\'edas y Estudios Ambientales, ser\'e1
+n responsables por la veracidad de lo expresado en dicho Estudio y asumen la co-responsabilidad profesional.-
+\par 
+\par Art\'edculo 16\'ba: A los efectos de lograr la habilitaci\'f3n a trav\'e9s de la Evaluaci\'f3n de Impacto Ambiental, la Direcci\'f3n de Medio Ambiente Municipal pondr\'e1 en funcionamiento el correspondiente Registro denominado "Rubro de Profesionale
+s", en el que se inscribir\'e1n los profesionales o grupos de profesionales de las disciplinas con incumbencias en \'e1reas ambientales, que vayan a prestar sus servicios para la realizaci\'f3
+n de las propuestas y/o estudios presentados en el marco de esta Ordenanza y de acuerdo al Anexo IV, y determinar\'e1 los requisitos y procedimientos de car\'e1cter t\'e9cnico y cient\'edfico que dichos prestadores deber\'e1n satisfacer para su inscripci
+\'f3n. Los inscriptos, que participen del mencionado estudio, ser\'e1n co-responsables conjuntamente con el solicitante y el responsable t\'e9cnico de la obra o actividad por la veracidad de los datos que aporten. El mencionado Registro funcionar\'e1
+ en el \'e1mbito de la Direcci\'f3n de Medio Ambiente Municipal, y estar\'e1 compuesto por los siguientes rubros:
+\par Rubro General de Evaluaci\'f3n Ambiental: donde se asientan los datos contenidos en los formularios de categorizaci\'f3n de las actividades, proyectos, programas y/o emprendimientos comprendidos en la presente ordenanza;
+\par Rubro de Profesionales y Consultor\'edas:
+\par b.1) De Profesionales universitarios en Auditor\'edas y Estudios Ambientales en el que se registrar\'e1n los datos profesionales;
+\par b.2) De Profesionales con estudios superiores no universitarios en Auditor\'edas y Estudios Ambientales en el que se registrar\'e1n los datos de los profesionales superiores no universitarios;
+\par b.3) De Consultoras o Empresas en Auditor\'edas y Estudios Ambientales en el que se registrar\'e1n los datos de la misma.
+\par }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid730986 
+\par }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid730986\charrsid13768509 Rubro de Infractores.
+\par 
+\par La informaci\'f3n contenida en el citado Registro ser\'e1 de car\'e1cter p\'fablico.
+\par 
+\par Art\'edculo 17\'ba: Los profesionales universitarios o aquellos que posean t\'edtulo superior no universitario que deseen inscribirse en el Registro de Evaluaci\'f3n Ambiental establecido en el rubro b (b.1 o b.2) del Art\'edculo 16\'ba
+, deben presentar el formulario contenido en el Anexo IV.b., acompa\'f1ado por la siguiente documentaci\'f3n:
+\par Fotocopia debidamente certificada del t\'edtulo universitario o no universitario habilitante, legalizado expedido por universidad o instituci\'f3n de educaci\'f3n superior universitaria o no 
+universitaria, reconocida por la autoridad competente, nacional, provincial, o de la ciudad, por el cual se les reconozca incumbencia en materias ambientales.
+\par Curriculum Vitae resumido (no m\'e1s de cinco carillas).-
+\par 
+\par Art\'edculo 18\'ba: La Direcci\'f3n de Medio Ambiente Municipal, suministrar\'e1 a requerimiento del solicitante responsable, la informaci\'f3n p\'fablica disponible en su \'e1mbito relacionada con la evaluaci\'f3n ambiental del proyecto.-
+\par 
+\par Art\'edculo 19\'ba: La Direcci\'f3n de Medio Ambiente Municipal a trav\'e9s del Area Municipal correspondiente dar\'e1 difusi\'f3n a todo proyecto sujeto a Estudio de Impacto Ambiental (EsIA), dentro de los (10) d\'edas de presentado el mismo.-
+\par 
+\par Art\'edculo 20\'ba: La Direcci\'f3n de Medio Ambiente Municipal icipal podr\'e1 convocar a Audiencia P\'fablica, en referencia a proyectos incluidos en la presente Ordenanza, a las personas f\'edsicas o jur\'eddicas, p\'fa
+blicas o privadas, estatales o no, potencialmente afectadas por la realizaci\'f3n del proyecto y a las organizaciones no gubernamentales interesadas cuyas actividades se desarrollen en la zona del proyecto. la informaci\'f3
+n a brindar en dicha audiencia estar\'e1 a cargo del proponente, actuando la Direcci\'f3n de Medio Ambiente Municipal como coordinadora y moderadora, conforme se establezca. las opiniones vertidas en la Audiencia P\'fablica no tendr\'e1n car\'e1
+cter de vinc\ltrpar ulante al pronunciamiento final.
+\par 
+\par Art\'edculo 21\'ba: Es menester de la Direcci\'f3n de Medio Ambiente Municipal, impartir directivas y/o determinar criterios conductivos mediante recomendaciones, establecer t\'e9rminos de referencia y solicitar ampliaci\'f3n de informaci\'f3
+n, mediante Resoluci\'f3n fundada, a los que deber\'e1n quedar sujetas las personas de derecho p\'fablico o privado a fin de asegurar el mejor cumplimiento de la presente Ordenanza.
+\par 
+\par Art\'edculo 22\'ba: La documentaci\'f3n requerida para cada tipo de propuesta deber\'e1 ser presentada ante mesa de entradas de la Municipalidad de Concepci\'f3n del Uruguay y dirigida a la Direcci\'f3n de Medio Ambiente Municipal, quien confeccionar\'e1
+ el debido seguimiento del expediente a los efectos de cumplimentar los aspectos formales, legales y t\'e9cnicos de la presentaci\'f3n.
+\par 
+\par Art\'edculo 23\'ba: Todo ciudadano tiene derecho a la informaci\'f3n sobre Evaluaci\'f3n de Impacto Ambiental que se tramita en la Direcci\'f3n de Medio Ambiente Municipal. A tal fin, se arbitrar\'e1n los
+ medios necesarios para dar respuesta a los requerimientos de esa naturaleza que les sean formulados, siempre que la misma no sea presentada con car\'e1cter de informaci\'f3n confidencial.
+\par 
+\par Art\'edculo 24\'ba: La Direcci\'f3n de Medio Ambiente Municipal es la Autoridad de Ampliaci\'f3n, con responsabilidad para examinar por s\'ed y/o a trav\'e9s de terceros. la misma podr\'e1
+ autorizar o rechazar los proyectos presentados en el marco de esta normativa y velar por los ajustes de estos instrumentos a la pol\'edtica ambiental vigente.-
+\par 
+\par Art\'edculo 25\'ba: Las actividades, proyectos, programas o emprendimientos, o las ampliaciones de las mismas que se inicien sin contar con la etapa de Aviso de Proyecto o que no cumplan con las exigencias, seguimiento y controles que se establezcan, ser
+\'e1n suspendidas o clausuradas de inmediato, sin perjuicio de las responsabilidades que pudieran corresponder a sus titulares. En todos los casos la Autoridad de Ampliaci\'f3n puede disponer la demolici\'f3n o el cese de las obras construidas en infracci
+\'f3n a la presente norma, con cargo al infractor.-
+\par 
+\par Art\'edculo 26\'ba: La Autoridad de Aplicaci\'f3n ordena la suspensi\'f3n de las actividades, proyectos, programas o emprendimientos cuando concurrieran algunas de las siguientes circunstancias:
+\par Encubrimiento y/u ocultamiento de datos, su falseamiento, adulteraci\'f3n o manipulaci\'f3n maliciosa en el procedimiento de evaluaci\'f3n y de renovaci\'f3n del Certificado de Licencia Ambiental.
+\par Incumplimiento o trasgresi\'f3n de las condiciones ambientales impuestas para la ejecuci\'f3n del proyecto.-
+\par 
+\par Art\'edculo 27\'ba: La etapa de Aviso de Proyecto establecida en e Art\'edculo 2\'ba es obligatoria para todo tipo de proyecto comprendido en la presente reglamentaci\'f3n, cuya gu\'eda de confecci\'f3
+n se incluye como Anexo III, que forma parte integrante de la presente Ordenanza.-
+\par 
+\par Art\'edculo 28\'ba: La profundidad y extensi\'f3n en el tratamiento de los contenidos del art\'edculo anterior, deber\'e1 ser acorde a la importancia del proyecto y a sus aspectos esenciales. Las descripciones y an\'e1lisis ser\'e1
+n objetivos y sencillos, con expresi\'f3n de la situaci\'f3n ambiental existente y de las modificaciones que provocar\'e1 el proyecto en el ambiente.-
+\par 
+\par Art\'edculo 29\'ba: Las listas de proyectos sujetos a Evaluaci\'f3n de Impacto Ambiental, consignadas en los Anexos I y II de la presente Ordenanza s\'f3lo son orientativas y podr\'e1n ser ampliadas mediante Resoluci\'f3n de la Direcci\'f3
+n de Medio Ambiente Municipal, debi\'e9ndose publicar la misma en el Bolet\'edn Oficial y/o medios de informaci\'f3n locales.-
+\par 
+\par Art\'edculo 30\'ba: El Estudio de Impacto Ambiental de los proyectos comprendidos en el Anexo I deber\'e1 ser presentado con un desarrollo en profundidad y contemplando debidamente los contenidos m\'ednimos establecidos en la presente Ordenanza a trav\'e9
+s del Art\'edculo 14\'ba.-
+\par 
+\par Art\'edculo 31\'ba: Los proyectos comprendidos en el Anexo II, se consideran condicionalmente sujetos a Estudio de Impacto Ambiental, debiendo expedirse con fundamentaci\'f3n, la Direcci\'f3n de Medio Ambiente Municipal, cu\'e1l de ellos tendr\'e1
+ que ser desarrollado por el proponente en los t\'e9rminos de un Estudio de Impacto Ambiental. La informaci\'f3n b\'e1sica que se utilizar\'e1 a tal fin ser\'e1 el "Aviso de Proyecto".-
+\par 
+\par Art\'edculo 32\'ba: Los criterios de calidad ambiental, que se consideran v\'e1lidos a los fines de la presente Ordenanza, son los indicados por normas provinciales y nacionales vigentes. En caso de no cubrir \'e9
+stas los requerimientos que pudiesen hallarse bajo an\'e1lisis de la Direcci\'f3n de Medio Ambiente Municipal, deber\'e1n seleccionarse los valores m\'e1s estrictos entre los recomendados por organismos de prestigio internacional en la materia, tales c
+omo: programa de las Naciones Unidas para el Medio Ambiente (PNUMA); Organizaci\'f3n Mundial de la Salud (OMS); Oficina Panamericana de la Salud (OPS); Comunidad Econ\'f3mica Europea (CEE); Agencia de Protecci\'f3
+n del Ambiente de los EE.UU. (EPA) y el Consejo Federal del Ambiente de la Rep\'fablica Federal Alemana.
+\par 
+\par Art\'edculo 33\'ba: Cuando la Direcci\'f3n de Medio Ambiente Municipal lo considere conveniente, debido a la complejidad que presenten determinados aspectos espec\'edficos de una Evaluaci\'f3n de Impacto Ambiental, solicitar\'e1 apoyo t\'e9
+cnico a la Unidad de Gesti\'f3n Ambiental y/o a organismos e institutos de indudable solvencia cient\'edfico-t\'e9cnica, e imparcialidad en sus juicios y consideraciones, tales como Universidades, Instituto Nacional de Tecnolog\'eda Industrial (INTI);
+ Instituto Nacional de Tecnolog\'eda Agropecuaria (INTA); y otros de trayectoria y capacidad reconocida, quedando a cargo del solicitante o interesado de actividades, proyectos, programas o emprendimientos; las erogaciones y expensas de los Estudios T\'e9
+cnicos de Impacto Ambiental necesarios para realizar los informes, conclusiones y ampliaciones, as\'ed como las publicaciones requeridas, y demandas por tales servicios y prestaciones. As\'ed tambi\'e9n se podr\'e1
+ convocar a entidades intermedias que adem\'e1s de brindar apoyo t\'e9cnico, puedan colaborar en establecer un correcto sistema de informaci\'f3n p\'fablica.-
+\par 
+\par Art\'edculo 34\'ba: La Direcci\'f3n de Medio Ambiente Municipal deber\'e1 realizar el an\'e1lisis de los Estudios de Impacto Ambiental, y teniendo en cuenta lo normado por el Art\'edculo anterior, teniendo en cuenta no s\'f3lo la comparaci\'f3
+n de valores de referencia de calidad ambiental, tanto los pre-operacionales como los supuestamente resultantes de actividad u obra proyectada, sino tambi\'e9n, las caracter\'edsticas condicionantes del sitio de localizaci\'f3
+n tales como clima, hidrogeolog\'eda y usos de suelo dominantes, la tecnolog\'eda a utilizar, las instalaciones conexas o complementarias, 
+\par la existencia o no de planes u obras importantes en la zona y los objetivos de las mismas, y los estudios de compatibilidad tanto de las nuevas actividades u obras entre s\'ed, como de ellas respecto al medio urbano y rural existente. Tambi\'e9n deber\'e1
+ considerar los futuros costos y las posibilidades reales de efectuar en forma permanente, controles de establecimientos y situaciones cuyo n\'famero y/o complejidad implique nuevas cargas al erario p\'fa
+blico y elevados riesgos con respecto al grado de cumplimiento habitual de las normas y recomendaciones de tutela ambiental. As\'ed tambi\'e9n se deber\'e1 tener presente y acreditarse, en cuanto sea posible, la comparaci\'f3
+n con experiencias similares nacionales e internacionales, en forma especial con aquellas que constan en la documentaci\'f3n de la Organizaci\'f3n Mundial de la Salud, Organizaci\'f3n Internacional del Trabajo, Comunidad Econ\'f3mica 
+Europea y Agencia de Protecci\'f3n del Ambiente (EPA) de los EE.UU.-
+\par 
+\par Art\'edculo 35\'ba: Autor\'edzase a la Secretar\'eda de Gobierno de la Municipalidad y a solicitud de la Direcci\'f3n de Medio Ambiente, a contratar personal t\'e9cnico especializado, bajo la modalidad de Contrato de Locaci\'f3
+n de Servicios, para realizar el an\'e1lisis de los Estudios de Impacto Ambiental recibidos, en los casos que considere necesario y en funci\'f3n de la complejidad que presenten determinados aspectos t\'e9cnicos espec\'edficos.-
+\par 
+\par Art\'edculo 36\'ba: La autoridad de Aplicaci\'f3n procede a efectuar un an\'e1lisis de los Estudios T\'e9cnicos de Impacto Ambiental, de acuerdo a lo normado en los Art\'edculos 32\'ba y 33\'ba, con el objeto de elaborar el Dictamen T\'e9
+cnico, dentro de los cuarenta y cinco (45) d\'edas de presentado el Manifiesto de Impacto Ambiental.-
+\par 
+\par Art\'edculo 37\ltrpar \'ba: A fin de cumplimentar el Art\'edculo precedente la Autoridad de Aplicaci\'f3n puede solicitar dentro de los quince (15) d\'edas de la presentaci\'f3n - en los casos que lo estime necesario - modificaciones o propuestas a
+lternativas al proyecto. El pedido de informes suspende los plazos previstos en el Art\'edculo precedente, hasta tanto el solicitante cumpla con lo requerido.-
+\par 
+\par Art\'edculo 38\'ba: Una vez valorado cr\'edticamente el proyecto y emitido el dictamen t\'e9cnico por la Direcci\'f3n de Medio Ambiente Municipal, ser\'e1 sometido a dictamen legal, si correspondiere, y posteriormente se emitir\'e1
+, por parte de la misma, la respectiva resoluci\'f3n.-
+\par 
+\par Art\'edculo 39\'ba: En relaci\'f3n con la valoraci\'f3n cr\'edtica de cada propuesta incluida en el Anexo I o II, la misma debe culminar con el otorgamiento del Certificado de Licencia Ambiental, mediante un pronunciamiento fundado (Resoluci\'f3n), que se
+\'f1ale las principales conclusiones, recomendaciones y condiciones de autorizaci\'f3n del proyecto.-
+\par 
+\par Art\'edculo 40\'ba: Cuando la Autoridad de Aplicaci\'f3n se expida por la aprobaci\'f3n de la actividad, proyecto, programa o emprendimiento, se extiende a favor del interesado, dentro de los diez (10) d\'ed
+as, el Certificado de Licencia Ambiental, el cual se define como el documento que acredita el cumplimiento de la normativa de Evaluaci\'f3n de Impacto Ambiental (EIA). Se le dar\'e1 al mismo difusi\'f3n a trav\'e9s de los medios de prensa locales.-
+\par 
+\par Art\'edculo 41\'ba: Los Certificados de Licencia Ambiental deben contener:
+\par El nombre del titular.
+\par La ubicaci\'f3n del establecimiento.
+\par El rubro de la actividad.
+\par La categor\'eda del establecimiento (de acuerdo a la Ley Provincial N\'ba6260 y su Decreto Reglamentario N\'ba5837, el C\'f3digo Urbano de Concepci\'f3n del Uruguay, etc.).
+\par El plazo o duraci\'f3n temporal de la actividad, proyecto, programa o emprendimiento.
+\par Recomendaciones a cumplimentar.
+\par 
+\par Art\'edculo 42\'ba: El Certificado de Licencia Ambiental, debe renovarse de acuerdo al plazo y condiciones que fije la Direcci\'f3n de Medio Ambiente.
+\par Teni\'e9ndose en cuenta lo siguiente:
+\par El Certificado de Licencia Ambiental no tiene vencimiento para los casos de las actividades sin relevante efecto.
+\par Este Certificado de Licencia Ambiental tiene una validez de tres (3) a\'f1os para las actividades con relevante efecto ambiental. Los responsables de las actividades, programas, proyectos o emprendimientos deben solicitar la renovaci\'f3
+n del Certificado de Licencia Ambiental a la Direcci\'f3n de Medio Ambiente Municipal, dentro de los sesenta (60) d\'edas anteriores a su vencimiento, a trav\'e9s de la presentaci\'f3n de nota por duplicado, de una auditor\'ed
+a ambiental, donde se verifique el cumplimiento de los requisitos establecidos oportunamente para el otorgamiento del Certificado de Licencia Ambiental.
+\par Sin perjuicio de lo antes se\'f1alado debe procederse a la renovaci\'f3n del Certificado de Licencia Ambiental cuando opere alguna de las siguientes circunstancias:
+\par Incremento mayor al 40% de la potencia el\'e9ctrica instalada.
+\par Incremento en m\'e1s de un 20% en los niveles de emisi\'f3n de efluentes gaseosos, l\'edquidos, generaci\'f3n de residuos s\'f3lidos o semis\'f3lidos, o aumento en el riesgo de la tipificaci\'f3n de los mismos.
+\par Incorporaci\'f3n de una nueva actividad establecida por los Anexos I o II.
+\par Incremento en m\'e1s de un 20% en la utilizaci\'f3n de infraestructura de servicios.
+\par Incremento mayor al 30% de la superficie cubierta total, o superior a los mil (1000) metros cuadrados, no resultando computables aquellas \'e1reas que se destinen a la adecuaci\'f3n o modificaci\'f3n de sistemas de tratamiento de efluentes o residuos.-
+
+\par 
+\par Art\'edculo 43\'ba: La no renovaci\'f3n en tiempo y forma del correspondiente Certificado de Licencia Ambiental da lugar a la aplicaci\'f3n de las sanciones que pudieran corresponder de acuerdo con lo dispuesto en el Art\'edculo 25\'ba y 26\'ba
+, de la presente Ordenanza y en coordinaci\'f3n con resoluci\'f3n del Juzgado de Faltas Municipal.-
+\par 
+\par Art\'edculo 44\'ba: Las solicitudes de cambios de titularidad, se aprueban sin m\'e1s tr\'e1mite que la presentaci\'f3n de la documentaci\'f3n que acredite tal circunstancia. El nuevo titular, a los efectos de esta Ordenanza, es consider
+ado sucesor individual de su antecesor en el ejercicio de sus derechos y el cumplimiento de sus deberes.-
+\par 
+\par Art\'edculo 45\'ba: Cualquier modificaci\'f3n, ampliaci\'f3n o alteraci\'f3n de una actividad, proyecto, programa o emprendimiento ya realizado y sometido al procedimiento T\'e9cnico-Administrativo de Evaluaci\'f3
+n de Impacto Ambiental (EIA) debe, previamente a su efectivizaci\'f3n, ser puesto en conocimiento de la Autoridad de Aplicaci\'f3n, la que dentro del plazo de treinta (30) d\'edas podr\'e1:
+\par Ordenar la realizaci\'f3n de una ampliaci\'f3n de la Evaluaci\'f3n de Impacto Ambiental (EIA).
+\par Dictar resoluci\'f3n rechazando la propuesta.
+\par Dictar resoluci\'f3n aprobando la propuesta sin requerir una ampliaci\'f3n o nueva Evaluaci\'f3n de Impacto Ambiental (EIA).
+\par Requerir precisiones sobre las caracter\'edsticas de la propuesta y con posterioridad de recibidas ordenar la realizaci\'f3n de una nueva Evaluaci\'f3n de Impacto Ambiental (EIA) o expedirse por la aprobaci\'f3
+n de las modificaciones o por el rechazo, mediante resoluci\'f3n fundada.
+\par En el caso del supuesto d), el plazo determinado en el primer p\'e1rrafo de este Art\'edculo puede prorrogarse por quince (15) d\'edas m\'e1s.
+\par 
+\par Art\'edculo 46\'ba: Los responsables de actividades, proyectos, programas o emprendimientos que se presumen como de Impacto Ambiental con relevante efecto que se encuentren en desarrollo, ejecuci\'f3
+n o funcionamiento al promulgarse la presente Ordenanza, deben presentar un Estudio T\'e9cnico de Impacto Ambiental elaborado de conformidad a lo indicado por el Art\'edculo 14\'ba y en los plazos que se establezcan. El citado estudio estar\'e1 acompa\'f1
+ado de un Plan de Adecuaci\'f3n Ambiental, seg\'fan las condiciones de tiempo y forma que determine la autoridad de aplicaci\'f3n.-
+\par 
+\par Art\'edculo 47\'ba: El seguimiento y vigilancia del cumplimiento de lo establecido en la presente Ordenanza es de competencia exclusiva de la Direcci\'f3n de Medio Ambiente Municipal, la que:
+\par Vela por es estricto cumplimiento de las condiciones declaradas en los distintos pasos del Procedimiento T\'e9cnico Administrativo de Evaluaci\'f3n de Impacto Ambiental (EIA).
+\par Verifica la eficacia de las medidas de protecci\'f3n ambiental adoptadas.
+\par Verifica la exactitud y correcci\'f3n de lo expresado en los Estudios de Impacto Ambiental.
+\par Confecciona actas de constataci\'f3n, cuando as\'ed corresponda, y las remite al Juzgado de Faltas Municipal.
+\par Toda otra acci\'f3n que le corresponda en el ejercicio del poder de polic\'eda para el cumplimiento de los objetivos de la presente Ordenanza.
+\par 
+\par Art\'edculo 48\'ba: Forman parte de la presente Ordenanza los siguientes Anexos:
+\par 
+\par Anexo I: Proyectos Sujetos Obligatoriamente a presentaci\'f3n de Estudio de Impacto Ambiental (EsIA).
+\par 
+\par Anexo II: Proyectos obligatoriamente sujetos a presentaci\'f3n de Aviso de Proyecto y condicionalmente sujetos a presentaci\'f3n de Estudio de Impacto Ambiental.
+\par 
+\par Anexo III: Gu\'eda para la Confecci\'f3n del Resumen de la Obra y/o Acci\'f3n Propuesta (Aviso de Proyecto).
+\par 
+\par Anexo IV: Registro de Evaluaci\'f3n Ambiental.
+\par 
+\par Anexo IV b.: Solicitud de Inscripci\'f3n de Consultores y Profesionales en Auditor\'edas y Estudios Ambientales.
+\par 
+\par Anexo V: Glosario de T\'e9rminos.
+\par 
+\par Art\'edculo 49\'ba: La presente Ordenanza tendr\'e1 vigencia a partir de su publicaci\'f3n. La Direcci\'f3n de Medio Ambiente Municipal asegurar\'e1 su m\'e1s amplia difusi\'f3n.-
+\par 
+\par Art\'edculo 50\'ba: Reg\'edstrese, comun\'edquese, publ\'edquese y arch\'edvese.-
+\par 
+\par Dado en la Sala de Sesiones Juan Domingo Per\'f3n del Honorable Concejo Deliberante de la Municipalidad de Concepci\'f3n del Uruguay, a los quince d\'edas del mes de abril del a\'f1o dos mil cuatro.- Fdo.: Hugo Le\'f3
+n Ansaldi -Presidente- Miguel Angel Robina -Secretario.- 
+\par 
+\par 
+\par }\pard \ltrpar\s15\ql \li0\ri0\widctlpar\wrapdefault\aspalpha\aspnum\faauto\adjustright\rin0\lin0\itap0\pararsid8605918 {\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid730986\charrsid13768509 
+\par 
+\par 
+\par }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid730986 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid730986\charrsid13768509 A N E X O   I
+\par 
+\par ESTUDIO DE IMPACTO AMBIENTAL (EsIA)
+\par 
+\par Proyectos Sujetos Obligatoriamente a presentaci\'f3n de Estudio de Impacto Ambiental (EsIA)
+\par 
+\par Terminales de distribuci\'f3n de combustibles l\'edquidos (nafta, gas-oil, GNC, etc.).
+\par Centrales t\'e9rmicas con potencia igual o mayor a 100 MW.
+\par Instalaci\'f3n y transporte de equipos e instrumentos que utilizan materiales radiactivos, cualesquiera sea su tipo, finalidad y potencia.
+\par Plantas qu\'edmicas integradas.
+\par Plantas sider\'fargicas integradas.
+\par Industrias Extractivas
+\par 7 a) Explotaci\'f3n y extracci\'f3n de los yacimientos de rocas y pedregullo \ltrpar u otros minerales, de bancos de arena y de valvas de moluscos, situados en el dominio p\'fablico o privado (cauces de r\'edos y arroyos, etc.).
+\par 7 b) Plantas de concentraci\'f3n de minerales, ductos y otras instalaciones de superficie de la industria minera.
+\par 7 c) Escombreras.
+\par 7 d) Restauraci\'f3n ambiental post-explotaci\'f3n.
+\par 7 e) Instalaciones destinadas a la fabricaci\'f3n de cemento.
+\par Nuevos caminos: autopistas, autov\'eda, ruta convencional, v\'eda r\'e1pida.
+\par Ferrocarriles: terminales y v\'edas f\'e9rreas.
+\par Terminales de Omnibus.
+\par Aeropuertos.
+\par Recolecci\'f3n, almacenamiento temporario, transporte de residuos radiactivos, como as\'ed tambi\'e9n instalaciones necesarias a esos fines.
+\par Instalaciones para tratamiento y disposici\'f3n final de residuos t\'f3xicos y peligrosos cualquiera sea el sistema a emplear. Incluye dep\'f3sitos de lodos.
+\par Instalaciones de tratamiento y destino final de residuos domiciliarios o asimilables, que pudiesen receptar residuos de m\'e1s de 50.000 habitantes o el equivalente a 20.000 Tn de residuos al a\'f1o.
+\par Tratamiento y vertido final de aguas servidas de comunidades de m\'e1s de 10.000 habitantes.
+\par Presas que embalsen efluentes de tratamiento de la actividad minera.
+\par Planes de desarrollo urbano y/o regional, planes de ordenamiento territorial.
+\par Proyectos urbanos especiales o equipamientos urbanos colectivos de m\'e1s de 1.000 m2 de superficie cubierta (supermercados de escala regional, centros comerciales, centros de compras, hipermercados e hipercentros, centros de recreaci\'f3n, etc.).-
+\par Localizaci\'f3n de parques y complejos industriales y los proyectos de su correspondiente infraestuctura.-
+\par Plantas de tratamiento radiactivo de alimentos y bebidas.-
+\par Mataderos y frigor\'edficos cuando superen una capacidad instalada de faenamiento en una tasa total de producci\'f3n final igual o superior a 2,5 toneladas por hora (Tn/h), medida como el promedio del per\'edodo de producci\'f3n.-
+\par Construcci\'f3n de grandes presas de embalse, que tenga una capacidad de embalse mayor a 500.000 m3 de agua.-
+\par Captaci\'f3n, tratamiento y distribuci\'f3n de aguas superficiales permanentes para abastecimiento de poblaciones igual o mayor de 10.000 habitantes.-
+\par Captaci\'f3n y abastecimiento de aguas subterr\'e1neas de un solo acu\'edfero o unidad hidrogeol\'f3gica en un volumen igual o mayor a 250.000 m3/a\'f1o.-
+\par Sistemas de aprovechamiento de aguas.-
+\par Actuaciones en ba\'f1ados permanentes: actividades de relleno, drenaje, desecaci\'f3n.-
+\par Infraestructura que se localice en el dominio p\'fablico y/o en \'e1reas de protecci\'f3n.-
+\par Obras de limpieza y dragado que impliquen el vaciado parcial o total de embalses.-
+\par Proyectos forestales mayores de 50 ha de plantaci\'f3n anual
+\par Introducci\'f3n de especies (animal o vegetal) ex\'f3ticas.-
+\par Proyectos de explotaci\'f3n (animal o vegetal) de recursos naturales que se encuentren oficialmente declarados en alguna de las siguientes categor\'edas de conservaci\'f3n: en peligro de extinci\'f3n, vulnerables y/o raras.-
+\par Instalaciones e infraestructura para antenas de telefon\'eda m\'f3vil.-
+\par Planta e instalaciones para el curado y tratamiento qu\'edmico de maderas.-
+\par Plantas industriales para el procesamiento de cueros y pieles (curtiembres y peleter\'edas).-
+\par Plantas industriales para el procesamiento de cereales y granos.-
+\par Plantas industriales para la fabricaci\'f3n de sub productos animales.-
+\par Plantas industriales para la elaboraci\'f3n de alimentos balanceados.-
+\par }\pard \ltrpar\s15\ql \li0\ri0\widctlpar\wrapdefault\aspalpha\aspnum\faauto\adjustright\rin0\lin0\itap0\pararsid2572600 {\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid730986\charrsid13768509                                                            }{
+\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid730986 
+\par }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid730986\charrsid13768509 Proyecto de Ordenanza Municipal N\'ba
+\par }\pard \ltrpar\s15\ql \li0\ri0\widctlpar\wrapdefault\aspalpha\aspnum\faauto\adjustright\rin0\lin0\itap0\pararsid8605918 {\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid730986\charrsid13768509 Evaluaci\'f3n de Impacto Ambiental
+\par Municipalidad de Concepci\'f3n del Uruguay - Entre R\'edos
+\par 
+\par 
+\par 
+\par ANEXO II
+\par 
+\par AVISO DE PROYECTO
+\par 
+\par Proyectos obligatoriamente sujetos a presentaci\'f3n de Aviso de Proyecto y condicionalmente sujetos a presentaci\'f3n de Estudio de Impacto Ambiental.
+\par 
+\par I- PROYECTOS INDUSTRIALES
+\par A- Trabajo de Metales:
+\par A.1) Establecimientos sider\'fargicos, comprendida la fundici\'f3n, forja, trefilado y laminado.
+\par A.2) Producci\'f3n y/o usode metales.
+\par A.3) Forjado de grandes piezas.
+\par A.4) Tratamiento para el revestimiento y endurecimiento de metales.
+\par A.5) Construcci\'f3n de calderas, de estructuras y de otras piezas de chapa de hierro.
+\par A.6) Fabricaci\'f3n y Montaje de autom\'f3viles y construcciones relativas a motores.
+\par A.7) Fabricaci\'f3n y reparaci\'f3n de aeronaves.
+\par A.8) Fabricaci\'f3n de material y equipos ferroviarios.
+\par A.9) Fabricaci\'f3n de maquinarias.
+\par 
+\par B- Trabajo de minerales no met\'e1licos:
+\par B.1) Fabricaci\'f3n de productos de arcilla para construcci\'f3n (ladrillos, baldosas, cer\'e1micos, etc.)
+\par 
+\par C- Fabricaci\'f3n de Vidrio:
+\par 
+\par D- Industria Qu\'edmica:
+\par D.1)  F\'e1brica de productos qu\'edmicos.
+\par D.2)  Tratamiento y fraccionamiento de productos qu\'edmicos.
+\par D.3)  Fabricaci\'f3n de abonos, fertilizantes y plaguicidas; productos farmac\'e9uticos y medicamentos, de pinturas, resinas, pigmentos y barnices, de elast\'f3meros y per\'f3xidos.
+\par D.3) Almacenamiento y/o procesamiento de petr\'f3leo, productos petroqu\'edmicos y qu\'edmicos; comprende las instalaciones complementarias de otras industrias.
+\par D.4)  Fabricaci\'f3n de mezclas asf\'e1lticas.
+\par D.5)  Fabricaci\'f3n, acondicionamiento, carga o encartuchado de p\'f3lvora u otros explosivos, incluye pirotecnia.
+\par D.6)  Fabricaci\'f3n de fibras minerales artificiales.-
+\par D.7)  F\'e1brica de acumuladores y bater\'edas.
+\par D.8)  F\'e1brica de productos que contengan amianto: para los productos de mianto-cemento, una producci\'f3n anual de m\'e1s de 5.000 toneladas de productos acabados; para los recubrimientos de fricci\'f3n, una producci\'f3n anual de m\'e1
+s de 10 toneladas de productos acabados; para los dem\'e1s usos del amianto, una utilizaci\'f3n anual de m\'e1s de 50 toneladas.
+\par D.9)  Destilaci\'f3n de alcoholes.
+\par D.10) F\'e1brica de gases comprimidos y licuados.
+\par 
+\par E- Industria de Productos Alimenticios:
+\par E.1)  F\'e1brica de cuerpos grasos vegetales y animales (elaboraci\'f3n y refinado).
+\par E.2)  F\'e1bricas de conservas de productos vegetales y animales.
+\par E.3)  F\'e1bricas de productos l\'e1cteos y helados.
+\par E.4)  Industria de bebidas.
+\par E.5)  F\'e1brica de caramelos y de jarabes.
+\par E.6)  Industrias para la producci\'f3n de productos de moliner\'eda (harinas, f\'e9culas, caf\'e9).
+\par E.7)  Industrias para la producci\'f3n de harinas de carnes y aceites de pescado.
+\par E.8)  Industrias para la producci\'f3n de harinas y aceites de sub-productos animales.
+\par E.9)  Refiner\'edas de az\'facar.
+\par E.10) Elaboraci\'f3n de alimentos preparados para animales.
+\par E.11) Establecimientos de faena de animales (aves, vacunos, porcinos, conejos, etc.)
+\par 
+\par }\pard \ltrpar\s15\ql \li0\ri0\widctlpar\wrapdefault\aspalpha\aspnum\faauto\adjustright\rin0\lin0\itap0\pararsid2572600 {\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid730986\charrsid13768509 F- Industria Textil, del Cuero, de la Madera y del Papel. 
+\par }\pard \ltrpar\s15\ql \li0\ri0\widctlpar\wrapdefault\aspalpha\aspnum\faauto\adjustright\rin0\lin0\itap0\pararsid8605918 {\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid730986\charrsid13768509 F.1)  Industria Textil, del Cuero, de la Madera y del Papel.
+\par F.2)  Establecimientos de te\'f1idos de fibras y pieles.
+\par F.3)  Instalaciones para el lavado, desengrasado y blanqueo de la lana.
+\par F.4)  Saladeros y peladeros de cueros.
+\par F.5)  Curtiembres.
+\par F.6)  Fabricaci\'f3n de tableros de fibras, part\'edculas y contrachapados.
+\par F.7)  F\'e1bricas de carb\'f3n y de otros combustibles vegetales con producci\'f3n anual superior a 100 (cien) toneladas.
+\par F.8)  Establecimientos para la producci\'f3n y tratamiento de celulosa.
+\par F.9)  Fabricaci\'f3n de pasta de papel y cart\'f3n.
+\par F.10) F\'e1brica de papel, imprentas y editoriales.
+\par F.11) Aserraderos y otros talleres para la preparaci\'f3n d la madera.
+\par 
+\par G- Industria de la Goma y Pl\'e1sticos:
+\par G.1) Fabricaci\'f3n de productos a base de elat\'f3meros y caucho.
+\par G.2) Fabricaci\'f3n de materiales pl\'e1sticos.
+\par 
+\par H- Proyectos de Desmantelamiento de industrias comprendidas en la presente Ordenanza.
+\par 
+\par II - PROYECTOS DE PRODUCCION AGROPECUARIA, CASA Y PESCA
+\par 1. Explotaciones intensivas de especies animales:
+\par 
+\par Av\'edcola: planteles y establos de engorde, postura y/o reproducci\'f3n de animales con capacidad para alojar diariamente una cantidad igual o superior a 50.000 pollos o 1.000 pavos.-
+\par 
+\par Porcina, ovina, caprina, etc.: planteles de crianza y/o engorde de animales con capacidad para alojar diariamente una cantidad equivalente en peso vivo igual o superior a cincuenta (50) toneladas.
+\par 
+\par Acuacultura: Sp. Silvestres, tanto aut\'f3ctonas como ex\'f3ticas.
+\par 
+\par Bovina: planteles y establos de crianza y/o engorde para producci\'f3n donde se mantengan confinadas, en patios de alimentaci\'f3n, por m\'e1s de un mes, un n\'famero igual o superior a 100 unidades animal.
+\par 
+\par Otras.
+\par 2. Proyectos forestales de 2 a 50 has de plantaci\'f3n anual.
+\par 3. Desmontes sobre bosques protectores y/o permanentes.
+\par 4. Proyecto de uso racional sobre bosques de producci\'f3n cuando superen las 2 has.
+\par 5. Plantas de acopio de cereales, entendiendo como tales las que realicen almacenami\ltrpar ento, clasificaci\'f3n, limpieza y/o secado de granos.
+\par 6. Otras actividades de acarreo, selecci\'f3n, descascarado, lavado, trituraci\'f3n, quema u otras transformaciones de productos agropecuarios.
+\par 7. Mataderos y frigor\'edficos con una capacidad instalada de faenamiento en una tasa total de producci\'f3n final menor a 2,5 Tn/h, medida como el promedio del per\'edodo de producci\'f3n.
+\par 8. Proyectos de explotaci\'f3n (vegetal o animal) de recursos naturales aut\'f3ctonos y que no se encuentren comprendidos en el Anexo I.
+\par 9. Zool\'f3gicos, centros transitorios de tenencia de fauna silvestre.
+\par 10.Campa\'f1as rurales de aplicaci\'f3n de plaguicidas.
+\par 
+\par III- PROYECTOS DE INFRAESTRUCTURA Y EQUIPAMIENTOS:
+\par 
+\par A- GENERACION, TRANSPORTE Y DISTRIBUCION DE ENERGIA
+\par A.1) Instalaciones destinadas a la generaci\'f3n y/o transformaci\'f3n de energ\'eda el\'e9ctrica, menores de 100 MW.
+\par A.2) L\'edneas de transmisi\'f3n el\'e9ctrica de m\'e1s de 62 KV.
+\par A.3) Instalaciones industriales destinadas al transporte de gas.
+\par A.4) Instalaciones de Almacenamiento de gas tanto en instalaciones a\'e9reas como subterr\'e1neas.
+\par A.4) Instalaciones de Almacenamiento de combustibles f\'f3siles.
+\par A.5) Complejos hidroel\'e9ctricos que no est\'e9n considerados en el Anexo I.
+\par 
+\par B- INFRAESTRUCTURA DEL TRANSPORTE Y LA COMUNICACION:
+\par B.1) Helipuertos y aer\'f3dromos.
+\par B.2) Instalaciones complementarias a medios de transporte de \'f3mnibus, trenes, subterr\'e1neos, etc., cuando no se encuentren comprendidas en el Anexo I.
+\par }\pard \ltrpar\s15\ql \li0\ri0\widctlpar\wrapdefault\aspalpha\aspnum\faauto\adjustright\rin0\lin0\itap0\pararsid2572600 {\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid730986\charrsid13768509 B.3) Terminales de transferencia de cargas.              
+\par }\pard \ltrpar\s15\ql \li0\ri0\widctlpar\wrapdefault\aspalpha\aspnum\faauto\adjustright\rin0\lin0\itap0\pararsid8605918 {\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid730986\charrsid13768509 B.4) Terminales de \'f3
+mnibus que no se encuentren comprendidas en el Anexo I.
+\par B.5) Caminos nuevos: colectora o calzada de servicio.
+\par B.6) Instalaciones de transmisi\'f3n o repetici\'f3n de se\'f1ales (antenas repetidoras de telefon\'eda y/o comunicaci\'f3n en general).
+\par 
+\par C- GESTION DEL AGUA:
+\par 
+\par C.1) Obras de retenci\'f3n, derivaci\'f3n y/o embalses que no se encuentren comprendidas en el Anexo I.
+\par C.2) Captaci\'f3n y abastecimiento de aguas subterr\'e1neas de un solo acu\'edfero o unidad hidrogeol\'f3gica que no se encuentren comprendidas en el Anexo I.
+\par C.3) Sistemas de aprovechamiento de aguas de sistemas no explotados. Infreaestructura Hidr\'e1ulica para uso agr\'edcola: Manejo de sistemas de riego, ferti-irrigaci\'f3n y conducci\'f3n de agua para otros usos agropecuarios.
+\par C.4) Acueductos o conducciones que deriven aguas de una cuenca a otra.
+\par C.5) Obras de canalizaci\'f3n y regulaci\'f3n de cursos de agua: defensa de m\'e1rgenes, rectificaci\'f3n de cauces y dragado de r\'edos.
+\par C.6) Limpieza de cursos con extracci\'f3n de materiales.
+\par 
+\par D- EQUIPAMIENTOS AMBIENTALES:
+\par D.1) Instalaciones de tratamiento y vertido de efluentes cloacales.
+\par D.2) Conducci\'f3n de aguas servidas.
+\par D.3) Plantas potabilizadoras y desalinizadoras.
+\par D.4) Lagunas de estabilizaci\'f3n y de retenci\'f3n de agua.
+\par D.5) Instalaciones de tratamiento y destino final de residuos domiciliarios o asimilables, que pudiesen receptar residuos de menos de 50.000 habitantes o 20.000 Tn/a\'f1o de residuos equivalentes.
+\par D.6) Almacenamiento, transporte y disposici\'f3n transitoria de productos t\'f3xicos o peligrosos y/o residuos de cualquier naturaleza.-
+\par D.7) Desarmaderos y dep\'f3sitos de chatarra.
+\par D.8) Remediaci\'f3n de suelos.
+\par D.9) Proyectos de Saneamiento.
+\par D.10)Campa\'f1as urbanas de aplicaci\'f3n de plaguicidas.
+\par 
+\par E- ORDENAMIENTO DEL TERRITORIO Y URBANISMO:
+\par E.1) Toda edificaci\'f3n, instalaci\'f3n y actividad a ejecutar dentro o en \'e1rea contigua (entendiendo como tal la declarada como \'e1rea de amortiguamiento) a porciones territoriales comprendidas en el C\'f3digo de Edificaci\'f3n Urbana.
+\par E.1) Idem anterior con respecto a bienes de valor arqueol\'f3gico o hist\'f3rico cultural (patrimonio cultural).
+\par E.1) Loteos y planes de viviendas de m\'e1s de 10 unidades cuando no cuenten con obras de saneamiento b\'e1sico (efluentes cloacales, agua segura, etc.) y/o incluyan apertura de calle. Loteos y planes de viviendas, cuando superen una superficie de 1 ha.
+
+\par E.1) Proyectos urbanos especiales o equipamientos urbanos colectivos que no se encuentren incluidos en el Anexo I (supermercados de escala urbana, centros comerciales, infraestructura de recreaci\'f3n, etc.)
+\par E.1) Subdivisiones en loteos, edificios e instalaciones, a ubicarse dentro de llanuras de inundaci\'f3n de cursos urbanos o cuencas, destinados a usos m\'faltiples o a provisi\'f3n de agua potable.
+\par E.1) Actividades deportivas, recreacionales y comerciales en cursos de agua que incluyen entre sus prop\'f3sitos (reales o potenciales) la provisi\'f3n de agua.
+\par E.1) Cementerios convencionales, cementerios parques, hornos crematorios.
+\par E.1) Pistas de carrera o prueba de autom\'f3viles y motocicletas.
+\par E.1) Pistas de aterrizaje que no se encuentren comprendidas en el Anexo I.
+\par E.1) Complejos tur\'edsticos, hoteles de m\'e1s de 50 plazas, camping.
+\par 
+\par F- OTROS:
+\par F.1) Grandes demoliciones.
+\par F.2) Ejecuci\'f3n de voladuras y desmonte en rocas.
+\par F.3) Ejecuci\'f3n de destapes y explotaci\'f3n de miner\'eda de superficie.
+\par F.4) Ampliaci\'f3n o modificaci\'f3n de los proyectos enunciados en la presente norma.
+\par 
+\par NOTA: El presente listado de Proyectos obligatoriamente sujetos a presentaci\'f3n de Aviso de Proyecto y condicionalmente sujetos a presentaci\'f3n de Estudio de Impacto Ambiental, es de orden meramente orientativa. Pudiendo la Direcci\'f3
+n de Medio Ambiente Municipal ampliarlo cuando lo considere conveniente, en funci\'f3n de nuevas tecnolog\'edas y/o procesos que deban ser tenidos en cuenta para la preservaci\'f3n ambiental, objeto de esta normativa.           }{\rtlch\fcs1 \af2 
+\ltrch\fcs0 \f2\insrsid730986 
+\par 
+\par }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid730986\charrsid13768509 
+\par 
+\par 
+\par ANEXO III
+\par 
+\par AVISO DE PROYECTO
+\par 
+\par Gu\'eda para la Confecci\'f3n del Resumen de la Obra y/o Acci\'f3n Propuesta.
+\par 
+\par NOTA: La presente numeraci\'f3n es de orden meramente orientadora, debiendo el presentante adaptar racionalmente dicha presentaci\'f3n a las caracter\'edsticas de la propuesta. Debe proporcionarse la imagen m\'e1
+s veraz y completa del proyecto, evitando as\'ed demoras en la tramitaci\'f3n por requerimientos de informaci\'f3n complementaria. Se incluyen comentarios ilustrativos.
+\par 
+\par Cabe destacar que la informaci\'f3n solicitada deber\'e1 ser presentada en el idioma oficial de la Rep\'fablica Argentina.
+\par 
+\par I- Datos del proponente (responsable legal) y del responsable profesional.
+\par Nombre de la persona f\'edsica o jur\'eddica.
+\par Su domicilio legal y real. Tel\'e9fonos.
+\par Actividad principal la empresa y organismo.
+\par Responsable profesional y/o consultor.
+\par Su domicilio legal y real. Tel\'e9fonos.
+\par 
+\par Comentario: deber\'e1 acompa\'f1ar firma de ambos responsables. En caso de tratarse de persona jur\'eddica (empresa, sociedad, cooperativas, etc.) deber\'e1 justificarse su existencia y el aval del proponente para el tr\'e1
+mite (acta constitutiva y nombramiento del directorio o presidente para representar al proponente).
+\par 
+\par II- Proyecto
+\par Denominaci\'f3n y descripci\'f3n general.
+\par Nuevo emprendimiento o ampliaci\'f3n.
+\par 
+\par Comentario: describir claramente la propuesta, con datos suficientes para comprender la magnitud del proyecto y sus alcances. Descripci\'f3n del proyecto y descripci\'f3n de la situaci\'f3
+n ambiental existente, propuestas de obras o acciones para mitigar y compensar los impactos negativos. En el caso de tener participaci\'f3n otra entidad en la propuesta de mitigaci\'f3n, recuperaci\'f3n o compensaci\'f3n, se deber\'e1
+ adjuntar el documento de acuerdo respectivo.
+\par La propuesta deber\'e1 acompa\'f1arse con plano a escalas t\'e9cnicamente adecuadas.
+\par objetivos y beneficios socioecon\'f3micos en el orden local, provincial y nacional.
+\par 
+\par Comentario: justificar el objetivo del proyecto desde el punto de vista socio-ambiental.
+\par 
+\par Localizaci\'f3n: Departamento; Municipio; Calle y N\'famero; Cuenca del r\'edo.
+\par 
+\par Comentario: acompa\'f1ar plano de ubicaci\'f3n claro con puntos referenciales y en escala t\'e9cnicamente adecuada y factibilidad de uso del suelo correspondiente.
+\par 
+\par Definir el \'e1rea de influencia del proyecto.
+\par 
+\par Poblaci\'f3n afectada. Cantidad de grupos etarios y otra caracterizaci\'f3n de los grupos existentes.
+\par 
+\par Superficie del terreno.
+\par 
+\par Superficie cubierta existente y proyectad.
+\par 
+\par Inversi\'f3n total e inversi\'f3n por a\'f1o a realizar.
+\par 
+\par Magnitudes de producci\'f3n, servicio y/o usuarios. Categor\'eda o nivel de complejidad. (Detallar en funci\'f3n del proyecto: cantidad de producto, camas, habitaciones, carpas, veh\'ed
+culos, visitantes, cantidad de animales, etc. Todo ello por unidad de tiempo).
+\par 
+\par Comentario: todo dato que permita dilucidar la magnitud real del proyecto, alcances, etc.
+\par 
+\par Etapas del proyecto y cronograma.
+\par 
+\par Consumo de energ\'eda por unidad de tiempo en las diferentes etapas.
+\par 
+\par Comentario: por \ltrpar ejemplo, en caso de loteos o planes de vivienda presentar factibilidad de abastecimiento de energ\'eda el\'e9ctrica; en caso de industrias descripci\'f3n seg\'fan uso.
+\par 
+\par Consumo de combustibles por tipo, unidad de tiempo y etapa.
+\par 
+\par Agua. Consumo y otros usos. Fuente. Calidad y cantidad. Destino final.
+\par 
+\par Comentario: presentar constancia de factibilidad de uso de agua.
+\par 
+\par Detalle exhaustivo de otros insumos (Materiales y sustancias por etapa del proyecto).
+\par 
+\par Comentario: seg\'fan el proyecto dl que se trate, suele ser importante listar el uso de aceites, lubricantes, agroqu\'edmicos, insumos caracterizados como sustancias t\'f3xicas o peligrosas, recursos naturales renovables, etc.
+\par 
+\par Detalle de productos y subproductos. Usos.
+\par 
+\par Cantidad de personal a ocupar durante cada etapa.
+\par 
+\par Vida \'fatil: tiempo estimado en que la obra o acci\'f3n cumplir\'e1 con los objetivos que le dieron origen al proyecto (a\'f1os).
+\par 
+\par Tecnolog\'eda a utilizar. Equipos, veh\'edculos, maquinarias, instrumentos. Proceso. 
+\par 
+\par Comentario: en especial cuando se trata de proyectos cuya tecnolog\'eda implique riesgos ambientales particulares, como emisiones, efluentes, ruidos, residuos, trabajo en laderas, \'e1reas anegadas, etc.
+\par 
+\par Proyectos asociados, conexos o complementarios, existentes o proyectados, con localizaci\'f3n en la zona, especificando su incidencia con la propuesta.
+\par 
+\par Comentario: Conviene en este punto realizar un comentario respecto a proyectos existentes y su interrelaci\'f3n actual, as\'ed como la existencia de proyectos futuros. Por ejemplo: interferencias en el tr\'e1
+nsito, drenajes superficiales, sinergia de actividades, etc.
+\par 
+\par Necesidades de infraestructura y equipamiento que genera directa o indirectamente el proyecto (tendido de redes, escuelas, viviendas).
+\par Relaci\'f3n con planes estatales o privados.
+\par 
+\par Ensayos, determinaciones, estudios de campo y/o laboratorios realizados.
+\par 
+\par Comentario: calidad del aire, suelo, agua (como estado baje, sin actividad); drenajes superficiales; estudio de tr\'e1nsito; estudios de suelo; vulnerabilidad de acu\'edferos; estudios de vegetaci\'f3n (en \'e1reas con vegetaci\'f3
+n natural es indispensable, en \'e1reas ya degradadas deber\'e1 dejarse constancias de tal situaci\'f3n); calidad de fuentes de agua, etc. Todos ellos avalados por firma de profesional actu
+ante y/o certificaciones de autoridades competentes (Municipalidad, certificado de no inundabilidad, aprobaciones por \'e1reas, etc.).
+\par 
+\par Residuos y contaminantes. Tipos y vol\'famenes por unidad de tiempo (incluidos s\'f3lidos, semis\'f3lidos, l\'edquidos y gaseosos).
+\par 
+\par Comentario: deber\'e1 tenerse bien presente la normativa nacional, provincial y municipal, sus requisitos y habilitaciones seg\'fan tipo y caracter\'edsticas de los residuos: factibilidad de recolecci\'f3n, transporte, tratamiento y disposici\'f3
+n de los residuos; en caso de planta de tratamiento: factibilidad de la misma y descripci\'f3n del sistema de tratamiento utilizado.
+\par 
+\par }\pard \ltrpar\s15\ql \li0\ri0\widctlpar\wrapdefault\aspalpha\aspnum\faauto\adjustright\rin0\lin0\itap0\pararsid6584086 {\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid730986\charrsid13768509 
+Principales organismos, entidades o empresas involucradas directa o indirectamente.                                            
+\par }\pard \ltrpar\s15\ql \li0\ri0\widctlpar\wrapdefault\aspalpha\aspnum\faauto\adjustright\rin0\lin0\itap0\pararsid8605918 {\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid730986 
+\par 
+\par }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid730986\charrsid13768509 
+\par A N E X O  IV
+\par 
+\par REGISTRO DE EVALUACION AMBIENTAL
+\par 
+\par El Poder Ejecutivo Municipal, al sancionar la presente Ordenanza, dispone la creaci\'f3n de un Registro de Evaluaci\'f3n Ambiental, dividido en tres rubros:
+\par General de Evaluaci\'f3n Ambiental.
+\par De Consultores y Profesionales en Auditor\'edas y Estudios Ambientales.
+\par De Infractores.
+\par 
+\par a. En el Rubro General de Evaluaci\'f3n de Impacto Ambiental se registra la siguiente informaci\'f3n:
+\par Los Manifiestos de Estudio Evaluaci\'f3n de Impacto Ambiental (EsIA) y Estudios T\'e9cnicos correspondientes y Auditor\'eda Ambiental (AA), presentados.
+\par Los Aviso de Proyecto (AP) y los Certificados de Licencia Ambiental, otorgados.
+\par La n\'f3mina de responsables de actividads, proyectos, programas o emprendimientos sometidos al Procedimiento T\'e9cnico Administrativo de Evaluaci\'f3n de Impacto Ambiental.
+\par La constancia de las Audiencias P\'fablicas.
+\par Todo otro dato que la reglamentaci\'f3n considere importante.
+\par 
+\par b. En el Rubro referido a los Consultores y Profesionales en Auditor\'edas y Estudios Ambientales se registra:
+\par La n\'f3mina de consultores y profesionales habilitados para efectuar Auditor\'edas y Estudios T\'e9
+cnicos deImpacto Ambiental, indicando, en su caso, la empresa o grupo consultor al que pertenecen, conforme a las condiciones que establezca la reglamentaci\'f3n.
+\par La lista de consultores, profesionales y/o empresas y grupos de consultores que hayan recibido sanciones o se encuentren suspendidos en el desarrollo de su actividad en virtud de sanciones administrativas, civiles y/o penales.
+\par 
+\par El profesional inscripto en el rubro de Consultores y Profesionales en Auditor\'edas y Estudios Ambientales que firmare el Estudio T\'e9cnico deImpacto Ambiental falseando su contenido se sanciona con la suspensi\'f3n en dicho registro por el t\'e9
+rmino de dos (2) a\'f1os. En caso de reincidencia se dispondr\'e1 la baja del registro.
+\par 
+\par c. En el Rubro referido a los Infractores se registran los datos de los responsables de actividades, proyectos, programas o emprendimientos que hayan incurrido en incumplimiento de la presente Ordenanza. En el mismo debe dejar
+se constancia de las sanciones que a cada infractor se le han aplicado.
+\par 
+\par 
+\par 
+\par A N E X O   IV. b
+\par 
+\par SOLICITUD DE INSCRIPCION DE CONSULTORES Y PROFESIONALES EN AUDITORIAS Y ESTUDIOS AMBIENTALES
+\par 
+\par A)
+\par Apellido:
+\par Nombre:
+\par Documento:
+\par CUIL:
+\par Lugar y Fecha de nacimiento:
+\par Estado Civil:
+\par Domicilio Real:
+\par Domicilio Especial:
+\par 
+\par B)
+\par T\'edtulo/s Universitario/s de grado:
+\par Universidad:
+\par Facultad:
+\par Fecha de Egreso:
+\par 
+\par 
+\par C)
+\par T\'edtulo/s no Universitario/s:
+\par Entidad que lo otorg\'f3 y fecha de otorgamiento:              
+\par }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid730986 
+\par }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid730986\charrsid13768509 D) Detalle de antecedentes docentes y no docentes (especialmente en temas ambientales), indicando la instituci\'f3n y el per\'edodo de ejercicio.
+\par 
+\par D. 1) Nivel Universitario:
+\par D. 2) Cursos Dictados y Exposiciones Dictadas:
+\par 
+\par E) N\'f3mina de obras y publicaciones, consignando la editorial o revista y lugar y fecha de publicaci\'f3n, espec\'edficos en la tem\'e1tica ambiental:
+\par 
+\par F) Otros antecedentes relacionados con la especialidad ambiental, tales como cursos, jornadas y seminarios y conferencias realizadas:
+\par 
+\par G) Distinciones, premios y becas obtenidas:
+\par 
+\par H) S\'edntesis de los aportes originales en el ejercicio de la especialidad ambiental:
+\par 
+\par I) S\'edntesis de la actividad profesional:
+\par 
+\par J) Cargos y otros antecedentes que a juicio del aspirante puedan contribuir a una mejor ilustraci\'f3n sobre su competencia en \'e1reas ambientales:
+\par 
+\par J. 1) Otros Cargos:
+\par J. 2) Otros antecedentes en el ejercicio de la profesi\'f3n:
+\par J. 3) Participaci\'f3n en Investigaci\'f3n Universitaria:
+\par J. 4) Antecedentes Laborales en Relaci\'f3n de Dependencia: Proyecto de Ordenanza Municipal N\'ba
+\par Evaluaci\'f3n de Impacto Ambiental
+\par Municipalidad de Concepci\'f3n del Uruguay - Entre R\'edos
+\par 
+\par 
+\par 
+\par A N E X O   V
+\par 
+\par GLOSARIO DE TERMINOS
+\par 
+\par DEFINICIONES PRINCIPALES
+\par 
+\par Ambiente: (medio, entorno, medio ambiente) es el sistema constituido por los subsistemas naturales, econ\'f3micos y sociales que interrelacionan entre s\'ed
+, el que es susceptible de producir efectos sobre los seres vivos y las sociedades humanas y condicionar la vida del hombre.
+\par 
+\par Area natural: Lugar f\'edsico o espacio en donde uno o m\'e1s elementos naturales o la naturaleza en su conjunto, no se encuentran alterados por las sociedades humanas.
+\par 
+\par Conservar: Empleo de conocimientos tendientes al uso racional de los recursos naturales, permitiendo as\'ed el beneficio del mayor n\'famero de personas, tanto presentes como en las generaciones futuras.
+\par 
+\par Contaminaci\'f3n: Presencia en el ambiente de cualquier agente f\'edsico, qu\'edmico y biol\'f3gico, de temperatura o d una concentraci\'f3n de 
+varios agentes, en lugares, formas y concentraciones tales que puedan ser nocivos para la salud, seguridad o bienestar dela poblaci\'f3
+n humana, perjudiciales para la vida animal o vegetal, o impidan el uso y goce normal de los materiales, propiedades y lugares de recreaci\'f3n.
+\par 
+\par Desarrollo sostenible o sustentable: Modelo de desarrollo que se ejerce en forma tal que responda equitativamente a las necesidades de desarrollo y ambientales de las generaciones presentes o futuras.
+\par 
+\par Impacto ambiental: Cualquier cambio neto, positivo o negativo, que se provoca sobre el ambiente como consecuencia, directa o indirecta, de acciones antr\'f3
+picas susceptibles de producir alteraciones que afecten la salud, la capacidad productiva e los recursos naturales y los procesos \ltrpar ecol\'f3gicos esenciales.
+\par 
+\par Impacto ambiental susceptible de relevante efecto: Impactos Ambientales cuyos efectos directos e indirectos se extienden en el tiempo y cuyos par\'e1metros deben ser establecidos oportunamente por la Autoridad de Aplicaci\'f3n.
+\par 
+\par Monitoreo ambiental: Proceso de observaci\'f3n repetitiva, con objetivos bien definidos relacionados con uno o m\'e1s elementos del ambiente, de acuerdo con un plan temporal.                 
+\par }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid730986 
+\par }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid730986\charrsid13768509 Preservar: Mantener el estado actual de un \'e1rea o categor\'eda de seres vivos.
+\par 
+\par Procesos ecol\'f3gicos esenciales: Procesos naturales en los que interaccionan la regeneraci\'f3n de los suelos, el reciclado de los nutrientes y la purificaci\'f3
+n del aire y el agua de los cuales dependen la supervivencia de las especies vivas y el desarrollo de los humanos.
+\par Proteger: Defender un \'e1rea o determinados organismos contra la influencia modificadora de la actividad del hombre.
+\par 
+\par Residuo: Sustancias en estado s\'f3lido, semis\'f3lido, l\'edquido o gaseoso provenientes de actividades antr\'f3picas (sometidos o no a la tutela de un responsable) o generados en los procesos de extracci\'f3n, beneficio, transformaci\'f3
+n, consumo, utilizaci\'f3n y tratamiento cuyas car\'e1cter\'edsticas impiden usarlo en el proceso que los gener\'f3 o en cualquier otro.
+\par 
+\par Residuo energ\'e9tico: Desechos de fuentes de energ\'eda, entre ellos el ruido y la temperatura.
+\par 
+\par Residuo peligroso: Material compuesto por sustancias con caracter\'edsticas corrosivas, explosivas, t\'f3xicas o inflamables, que resulte objeto de desecho o abandono, que pueda perjudi
+car en forma directa o indirecta a los humanos, a otros seres vivos y al ambiente y contaminar el suelo, el agua y la atm\'f3sfera.
+\par 
+\par Residuo patol\'f3gico: Sustancias que contengan restos de sangre o sus derivados o elementos org\'e1nicos extra\'eddos a humanos o animales provenientes de los quir\'f3fanos.
+\par 
+\par Residuo patog\'e9nico: Sustancias que presentan caracter\'edsticas de toxicidad y/o actividad biol\'f3gica susceptibles de afectar directa o indirectamente a los seres vivos, y causar contaminaci\'f3n del suelo, el agua o la atm\'f3s
+fera que sean generados con motivo de la atenci\'f3n de pacientes (diagn\'f3stico y tratamiento de seres humanos o animales), as\'ed como tambi\'e9n en la investigaci\'f3n y/o producci\'f3n comercial de elementos biol\'f3gicos.
+\par 
+\par Restaurar: Restablecer las propiedades originales de un ecosistema o habitat.
+\par 
+\par Ruido: Sonido considerado molesto, desagradable o insoportable, que irrita, da\'f1a, asusta o despierta e interfiere la comunicaci\'f3n y act\'faa como una intromisi\'f3n en la intimidad.
+\par 
+\par Normativa consultada:
+\par De la Provincia de Entre R\'edos:
+\par Ley N\'ba6260, de prevenci\'f3n y control de la contaminaci\'f3n por parte de la industria y su DECRETO REGLAMENTARIO N\'ba5837 M.B.S.C.
+\par Ley N\'ba5.005, Explotaciones mineras.
+\par 
+\par De la Provincia de C\'f3rdoba:
+\par LEY N\'ba7343, que sanciona los principios rectores para la preservaci\'f3n, conservaci\'f3n, defensa y mejoramiento del ambiente y su DECRETO REGLAMENTARIO 3290/90.
+\par DECRETO N\'ba2131, del Impacto Ambiental.
+\par DECRETO REGLAMENTARIO N\'ba458, de creaci\'f3n, integraci\'f3n y funciones del consejo provincial del ambiente.
+\par 
+\par De la Provincia de Buenos Aires:
+\par LEY n\'ba123 de Impacto Ambiental y su modificatoria por LEY N\'ba452.
+\par DECRETO N\'ba1.120 - GCABA - 2001 REGLAMENTARIO DE LA LEY N\'ba123 de Impacto Ambiental.
+\par El reglamento de la LEY N\'ba123 (B.O. N\'ba622) referente a la Evaluaci\'f3n del Impacto Ambiental en el \'e1mbito de la C.A.B.A.
+\par 
+\par Dado en la Sala de Sesiones Juan Domingo Per\'f3n del Honorable Concejo Deliberante de la Municipalidad de Concepci\'f3n del Uruguay, a los quince d\'edas de mes de abril de dos mil cuatro.- Fdo.: Hugo Le\'f3n Ansaldi - Presidente - Miguel
+ Angel Robina - Secretario.-
+\par 
+\par 
+\par CONCEPCION DEL URUGUAY, 26 de Abril de 2004.-
+\par 
+\par ES COPIA                                      B I S O G N I
+\par                                           Luis Osvaldo Carrozzo
+\par 
+\par 
+\par 
+\par }\pard \ltrpar\s15\ql \li0\ri0\widctlpar\wrapdefault\aspalpha\aspnum\faauto\adjustright\rin0\lin0\itap0\pararsid15955629 {\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid730986\charrsid13768509 
+\par }}
