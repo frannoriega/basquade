@@ -30,3 +30,8 @@ Los documentos están clasificados en las siguientes categorías:
 1. Leer los archivos de un storage (Quiás un drive)
 2. Buscar por titulos, keywords.
 3. Listar y filtrar (buscar ejemplos de bibliotecas online)
+
+
+## Ideas falopas
+
+1. A tiktok like experience by summarizing a document in a tweet like length and scroll trough the files with facts or intresting things about the files.
