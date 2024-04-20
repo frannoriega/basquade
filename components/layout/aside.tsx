@@ -5,14 +5,12 @@ export default function Aside() {
   const numbers = Array.from({ length: 10 }, (_, i) => i + 1);
 
   return (
-    <aside className="py-2 bg-blue-300">
-      <div className="flex md:flex-col gap-2">
-        {numbers.map((number) => (
-          <div key={number}>
-            <DocumentPreview number={number} />
-          </div>
-        ))}
-      </div>
-    </aside>
+    <div className="overflow-auto">
+    <div className="py-2 bg-blue-300 h-max overflow-auto flex md:flex-col gap-2">
+      {numbers.map((number) => (
+        <DocumentPreview key={number} number={number} />
+      ))}
+    </div>
+    </div>
   );
 }

@@ -18,25 +18,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="size-">
-      <body className={`${inter.className} size-full overflow-hidden`}>
-        <div className="md:hidden h-full">
-          <div className="overflow-hidden">
-            <Header />
-            <div className="overflow-auto">
-              <Aside />
-            </div>
-          </div>
-          <main className="h-full overflow-auto">{children}</main>
-        </div>
-
-        <div className="h-full md:block hidden">
+      <body className={`${inter.className} size-full overflow-auto`}>
+        <div className="md:block max-h-max">
           <Header />
-          <div className="flex overflow-hidden">
-            <Aside />
-            <main className="bg-purple-600 flex-1 overflow-auto">
-              {children}
-            </main>
-          </div>
+          <Aside />
+          <main className="h-full flex overflow-auto">{children}</main>
         </div>
       </body>
     </html>
