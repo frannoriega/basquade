@@ -19,14 +19,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} grid grid-cols-1 overflow-hidden md:grid-cols-12`}
+        className={`flex h-screen min-h-screen flex-col ${inter.className}`}
       >
-        <Header className="md:col-span-full " />
+        <Header className="" />
+        <div className="flex flex-1 flex-row overflow-y-hidden">
+          <Aside className="order-first sm:w-32" />
 
-        <Aside className="overflow-auto md:col-span-2 md:max-h-screen md:overflow-y-auto" />
-        <main className="overflow-auto  md:col-span-10 md:grid-flow-col">
-          {children}
-        </main>
+          <main className="flex-1 overflow-y-auto bg-indigo-100">
+            {children}
+          </main>
+        </div>
       </body>
     </html>
   );
