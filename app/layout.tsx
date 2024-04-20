@@ -17,13 +17,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="size-">
-      <body className={`${inter.className} size-full overflow-auto`}>
-        <div className="md:block max-h-max">
-          <Header />
-          <Aside />
-          <main className="h-full flex overflow-auto">{children}</main>
-        </div>
+    <html lang="en">
+      <body
+        className={`${inter.className} grid grid-cols-1 overflow-hidden md:grid-cols-12`}
+      >
+        <Header className="md:col-span-full " />
+
+        <Aside className="overflow-auto md:col-span-2 md:max-h-screen md:overflow-y-auto" />
+        <main className="overflow-auto  md:col-span-10 md:grid-flow-col">
+          {children}
+        </main>
       </body>
     </html>
   );
