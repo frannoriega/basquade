@@ -22,7 +22,7 @@ export default function RootLayout({
         className={`flex h-screen min-h-screen flex-col ${inter.className}`}
       >
         <Header className="" />
-        <div className="flex flex-1 flex-row overflow-y-hidden">
+        <div className="flex flex-1 flex-col overflow-y-hidden md:flex-row">
           <Aside className="order-first sm:w-32" />
 
           <main className="flex-1 overflow-y-auto bg-indigo-100">

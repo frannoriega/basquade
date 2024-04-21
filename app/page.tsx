@@ -5,7 +5,7 @@ import Logo from "@/components/logo";
 
 export default function Home() {
   return (
-    <div className="bg-white h-[2000px] w-[2000px] border-4 border-red-800 border-dotted">
+    <div className="mx-auto mt-10 h-[2000px] w-[600px] border-4 border-dotted border-red-800 bg-white">
       content
     </div>
   );
