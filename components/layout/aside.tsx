@@ -1,4 +1,4 @@
-import { getDocuments } from "@/app/data/documents";
+import { getDocuments } from "@/data/documents";
 import DocumentPreview from "../document-preview";
 
 type Props = {
@@ -8,7 +8,6 @@ type Props = {
 export default async function Aside({ className }: Props) {
   //create an array from 1 to 10
   const documents = await getDocuments();
-  const numbers = Array.from({ length: 10 }, (_, i) => i + 1);
 
   return (
     <div className="overflow-auto">
