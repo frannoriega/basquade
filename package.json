@@ -15,6 +15,9 @@
     "prisma:studio": "npx dotenv -e .env.local -- prisma studio",
     "production:build": "npx prisma generate && npx prisma migrate deploy && next build"
   },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  },
   "dependencies": {
     "@prisma/client": "^5.12.1",
     "@radix-ui/react-slot": "^1.0.2",
@@ -28,7 +31,7 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
-    "@types/node": "^20",
+    "@types/node": "^20.12.7",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "dotenv-cli": "^7.4.1",
@@ -39,6 +42,8 @@
     "prettier-plugin-tailwindcss": "^0.5.14",
     "prisma": "^5.12.1",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "ts-node": "^10.9.2",
+    "tsx": "^4.7.2",
+    "typescript": "^5.4.5"
   }
 }
