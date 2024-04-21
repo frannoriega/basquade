@@ -6,7 +6,6 @@ type Props = {
 };
 
 export default async function Aside({ className }: Props) {
-  //create an array from 1 to 10
   const documents = await getDocuments();
 
   if (!documents) {
@@ -19,7 +18,7 @@ export default async function Aside({ className }: Props) {
         {documents.map(({ id, title }, number) => (
           <div className="flex-grow">
             <Link href={`/?documentId=${number}`} key={number}>
-              <DocumentPreview key={number} number={id} name={title} />
+              <DocumentPreview key={number} documentId={id} />
             </Link>
           </div>
         ))}

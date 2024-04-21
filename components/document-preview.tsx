@@ -1,13 +1,19 @@
+import { getDocument } from "@/data/documents";
+
 type Props = {
-  number: string;
-  name: string;
+  documentId: string;
 };
 
-export default function DocumentPreview({ number, name }: Props) {
+export default async function DocumentPreview({ documentId }: Props) {
+  const document = await getDocument(documentId);
+
+  if (!document) {
+    return null;
+  }
+
   return (
     <div className="size-32 bg-green-500">
-      {number}
-      <div className="overflow-ellipsis">{name}</div>
+      <div className="overflow-ellipsis">{document.title}</div>
     </div>
   );
 }

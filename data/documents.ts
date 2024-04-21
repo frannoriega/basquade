@@ -11,3 +11,18 @@ export const getDocuments = async () => {
 
   return documents;
 };
+
+export const getDocument = async (id: string) => {
+  let document;
+  try {
+    document = await client.document.findUnique({
+      where: {
+        id,
+      },
+    });
+  } catch (error) {
+    console.error(error);
+  }
+
+  return document;
+};
