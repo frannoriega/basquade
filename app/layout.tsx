@@ -13,8 +13,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  preview,
 }: Readonly<{
   children: React.ReactNode;
+  preview: React.ReactNode;
 }>) {
   return (
     <html lang="en">
@@ -27,6 +29,7 @@ export default function RootLayout({
 
           <main className="flex-1 overflow-y-auto bg-indigo-100">
             {children}
+            {preview}
           </main>
         </div>
       </body>
