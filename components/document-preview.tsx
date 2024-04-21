@@ -1,7 +1,13 @@
 type Props = {
   number: number;
+  name: string;
 };
 
-export default function DocumentPreview({ number }: Props) {
-  return <div className="size-32 bg-green-500">{number}</div>;
+export default function DocumentPreview({ number, name }: Props) {
+  return (
+    <div className="size-32 bg-green-500">
+      {number}
+      <div>{name}</div>
+    </div>
+  );
 }
