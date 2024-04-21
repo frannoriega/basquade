@@ -7,7 +7,7 @@ export default function DocumentPreview({ number, name }: Props) {
   return (
     <div className="size-32 bg-green-500">
       {number}
-      <div>{name}</div>
+      <div className="overflow-ellipsis">{name}</div>
     </div>
   );
 }
