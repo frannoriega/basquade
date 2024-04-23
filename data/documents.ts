@@ -1,4 +1,3 @@
-import fs from "fs/promises";
 import client from "@/lib/prisma";
 
 export const getDocuments = async () => {
@@ -12,7 +11,7 @@ export const getDocuments = async () => {
   return documents;
 };
 
-export const getDocument = async (id: string) => {
+export const getDocument = async (id: number) => {
   let document;
   try {
     document = await client.document.findUnique({

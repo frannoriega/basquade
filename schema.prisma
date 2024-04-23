@@ -11,10 +11,21 @@ datasource db {
 }
 
 model Document {
-    id    String @id @default(cuid())
-    title String
+    id         Int       @id @default(autoincrement())
+    title      String
+    slug       String
+    category   Category? @relation(fields: [categoryId], references: [id])
+    categoryId Int?      @unique
+
     //   content   String?
     //   published Boolean @default(false)
     //   author    User?   @relation(fields: [authorId], references: [id])
     //   authorId  String?
+}
+
+model Category {
+    id        Int        @id @default(autoincrement())
+    name      String
+    slug      String
+    documents Document[]
 }

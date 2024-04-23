@@ -5,7 +5,7 @@ type Props = {
 };
 
 export default async function DocumentPreview({ documentId }: Props) {
-  const document = await getDocument(documentId);
+  const document = await getDocument(parseInt(documentId));
 
   if (!document) {
     return null;
