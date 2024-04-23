@@ -13,10 +13,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-  preview,
 }: Readonly<{
   children: React.ReactNode;
-  preview: React.ReactNode;
 }>) {
   return (
     <html lang="en">
@@ -26,10 +24,8 @@ export default function RootLayout({
         <Header className="" />
         <div className="flex flex-1 flex-col overflow-y-hidden md:flex-row">
           <Aside className="order-first sm:w-32" />
-
           <main className="flex-1 overflow-y-auto bg-indigo-100">
             {children}
-            {preview}
           </main>
         </div>
       </body>
