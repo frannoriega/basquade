@@ -7,6 +7,6 @@ type Props = {
 export default function BookTitle({ children }: Props) {
   return (
     // TODO: Make text fit the width of the preview and hid away the rest
-    <p className="overflow-hidden text-ellipsis">{children}</p>
+    <p className="inline-block overflow-hidden text-nowrap text-ellipsis">{children}</p>
   )
 }
