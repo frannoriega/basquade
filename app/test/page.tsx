@@ -6,6 +6,6 @@ export default function Test() {
     author: `Author ${i}`
   }));
   return (<ul className="flex flex-wrap content-evenly gap-4 p-4">
-    {books.map(({ title, author }, i) => (<BookItem id={i} title={title} author={author} />))}
+    {books.map(({ title, author }, i) => (<BookItem key={title} id={i} title={title} author={author} />))}
   </ul>);
 }
