@@ -14,6 +14,8 @@ Los documentos están clasificados en las siguientes categorías:
 - Sentencias
 - Agroecología
 - Noticias y recursos
+- Protocolos y guías ante contacto con agrotóxicos
+- Plantas medicinales
 
 
 ## Getting started
