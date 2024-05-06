@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Aside from "@/components/layout/aside";
 import Header from "@/components/layout/header";
+import TopBar from "@/components/navigation/topbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,11 +20,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`flex h-screen min-h-screen flex-col ${inter.className}`}
+        className={`bg-orange-300 ${inter.className}`}
       >
-        <Header className="" />
+        {/*<div className="sticky top-0 flex flex-row">
+          <Header className="flex flex-grow" />
+          <nav>Categories</nav>
+        </div>*/}
+        <TopBar/>
         <div className="flex flex-1 flex-col overflow-y-hidden md:flex-row">
-          <Aside className="order-first sm:w-32" />
+          {/*<Aside className="order-first sm:w-32" />*/}
           <main className="flex-1 overflow-y-auto bg-indigo-100">
             {children}
           </main>
