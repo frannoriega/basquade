@@ -1,6 +1,6 @@
 // import client from "@/lib/prisma";
 
-type Category = {
+export type Category = {
   // Name of the category
   name: string,
   // Path to the asset
