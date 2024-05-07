@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
+
 import { Inter } from "next/font/google";
+
 import "./globals.css";
-import Aside from "@/components/layout/aside";
-import Header from "@/components/layout/header";
 import TopBar from "@/components/navigation/topbar";
 import Categories from "@/components/navigation/categories";
 import { getCategories } from "@/data/categories";
@@ -20,22 +20,14 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const categories = await getCategories();
+
   return (
     <html lang="en">
-      <body
-        className={`bg-orange-300 ${inter.className}`}
-      >
-        {/*<div className="sticky top-0 flex flex-row">
-          <Header className="flex flex-grow" />
-          <nav>Categories</nav>
-        </div>*/}
-        <TopBar/>
-        <Categories categories={categories}/>
+      <body className={`bg-orange-300 ${inter.className}`}>
+        <TopBar />
+        <Categories categories={categories} />
         <div className="flex flex-1 flex-col overflow-y-hidden md:flex-row">
-          {/*<Aside className="order-first sm:w-32" />*/}
-          <main className="flex-1 overflow-y-auto bg-indigo-100">
-            {children}
-          </main>
+          <main className="flex-1 overflow-y-auto bg-indigo-100">{children}</main>
         </div>
       </body>
     </html>

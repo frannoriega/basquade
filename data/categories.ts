@@ -2,45 +2,45 @@
 
 export type Category = {
   // Name of the category
-  name: string,
+  name: string;
   // Path to the asset
-  icon: string,
-} 
+  icon: string;
+};
 
 const hardcodedCategories: Category[] = [
   {
     name: "Investigación",
-    icon: "next.svg" 
+    icon: "next.svg",
   },
   {
     name: "Agroecología",
-    icon: "next.svg" 
+    icon: "next.svg",
   },
   {
     name: "Campamentos sanitarios",
-    icon: "next.svg" 
+    icon: "next.svg",
   },
   {
     name: "Leyes y reglamentaciones",
-    icon: "next.svg" 
+    icon: "next.svg",
   },
   {
     name: "Sentencias",
-    icon: "next.svg" 
+    icon: "next.svg",
   },
   {
     name: "Noticias",
-    icon: "next.svg" 
+    icon: "next.svg",
   },
   {
     name: "Plantas medicinales",
-    icon: "next.svg" 
+    icon: "next.svg",
   },
   {
     name: "Protocolos ante contacto con agrotoxicos",
-    icon: "next.svg" 
+    icon: "next.svg",
   },
-]
+];
 
 export const getCategories = async () => {
   return hardcodedCategories;
