@@ -13,25 +13,18 @@ import { Category } from "@/data/categories";
 //  2. Make the scroll buttons disappear if we are at the end of the corresponding scroll
 //  3. Blur the scroll button background when it's present.
 export default function Categories({ categories }: { categories: Category[] }) {
-  const navRef = useRef<null | HTMLElement>(null);
-  const handleNav = (goLeft: boolean) => {
-    if (goLeft) {
-      navRef.current ? (navRef.current.scrollLeft -= 200) : null;
-    } else {
-      navRef.current ? (navRef.current.scrollLeft += 200) : null;
-    }
-  };
-
   return (
-    <div className="flex h-20 flex-row bg-red-400">
-      <ScrollButton goLeft onClick={handleNav} />
-      <NavigationMenu.Root className="flex flex-row overflow-hidden scroll-smooth" ref={navRef}>
-        <NavigationMenu.List className="flex flex-row gap-4">
-          <CategoryItems categories={categories} />
-        </NavigationMenu.List>
-      </NavigationMenu.Root>
-      <ScrollButton onClick={handleNav} />
-    </div>
+    <nav>
+      <ul className="flex px-2 py-3 gap-8 overflow-auto snap-mandatory snap-x">
+        {categories.map(({name, icon}) => {
+          return (
+            <li className="flex flex-col gap-2 items-center whitespace-nowrap snap-center" key={name}>
+              <Image src={icon} width={60} height={60} alt="" /> 
+              {name}
+            </li>
+          )})}
+      </ul>
+    </nav>
   );
 }
 
