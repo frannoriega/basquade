@@ -1,11 +1,11 @@
 import BookCover from "./book_cover";
 import BookInfo from "./book_info";
 
-type BookProps = {
+interface BookProps {
   id: number;
   title: string;
   author: string;
-};
+}
 
 export default function BookItem({ id, title, author }: BookProps) {
   // Is it ok to "hardcode" width here?

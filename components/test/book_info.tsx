@@ -1,7 +1,7 @@
-type Info = {
+interface Info {
   title: string;
   author: string;
-};
+}
 
 export default function BookInfo({ title, author }: Info) {
   return (

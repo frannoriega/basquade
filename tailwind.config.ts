@@ -17,6 +17,9 @@ const config = {
         "2xl": "1400px",
       },
     },
+    fontFamily: {
+      roboto: ['"Roboto Mono"'],
+    },
     extend: {
       colors: {
         border: "hsl(var(--border))",
@@ -57,6 +60,9 @@ const config = {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      boxShadow: {
+        'inner': 'inset 0 4px 4px 0 rgb(0 0 0 / 0.15)'
       },
       keyframes: {
         "accordion-down": {
