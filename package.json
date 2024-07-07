@@ -23,6 +23,7 @@
     "seed": "tsx prisma/seed.ts"
   },
   "dependencies": {
+    "@svgr/webpack": "^8.1.0",
     "@prisma/client": "^5.12.1",
     "@radix-ui/react-avatar": "^1.1.0",
     "@radix-ui/react-navigation-menu": "^1.2.0",
