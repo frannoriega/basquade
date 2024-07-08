@@ -9,14 +9,15 @@ import {
   NavigationMenuList,
 } from "@radix-ui/react-navigation-menu";
 import { Search } from "lucide-react";
+import Hamburger from 'hamburger-react'
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export default function Navbar() {
   return (
     <div className="flex h-16 min-w-fit flex-row items-center justify-between gap-4 bg-slate-50 pl-4 pr-4">
-      <a href="/"><h1 className="text-3xl">Basquadé</h1></a>
-      <div className="flex flex-row items-center gap-8">
+      <a href="/"><h1 className="text-3xl">Basqüadé</h1></a>
+      <div className="flex flex-row items-center md:gap-8 gap-4">
         <SearchBar />
         <Actions />
         <Profile />
@@ -27,13 +28,13 @@ export default function Navbar() {
 
 function SearchBar() {
   return (
-    <button className="bg-slate-200 rounded-sm shadow-inner w-48 h-8 flex flex-row items-stretch justify-between pl-2 pr-2 text-sm text-slate-400 dark:text-slate-300" >
+    <button className="bg-transparent md:bg-green-200 rounded-sm md:shadow-inner md:w-48 h-8 flex flex-row items-stretch justify-between pl-2 pr-2 text-sm text-green-600 dark:text-green-300 md:hover:bg-green-300" >
 
       <div className="flex flex-row gap-2 items-center ">
         <Search />
-        <span>Buscar</span>
+        <span className="hidden md:inline-block">Buscar</span>
       </div>
-      <kbd className="flex flex-row items-center gap-1 font-sans font-semibold">
+      <kbd className="hidden md:flex flex-row items-center gap-1 font-sans font-semibold">
          <abbr className="no-underline" title="Command">⌘</abbr> <span>K</span>
       </kbd>
     </button>
@@ -69,14 +70,6 @@ function Actions() {
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
-        <NavigationMenuItem className="p-2 rounded-lg bg-green-600 text-slate-50">
-          {/* TODO: Implement pending page */}
-          <Link href="/pendientes" legacyBehavior passHref>
-            <NavigationMenuLink >
-              Pendientes
-            </NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
       <button className="md:hidden">Hamburger</button>
@@ -86,7 +79,7 @@ function Actions() {
 
 function Profile() {
   return (
-    <div className="flex flex-row before:left-[-42.5%] before:top-[-30%] before:z-[1] before:bg-slate-800 before:w-[1px] before:h-8 before:block before:absolute before:translate-x-2/4 before:translate-y-2/4 relative z-0">
+    <div className="flex flex-row before:left-[-25%] md:before:left-[-42.5%] before:top-[-30%] before:z-[1] before:bg-slate-800 before:w-[1px] before:h-8 before:block before:absolute before:translate-x-2/4 before:translate-y-2/4 relative z-0">
       <Avatar>
         <AvatarImage src="https://github.com/shadcn.png" />
         <AvatarFallback>CN</AvatarFallback>
