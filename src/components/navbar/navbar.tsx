@@ -1,26 +1,14 @@
-"use client";
-
-import Link from "next/link";
-
-import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-} from "@radix-ui/react-navigation-menu";
 import { Search } from "lucide-react";
-import Hamburger from 'hamburger-react'
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import Actions from "@/components/navbar/actions";
 
 export default function Navbar() {
   return (
     <div className="flex h-16 min-w-fit flex-row items-center justify-between gap-4 bg-slate-50 pl-4 pr-4">
       <a href="/"><h1 className="text-3xl">Basqüadé</h1></a>
-      <div className="flex flex-row items-center md:gap-8 gap-4">
-        <SearchBar />
-        <Actions />
-        <Profile />
+      <div className="flex flex-row items-center md:gap-8 gap-6">
+          <SearchBar />
+          <Actions />
       </div>
     </div>
   );
@@ -38,52 +26,5 @@ function SearchBar() {
          <abbr className="no-underline" title="Command">⌘</abbr> <span>K</span>
       </kbd>
     </button>
-  );
-}
-
-function Actions() {
-  return (
-    <>
-    <NavigationMenu className="hidden md:inline-block">
-      <NavigationMenuList className="flex flex-row gap-8 items-center">
-        <NavigationMenuItem className="w-16 text-center">
-          {/* TODO: Implement pending page */}
-          <Link href="/quienessomos" legacyBehavior passHref>
-            <NavigationMenuLink >
-              Quienes somos
-            </NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
-        <NavigationMenuItem className="text-center">
-          {/* TODO: Implement pending page */}
-          <Link href="/blog" legacyBehavior passHref>
-            <NavigationMenuLink >
-              Blog
-            </NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
-        <NavigationMenuItem className="text-center">
-          {/* TODO: Implement pending page */}
-          <Link href="/quienessomos" legacyBehavior passHref>
-            <NavigationMenuLink >
-              Contacto
-            </NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
-      </NavigationMenuList>
-    </NavigationMenu>
-      <button className="md:hidden">Hamburger</button>
-    </>
-  );
-}
-
-function Profile() {
-  return (
-    <div className="flex flex-row before:left-[-25%] md:before:left-[-42.5%] before:top-[-30%] before:z-[1] before:bg-slate-800 before:w-[1px] before:h-8 before:block before:absolute before:translate-x-2/4 before:translate-y-2/4 relative z-0">
-      <Avatar>
-        <AvatarImage src="https://github.com/shadcn.png" />
-        <AvatarFallback>CN</AvatarFallback>
-      </Avatar>
-    </div>
   );
 }
