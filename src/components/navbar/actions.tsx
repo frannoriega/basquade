@@ -1,7 +1,7 @@
 'use client'
 
 import cn from "@/lib/utils";
-import { useState, useRef } from "react";
+import { useState, useRef, RefObject } from "react";
 import Link from "next/link";
 
 import {
@@ -12,15 +12,9 @@ import {
 } from "@radix-ui/react-navigation-menu";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import {
-  Drawer,
-  DrawerContent,
-  DrawerTrigger,
-  DrawerPortal,
-  DrawerOverlay
-} from "@/components/ui/drawer";
 import Hamburger from 'hamburger-react';
-import useOnClickOutside from "@/lib/events";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion";
+import { Drawer } from 'vaul';
 
 export default function Actions() {
   return (
@@ -98,23 +92,25 @@ type MenuProps = {
 }
 
 function Menu({ className }: MenuProps) {
-  const [isOpen, setOpen] = useState(false);
-  const ref = useRef();
-  const close = () => {
-    console.log("close");
-    setOpen(false)};
-  useOnClickOutside(ref, close);
+  const [open, setOpen] = useState(false);
   return (
     <div className={className}>
-      <Hamburger toggled={isOpen} toggle={setOpen}/>
-      {/* TODO: Esto no debe ser accesible ni a patada. */ }
-      <div onFocus={close} className={`${!isOpen ? "hidden" : "block"} z-10 absolute backdrop-blur w-full h-full top-0 right-0`}>
-      </div>
-      {/* TODO: Hay que hacer una animacion mas linda */ }
-      <div ref={ref} className={`${!isOpen ? "hidden" : "block"} z-20 absolute bg-slate-50 w-1/2 h-screen top-0 right-0 p-8 flex flex-col gap-8`}>
-        <Profile/>
-        <Links listClassName="flex flex-col items-start"/>
-      </div>
+      <Drawer.Root direction="right" open={open} onOpenChange={setOpen}>
+        <Drawer.Trigger><Hamburger toggled={open} toggle={setOpen} /></Drawer.Trigger>
+        <Drawer.Portal>
+          <Drawer.Content className="bg-white flex flex-col gap-8 rounded-t-[10px] h-full p-8 w-[400px] mt-24 fixed bottom-0 right-0">
+            <Accordion type="single" collapsible>
+              <AccordionItem value="item-1">
+                <AccordionTrigger><Profile /></AccordionTrigger>
+                <AccordionContent>
+                  Yes. It adheres to the WAI-ARIA design pattern.
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+            <Links listClassName="flex flex-col items-start" />
+          </Drawer.Content>
+        </Drawer.Portal>
+      </Drawer.Root>
     </div>
-  );
+  )
 }
