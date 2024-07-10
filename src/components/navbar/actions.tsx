@@ -1,6 +1,7 @@
 'use client'
 
 import cn from "@/lib/utils";
+import { useState, useRef } from "react";
 import Link from "next/link";
 
 import {
@@ -19,6 +20,7 @@ import {
   DrawerOverlay
 } from "@/components/ui/drawer";
 import Hamburger from 'hamburger-react';
+import useOnClickOutside from "@/lib/events";
 
 export default function Actions() {
   return (
@@ -28,7 +30,7 @@ export default function Actions() {
         <VLine />
         <Profile />
       </div>
-      <Menu className="md:hidden mt-2" />
+      <Menu className="md:hidden" />
     </>
   );
 }
@@ -96,17 +98,23 @@ type MenuProps = {
 }
 
 function Menu({ className }: MenuProps) {
+  const [isOpen, setOpen] = useState(false);
+  const ref = useRef();
+  const close = () => {
+    console.log("close");
+    setOpen(false)};
+  useOnClickOutside(ref, close);
   return (
     <div className={className}>
-      <Drawer direction="right" snapPoints={[0.5, 1, 0]} >
-        <DrawerTrigger asChild><button><Hamburger/></button></DrawerTrigger>
-        <DrawerContent>
-          <div className="flex flex-col gap-8 pl-4">
-            <Profile/>
-            <Links listClassName="flex-col items-start"/>
-          </div>
-        </DrawerContent>
-      </Drawer>
+      <Hamburger toggled={isOpen} toggle={setOpen}/>
+      {/* TODO: Esto no debe ser accesible ni a patada. */ }
+      <div onFocus={close} className={`${!isOpen ? "hidden" : "block"} z-10 absolute backdrop-blur w-full h-full top-0 right-0`}>
+      </div>
+      {/* TODO: Hay que hacer una animacion mas linda */ }
+      <div ref={ref} className={`${!isOpen ? "hidden" : "block"} z-20 absolute bg-slate-50 w-1/2 h-screen top-0 right-0 p-8 flex flex-col gap-8`}>
+        <Profile/>
+        <Links listClassName="flex flex-col items-start"/>
+      </div>
     </div>
   );
 }
