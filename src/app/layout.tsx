@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 
 import "./globals.css";
 import Navbar from "@/components/navbar/navbar";
+import Footer from "@/components/footer/footer";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -27,6 +28,7 @@ export default async function RootLayout({
       <body className={`bg-orange-300 w-full flex flex-col min-h-screen font-roboto ${inter.className}`}>
         <Navbar />
         <main className="flex-1 overflow-y-auto w-full bg-indigo-100">{children}</main>
+        <Footer />
       </body>
     </html>
   );
