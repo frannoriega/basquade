@@ -25,9 +25,9 @@ export default async function RootLayout({
         <link crossOrigin="use-credentials" href="https://fonts.gstatic.com" rel="preconnect" />
         <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet" />
       </head>
-      <body className={`bg-orange-300 w-full flex flex-col min-h-screen font-roboto ${inter.className}`}>
+      <body className={`bg-slate-50 w-full flex flex-col min-h-screen font-roboto ${inter.className}`}>
         <Navbar />
-        <main className="flex-1 overflow-y-auto w-full bg-indigo-100">{children}</main>
+        <main className="flex-1 overflow-y-auto w-full bg-indigo-100 container pt-24 pb-24">{children}</main>
         <Footer />
       </body>
     </html>

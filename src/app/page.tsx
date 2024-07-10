@@ -52,8 +52,8 @@ const categories = [
 
 export default function Home() {
   return (
-    <div className="container flex items-center justify-center">
-      <ol className="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8 pt-24 pb-24">
+    <div className="flex items-center justify-center">
+      <ol className="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8">
         {
           categories.map((category, _) =>
             // TODO: Investigar cómo hacer para que el tamaño sea parejo sin definir altura fija
