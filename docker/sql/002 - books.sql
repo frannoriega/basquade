@@ -4,6 +4,7 @@ CREATE TABLE books (
   file BYTEA NOT NULL,
   content TSVECTOR NOT NULL,
   lang INT NOT NULL REFERENCES lang(id)
+  md5 TEXT NOT NULL UNIQUE
 );
 
 CREATE INDEX books_content_idx ON books USING gin (content);
