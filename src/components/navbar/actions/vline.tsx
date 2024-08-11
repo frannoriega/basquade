@@ -1,8 +1,15 @@
-export default function VLine() {
+import { cn } from "@/lib/utils";
+import * as Separator from "@radix-ui/react-separator"
+
+type VLineProps = {
+  lineClassName?: string,
+} & React.ComponentPropsWithoutRef<"div">;
+
+export default function VLine(props: VLineProps) {
+  const lcn = cn("w-px", props.lineClassName);
   return (
-    <div className="relative">
-      <div className="absolute top-[-32px] bg-slate-300 w-[1px] h-8 block translate-x-2/4 translate-y-2/4">
-      </div>
-    </div>
+        <div className={props.className}>
+          <Separator.Root orientation='vertical' decorative className={lcn}/>
+        </div>
   )
 }
