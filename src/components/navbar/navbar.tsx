@@ -1,6 +1,6 @@
 import { Search } from "lucide-react";
 
-import Actions from "@/components/navbar/actions";
+import Actions from "@/components/navbar/actions/actions";
 
 export default function Navbar() {
   return (
