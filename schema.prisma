@@ -12,7 +12,7 @@ datasource db {
 model Category {
   id          Int      @id @default(autoincrement())
   name        String   @db.VarChar(255) @unique
-  icon        String
+  icon        Bytes
   books       Book[]
 }
 
