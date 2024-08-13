@@ -2,6 +2,7 @@ import time
 from pdf2image import convert_from_path
 import pytesseract
 import PyPDF2
+import hashlib
 
 # import required module
 import os
@@ -12,7 +13,7 @@ import psycopg2
 
 
 # assign directory
-directory = 'libros'
+directory = '/Users/francisco/Workspace/basquade/public/pdfs'
 conn = psycopg2.connect("host=127.0.0.1 dbname=postgres user=postgres password=basquade")
 
 def clean_keywords(keywords):
@@ -89,13 +90,16 @@ for root, dirs, files in os.walk(directory):
               id = 3
 
             pdf = open(fullname, 'rb').read()
+            hash = hashlib.md5(pdf).hexdigest()
             cur = conn.cursor()
-            cur.execute("INSERT INTO books VALUES (default, %s, %s, to_tsvector(%s, %s), %s)",
+            cur.execute("INSERT INTO \"Book\" VALUES (default, %s, %s, to_tsvector(%s, %s), %s, %s, %s)",
                          (filename,
                          pdf,
                         lang,
                          text,
-                         id)
+                          hash,
+                         id,
+                          5)
                 )
             conn.commit()
             cur.close()
