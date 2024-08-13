@@ -1,31 +1,43 @@
-// schema.prisma
 
 generator client {
-    provider = "prisma-client-js"
+  provider = "prisma-client-js"
+  previewFeatures = ["fullTextSearch"]
 }
 
 datasource db {
-    provider  = "postgresql"
-    url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
-    directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
-}
-
-model Document {
-    id         Int       @id @default(autoincrement())
-    title      String
-    slug       String
-    category   Category? @relation(fields: [categoryId], references: [id])
-    categoryId Int?      @unique
-
-    //   content   String?
-    //   published Boolean @default(false)
-    //   author    User?   @relation(fields: [authorId], references: [id])
-    //   authorId  String?
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
 }
 
 model Category {
-    id        Int        @id @default(autoincrement())
-    name      String
-    slug      String
-    documents Document[]
+  id          Int      @id @default(autoincrement())
+  name        String   @db.VarChar(255) @unique
+  icon        String
+  books       Book[]
+}
+
+// Los idiomas utilizados
+model Lang {
+  id          Int      @id @default(autoincrement())
+  language    String   @db.VarChar(16) @unique
+  books        Book[]
+}
+
+// La tabla que guarda los PDFs
+model Book {
+  id          Int      @id @default(autoincrement())
+  // El nombre del archivo
+  title       String   @db.VarChar(255)
+  // El archivo, para mostrarlo
+  file        Bytes
+  // El contenido en forma de lexemas, para habilitar la busqueda por texto
+  content     Unsupported("tsvector")
+  // Para identificar univocamente segun el contenido del PDF
+  md5         String   @unique
+  // El idioma del archivo, para optimizar las búsquedas
+  lang        Lang     @relation(fields: [langId], references: [id])
+  langId      Int
+  // La categoría con la que fue marcado
+  category    Category @relation(fields: [categoryId], references: [id])
+  categoryId  Int
 }
