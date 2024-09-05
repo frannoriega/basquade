@@ -21,4 +21,15 @@ async function searchBooks(term: string): Promise<Book[]> {
 
 }
 
-export { getBooks, searchBooks };
+async function getPDF(id: number): Promise<Buffer> {
+  return prisma.book.findUniqueOrThrow({
+    select: {
+      file: true
+    },
+    where: {
+      id: id
+    }
+  }).then((book) => book.file)
+}
+
+export { getBooks, searchBooks, getPDF };
