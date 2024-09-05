@@ -31,7 +31,7 @@ export default function SearchBar() {
 
   return (
     <>
-      <button onClick={openModal} className="bg-transparent md:bg-green-200 rounded-sm md:shadow-inner md:w-48 h-8 flex flex-row items-stretch justify-between pl-2 pr-2 text-sm text-green-600 dark:text-green-300 md:hover:bg-green-300" >
+      <button onClick={openModal} className="bg-transparent dark:bg-green-900 md:bg-green-200 rounded-sm md:shadow-inner md:w-48 h-8 flex flex-row items-stretch justify-between pl-2 pr-2 text-sm text-green-600 dark:text-green-300 md:hover:bg-green-300" >
 
         <div className="flex flex-row gap-2 items-center ">
           <Search />
