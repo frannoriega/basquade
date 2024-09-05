@@ -5,9 +5,13 @@ import Modal from "react-modal";
 import React from "react";
 import Filter from "@/components/navbar/search/filter";
 
-Modal.setAppElement("#app");
 
 export default function SearchBar() {
+  try {
+    Modal.setAppElement("#app");
+  } catch (_) {
+
+  }
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
   function openModal() {
