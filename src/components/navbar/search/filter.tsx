@@ -28,14 +28,14 @@ function Filter() {
         <ChevronDownIcon />
       </Select.Icon>
     </Select.Trigger>
-    <Select.Content className="min-w-fit">
+    <Select.Content className="min-w-52">
       <Select.ScrollUpButton className="SelectScrollButton">
         <ChevronUpIcon />
       </Select.ScrollUpButton>
-      <Select.Viewport className="p-4 bg-green-100 rounded-md">
-        <Select.Group>
+      <Select.Viewport className="p-4 bg-green-100 rounded-md min-w-52 w-52 z-50">
+        <Select.Group className='select-group__filter'>
           {sections.map(s =>
-            <SelectItem key={s.value} value={s.value}>
+            <SelectItem key={s.value} value={s.value} className='hover:bg-green-600 min-w-50'>
               {s.display}
             </SelectItem>
           )}
@@ -52,13 +52,14 @@ type SelectItemProps = React.ComponentPropsWithRef<"input">;
 
 const SelectItem = React.forwardRef(({ children, className, value, ...props }: SelectItemProps, forwardedRef: ForwardedRef<HTMLDivElement>) => {
   return (
-    <Select.Item className={cn('SelectItem', className)} value={`${value}`} {...props} ref={forwardedRef}>
+    <Select.Item className={cn('SelectItem flex items-center flex-row select-none', className)} value={`${value}`} {...props} ref={forwardedRef}>
       <Select.ItemText>{children}</Select.ItemText>
       <Select.ItemIndicator className="SelectItemIndicator">
-        <CheckIcon />
+        <CheckIcon className='ms-2' />
       </Select.ItemIndicator>
     </Select.Item>
   );
 });
 
 export default Filter;
+

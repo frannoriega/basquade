@@ -49,8 +49,8 @@ export default function SearchBar() {
       >
         <form className="w-full col-start-3 col-span-8">
           <div className="flex flex-row h-16">
-            <Filter/>
-            <input type="search" className="rounded-e-md flex items-end bg-green-200 outline-0 p-2.5 w-full z-20 text-sm placeholder-green-600 text-green-600 dark:placeholder-gray-400 dark:text-white" placeholder="Search Mockups, Logos, Design Templates..." required />
+            <Filter />
+            <input type="search" className="rounded-e-md flex items-end bg-green-200 outline-0 p-2.5 w-full z-20 text-sm placeholder-green-600 text-green-600 dark:placeholder-gray-400 dark:text-white z-[-1]" placeholder="Search Mockups, Logos, Design Templates..." required />
           </div>
         </form>
       </Modal>
