@@ -1,5 +1,6 @@
-import Actions from "@/components/navbar/actions/actions";
-import SearchBar from "@/components/navbar/search/search";
+import Actions from "@/components/navbar/actions";
+import SearchBar from "@/components/navbar/search";
+
 
 export default function Navbar() {
   return (

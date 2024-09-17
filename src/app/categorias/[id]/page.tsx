@@ -9,7 +9,7 @@ export default async function Page({ params }: { params: { id: number } }) {
   return (
     <div>
       {books.map((b, _) =>
-        <span>{b.title}</span>
+        <span key={b.id}>{b.title}</span>
       )}
     </div>
   )
