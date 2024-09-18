@@ -24,9 +24,11 @@ const sections = [
   new Section("sentences", "Sentencias")
 ]
 
-export default function Filter() {
-  return <Select>
-    <SelectTrigger className="w-48 h-full flex flex-row gap-4 bg-green-200 items-center justify-between p-4 min-h-fit rounded-s-md text-violet-500 text-sm hover:bg-red-300" aria-label="Filtro">
+const Filter = React.forwardRef<
+  React.ElementRef<typeof Select>,
+  React.ComponentPropsWithoutRef<typeof Select>>((props, ref) => {
+  return <Select {...props}>
+    <SelectTrigger ref={ref} className="w-48 h-full flex flex-row gap-4 bg-green-200 items-center justify-between p-4 min-h-fit rounded-s-md text-violet-500 text-sm hover:bg-red-300" aria-label="Filtro">
       <SelectValue placeholder={sections[0].display}/>
     </SelectTrigger>
     <SelectContent className="">
@@ -37,5 +39,6 @@ export default function Filter() {
       )}
     </SelectContent>
   </Select>
-};
+});
 
+export default Filter

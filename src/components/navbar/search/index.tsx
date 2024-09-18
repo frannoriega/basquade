@@ -1,10 +1,21 @@
 'use client'
 import { Search } from "lucide-react";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Filter from "@/components/navbar/search/filter";
 import * as Dialog from "@radix-ui/react-dialog";
+import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 
+const formSchema = z.object({
+  "term": z.string().min(2, {
+    message: "Ingrese al menos 2 caracteres"
+  }),
+  "filter": z.string()
+})
 
 export default function SearchBar() {
   const [open, setOpen] = useState(false);
@@ -20,6 +31,18 @@ export default function SearchBar() {
     document.addEventListener("keydown", down)
     return () => document.removeEventListener("keydown", down)
   }, [])
+
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      term: "",
+      filter: "*"
+    },
+  })
+
+  function onSubmit(values: z.infer<typeof formSchema>) {
+    console.log(values)
+  }
 
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
@@ -38,12 +61,37 @@ export default function SearchBar() {
       <Dialog.Portal>
         <Dialog.Overlay className="fixed top-0 right-0 left-0 bottom-0 backdrop-blur-md bg-gray-700/30"/>
         <Dialog.Content className="absolute top-40 grid grid-cols-12 gap-4 w-full">
-          <form className="w-full col-start-3 col-span-8">
-            <div className="flex flex-row h-16">
-              <Filter/>
-              <input type="search" className="rounded-e-md flex items-end bg-green-200 outline-0 p-2.5 w-full z-20 text-sm placeholder-green-600 text-green-600 dark:placeholder-gray-400 dark:text-white" placeholder="Escribe para realizar una búsqueda" required />
-            </div>
-          </form>
+          <VisuallyHidden.Root>
+            <Dialog.Title>Buscar</Dialog.Title>
+          </VisuallyHidden.Root>
+          <VisuallyHidden.Root>
+            <Dialog.Description>Buscador de libros de la Biblioteca Basqüadé</Dialog.Description>
+          </VisuallyHidden.Root>
+          <div className="w-full col-start-3 col-span-8">
+            <Form {...form}>
+              <form className="flex flex-row h-16" onSubmit={form.handleSubmit(onSubmit)}>
+                <FormField
+                  control={form.control}
+                  name="filter"
+                  render={({field}) =>
+                    <FormItem>
+                      <FormControl>
+                        <Filter defaultValue={field.value} onValueChange={field.onChange}/>
+                      </FormControl>
+                    </FormItem>
+                  }/>
+                <FormField
+                  control={form.control}
+                  name="term"
+                  render={({field}) =>
+                    <FormControl>
+                      <input {...field} type="search" className="h-full rounded-e-md flex items-end bg-green-200 outline-0 p-2.5 w-full z-20 text-sm placeholder-green-600 text-green-600 dark:placeholder-gray-400 dark:text-white" placeholder="Escribe para realizar una búsqueda" required />
+                    </FormControl>
+                  }
+                />
+              </form>
+            </Form>
+          </div>
         </Dialog.Content>
       </Dialog.Portal>
     </Dialog.Root>
