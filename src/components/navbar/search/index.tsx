@@ -1,19 +1,28 @@
 'use client'
 import { Search } from "lucide-react";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Filter from "@/components/navbar/search/filter";
 import * as Dialog from "@radix-ui/react-dialog";
 
 
 export default function SearchBar() {
-  const options = [
-    { value: "Todos", label: "Todos" },
-    { value: "A", label: "A" }
-  ]
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    const down = (e: KeyboardEvent) => {
+      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault()
+        setOpen((open) => !open)
+      }
+    }
+
+    document.addEventListener("keydown", down)
+    return () => document.removeEventListener("keydown", down)
+  }, [])
 
   return (
-    <Dialog.Root>
+    <Dialog.Root open={open} onOpenChange={setOpen}>
       <Dialog.Trigger asChild>
         <button className="bg-transparent dark:bg-green-800 md:bg-green-200 rounded-sm md:w-48 h-8 flex flex-row items-stretch justify-between pl-2 pr-2 text-sm text-green-600 dark:text-green-300 md:hover:bg-green-300" >
 

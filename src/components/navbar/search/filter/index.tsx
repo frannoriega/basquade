@@ -7,8 +7,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { cn } from "@/lib/utils";
-import { CheckIcon, ChevronDownIcon, ChevronUpIcon } from '@radix-ui/react-icons';
 
 class Section {
   readonly value: string;
@@ -28,7 +26,7 @@ const sections = [
 
 export default function Filter() {
   return <Select>
-    <SelectTrigger className="max-w-max outline-0 flex flex-row gap-2 bg-green-200 items-center justify-center p-2 min-h-fit g-4 rounded-s-md text-violet-500 text-sm hover:bg-red-300" aria-label="Filtro">
+    <SelectTrigger className="max-w-max h-full outline-0 flex flex-row gap-2 bg-green-200 items-center justify-center p-2 min-h-fit g-4 rounded-s-md text-violet-500 text-sm hover:bg-red-300" aria-label="Filtro">
       <SelectValue placeholder={sections[0].display}/>
     </SelectTrigger>
     <SelectContent className="">
