@@ -9,9 +9,9 @@ export default function Actions() {
     <>
       <div className="md:flex-row hidden md:flex md:gap-8 gap-6 items-center">
         <Links/>
-        <Separator.Root className="self-stretch flex items-center" orientation="vertical"/>
+        <Separator.Root className="self-center w-px h-7 bg-slate-900 dark:bg-slate-50" decorative orientation="vertical"/>
         <Profile />
-        <ThemeButton/>
+        <ThemeButton className="h-10 w-10"/>
       </div>
       <Menu className="md:hidden" />
     </>
