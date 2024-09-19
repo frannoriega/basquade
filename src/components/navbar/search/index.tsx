@@ -9,6 +9,8 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
+import { redirect } from "next/navigation";
+import { useActionKey } from "@/hooks/useActionKey";
 
 const formSchema = z.object({
   "term": z.string().min(2, {
@@ -41,25 +43,43 @@ export default function SearchBar() {
   })
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values)
+    const params = new URLSearchParams();
+    params.append('term', values.term);
+    if (values.filter != '*') {
+      params.append('filter', values.filter)
+    }
+    redirect('/search?' + params.toString())
   }
+
+  const actionKey = useActionKey();
 
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
       <Dialog.Trigger asChild>
-        <button className="bg-transparent dark:bg-green-800 md:bg-green-200 rounded-sm md:w-48 h-8 flex flex-row items-stretch justify-between pl-2 pr-2 text-sm text-green-600 dark:text-green-300 md:hover:bg-green-300" >
+        <button className="bg-transparent dark:bg-green-800 md:bg-green-200 rounded-lg md:w-56 h-12 flex items-center justify-between pl-2 pr-2 text-sm text-green-600 space-x-3 dark:text-green-300 md:hover:bg-green-300" >
 
-          <div className="flex flex-row gap-2 items-center ">
-            <Search />
-            <span className="hidden md:inline-block">Buscar</span>
-          </div>
-          <kbd className="hidden md:flex flex-row items-center gap-1 font-sans font-semibold">
-            <abbr className="no-underline" title="Command">⌘</abbr> <span>K</span>
+          <svg
+            width="24"
+            height="24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="flex-none"
+            aria-hidden="true"
+          >
+            <path d="m19 19-3.5-3.5" />
+            <circle cx="11" cy="11" r="6" />
+          </svg>
+          <span className="hidden md:flex flex-auto">Buscar</span>
+          <kbd className="hidden md:inline-block font-sans font-semibold">
+            <abbr className="no-underline" title={actionKey[1]}>{actionKey[0]}</abbr>K
           </kbd>
         </button>
       </Dialog.Trigger>
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed top-0 right-0 left-0 bottom-0 backdrop-blur-md bg-gray-700/30"/>
+        <Dialog.Overlay className="fixed top-0 right-0 left-0 bottom-0 backdrop-blur-md bg-gray-700/30" />
         <Dialog.Content className="absolute top-40 grid grid-cols-12 gap-4 w-full">
           <VisuallyHidden.Root>
             <Dialog.Title>Buscar</Dialog.Title>
@@ -73,17 +93,17 @@ export default function SearchBar() {
                 <FormField
                   control={form.control}
                   name="filter"
-                  render={({field}) =>
+                  render={({ field }) =>
                     <FormItem>
                       <FormControl>
-                        <Filter defaultValue={field.value} onValueChange={field.onChange}/>
+                        <Filter defaultValue={field.value} onValueChange={field.onChange} />
                       </FormControl>
                     </FormItem>
-                  }/>
+                  } />
                 <FormField
                   control={form.control}
                   name="term"
-                  render={({field}) =>
+                  render={({ field }) =>
                     <FormControl>
                       <input {...field} type="search" className="h-full rounded-e-md flex items-end bg-green-200 outline-0 p-2.5 w-full z-20 text-sm placeholder-green-600 text-green-600 dark:placeholder-gray-400 dark:text-white" placeholder="Escribe para realizar una búsqueda" required />
                     </FormControl>
