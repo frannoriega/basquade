@@ -17,7 +17,11 @@ async function getBooks(cat: number): Promise<Book[] | null> {
 }
 
 async function searchBooks(term: string): Promise<Book[]> {
-  return prisma.$queryRaw`SELECT * FROM "Book" as b JOIN "Lang" as l on b."langId" = l.id where b.content @@ websearch_to_tsquery(CAST(l.language AS regconfig), '${term}')`
+  return prisma.$queryRaw`SELECT b.id, title FROM "Book" as b JOIN "Lang" as l on b."langId" = l.id where b.content @@ websearch_to_tsquery(CAST(l.language AS regconfig), '${term}')`
+}
+
+async function searchBooksFromCategory(term: string, filter: string): Promise<Book[]> {
+  return prisma.$queryRaw`SELECT b.id, title  FROM "Book" as b JOIN "Lang" as l on b."langId" = l.id where b.content @@ websearch_to_tsquery(CAST(l.language AS regconfig), '${term}') AND b."categoryId" = ${filter}`
 }
 
 async function getPDF(id: number): Promise<Buffer> {
@@ -31,4 +35,4 @@ async function getPDF(id: number): Promise<Buffer> {
   }).then((book) => book.file)
 }
 
-export { getBooks, searchBooks, getPDF };
+export { getBooks, searchBooks, searchBooksFromCategory, getPDF };

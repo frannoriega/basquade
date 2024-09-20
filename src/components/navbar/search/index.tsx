@@ -1,6 +1,4 @@
 'use client'
-import { Search } from "lucide-react";
-
 import React, { useEffect, useRef, useState } from "react";
 import Filter from "@/components/navbar/search/filter";
 import * as Dialog from "@radix-ui/react-dialog";
@@ -9,8 +7,8 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
-import { redirect } from "next/navigation";
 import { useActionKey } from "@/hooks/useActionKey";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   "term": z.string().min(2, {
@@ -20,6 +18,7 @@ const formSchema = z.object({
 })
 
 export default function SearchBar() {
+  const router = useRouter();
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -42,13 +41,15 @@ export default function SearchBar() {
     },
   })
 
+
   function onSubmit(values: z.infer<typeof formSchema>) {
-    const params = new URLSearchParams();
-    params.append('term', values.term);
-    if (values.filter != '*') {
-      params.append('filter', values.filter)
+    const params = new URLSearchParams()
+    params.append("term", values.term);
+    if (values.filter != "*") {
+      params.append("filter", values.filter)
     }
-    redirect('/search?' + params.toString())
+    setOpen(false)
+    router.replace('/search?'+params.toString())
   }
 
   const actionKey = useActionKey();
@@ -57,7 +58,6 @@ export default function SearchBar() {
     <Dialog.Root open={open} onOpenChange={setOpen}>
       <Dialog.Trigger asChild>
         <button className="bg-transparent dark:bg-green-800 md:bg-green-200 rounded-lg md:w-56 h-12 flex items-center justify-between pl-2 pr-2 text-sm text-green-600 space-x-3 dark:text-green-300 md:hover:bg-green-300" >
-
           <svg
             width="24"
             height="24"
