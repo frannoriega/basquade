@@ -1,3 +1,5 @@
+import Gallery from "@/components/gallery"
+import { BookPreview } from "@/data/book-preview"
 import { getBooks } from "@/lib/db/books"
 import { notFound } from "next/navigation"
 
@@ -6,11 +8,7 @@ export default async function Page({ params }: { params: { id: number } }) {
   if (books == null) {
     notFound()
   }
-  return (
-    <div>
-      {books.map((b, _) =>
-        <span key={b.id}>{b.title}</span>
-      )}
-    </div>
-  )
+
+  const previews = books.map((b) => new BookPreview(b.id, b.title, ["fran"], "descripción"))
+  return <Gallery books={previews}/>
 }
