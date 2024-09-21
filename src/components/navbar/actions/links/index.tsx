@@ -13,30 +13,30 @@ type LinksProps = {
 }
 
 export default function Links({ className, listClassName }: LinksProps) {
-  const lcn = cn("flex flex-row gap-8 items-center", listClassName)
+  const lcn = cn("flex flex-row gap-8 items-center text-center", listClassName)
   return (
     <NavigationMenu className={className}>
       <NavigationMenuList className={lcn}>
-        <NavigationMenuItem className="md:w-16 text-center">
+        <NavigationMenuItem>
           {/* TODO: Implement pending page */}
           <Link href="/quienessomos" legacyBehavior passHref>
-            <NavigationMenuLink >
+            <NavigationMenuLink className="hover:underline hover:underline-offset-8">
               Quienes somos
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
-        <NavigationMenuItem className="text-center">
+        <NavigationMenuItem>
           {/* TODO: Implement pending page */}
           <Link href="/blog" legacyBehavior passHref>
-            <NavigationMenuLink >
+            <NavigationMenuLink className="hover:underline hover:underline-offset-8">
               Blog
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
-        <NavigationMenuItem className="text-center">
+        <NavigationMenuItem>
           {/* TODO: Implement pending page */}
           <Link href="/quienessomos" legacyBehavior passHref>
-            <NavigationMenuLink >
+            <NavigationMenuLink className="hover:underline hover:underline-offset-8">
               Contacto
             </NavigationMenuLink>
           </Link>
