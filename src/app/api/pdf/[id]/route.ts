@@ -1,4 +1,5 @@
 import { getPDF } from "@/lib/db/books";
+import { notFound } from "next/navigation";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
@@ -8,6 +9,9 @@ export async function GET(
   const id = params.id
   try {
     const pdf = await getPDF(Number(id))
+    if (!pdf) {
+      return notFound();
+    }
     return new NextResponse(
       pdf,
       {
