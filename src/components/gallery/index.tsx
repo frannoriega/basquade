@@ -16,7 +16,7 @@ export default function Gallery({ books }: { books: BookPreview[] }) {
                 {b.description}
               </CardContent>
               <CardFooter className="text-slate-400">
-                Autores: <ul>{b.author.map((a) => <li>{a}</li>)}</ul>
+                Autores: <ul>{b.author.map((a) => <li key={a}>{a}</li>)}</ul>
               </CardFooter>
             </Card>
             </Link>
