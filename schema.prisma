@@ -19,26 +19,63 @@ model Category {
 
 // Los idiomas utilizados
 model Lang {
-  id          Int      @id @default(autoincrement())
-  language    String   @db.VarChar(16) @unique
-  books        Book[]
+  id            Int      @id @default(autoincrement())
+  language      String   @db.VarChar(15) @unique
+  books         Book[]
+}
+
+// La institución a la que pertenece un autor
+model Institution {
+  id            Int                   @id @default(autoincrement())
+  name          String                @db.VarChar(255)
+  authors       AuthorOnInstitution[]
+}
+
+// El autor de un libro
+model Author {
+  id            Int      @id @default(autoincrement())
+  name          String   @db.VarChar(20)
+  surname       String   @db.VarChar(20)
+  institutions  AuthorOnInstitution[]
+  books         AuthorOnBook[]
+}
+
+// Tabla que modela la relacion Instutición-Autor
+model AuthorOnInstitution {
+  id          Int         @id @default(autoincrement())
+  author      Author      @relation(fields: [authorId], references: [id])
+  authorId    Int
+  institution Institution @relation(fields: [instId], references: [id])
+  instId      Int
 }
 
 // La tabla que guarda los PDFs
 model Book {
-  id          Int      @id @default(autoincrement())
+  id          Int             @id @default(autoincrement())
   // El nombre del archivo
-  title       String   @db.VarChar(255)
+  title       String          @db.VarChar(255)
   // El archivo, para mostrarlo
   file        Bytes
   // El contenido en forma de lexemas, para habilitar la busqueda por texto
   content     Unsupported("tsvector")
   // Para identificar univocamente segun el contenido del PDF
-  md5         String   @unique
+  md5         String          @unique
   // El idioma del archivo, para optimizar las búsquedas
-  lang        Lang     @relation(fields: [langId], references: [id])
+  lang        Lang            @relation(fields: [langId], references: [id])
   langId      Int
   // La categoría con la que fue marcado
-  category    Category @relation(fields: [categoryId], references: [id])
+  category    Category        @relation(fields: [categoryId], references: [id])
   categoryId  Int
+  // Los autores del libro
+  authors     AuthorOnBook[]
+  // Si esta pendiente de corrección o no
+  pending     Boolean
+}
+
+model AuthorOnBook {
+  id          Int             @id @default(autoincrement())
+  book        Book            @relation(fields: [bookId], references: [id])
+  bookId      Int
+  author      Author          @relation(fields: [authorId], references: [id])
+  authorId    Int
 }
