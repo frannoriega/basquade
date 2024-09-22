@@ -10,6 +10,14 @@ datasource db {
   directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
+model Admin {
+  id          Int       @id @default(autoincrement())
+  email       String    @db.VarChar(255)
+  name        String    @db.VarChar(63)
+  lastname    String    @db.VarChar(63)
+  dni         Int
+}
+
 model Category {
   id          Int      @id @default(autoincrement())
   name        String   @db.VarChar(255) @unique
