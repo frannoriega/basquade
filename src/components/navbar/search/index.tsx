@@ -57,7 +57,7 @@ export default function SearchBar() {
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
       <Dialog.Trigger asChild>
-        <button className="bg-transparent dark:bg-green-800 md:bg-green-200 rounded-lg md:w-56 h-12 flex items-center justify-between pl-2 pr-2 text-sm text-green-600 space-x-3 dark:text-green-300 md:hover:bg-green-300" >
+        <button className="bg-transparent dark:bg-green-800 lg:bg-green-200 rounded-lg lg:w-56 h-12 flex items-center justify-between pl-2 pr-2 text-sm text-green-600 space-x-3 dark:text-green-300 lg:hover:bg-green-300" >
           <svg
             width="24"
             height="24"
@@ -72,8 +72,8 @@ export default function SearchBar() {
             <path d="m19 19-3.5-3.5" />
             <circle cx="11" cy="11" r="6" />
           </svg>
-          <span className="hidden md:flex flex-auto">Buscar</span>
-          <kbd className="hidden md:inline-block font-sans font-semibold">
+          <span className="hidden lg:flex flex-auto">Buscar</span>
+          <kbd className="hidden lg:inline-block font-sans font-semibold">
             <abbr className="no-underline" title={actionKey[1]}>{actionKey[0]}</abbr>K
           </kbd>
         </button>
