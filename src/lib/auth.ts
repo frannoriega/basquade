@@ -29,7 +29,6 @@ export const authOptions = {
   ],
   pages: {
     signIn: '/auth/signin',
-    error: '/auth/error'
   },
   callbacks: {
     async signIn({ user }: SignInParams) {
