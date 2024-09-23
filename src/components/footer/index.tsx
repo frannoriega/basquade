@@ -1,6 +1,6 @@
-import FacebookIcon from "./facebook-icon";
-import InstagramIcon from "./instagram-icon";
-import TwitterIcon from "./twitter-icon";
+import FacebookIcon from "@/components/ui/icons/facebook";
+import InstagramIcon from "@/components/ui/icons/instagram";
+import TwitterIcon from "@/components/ui/icons/twitter";
 
 export default function Footer() {
   return (
