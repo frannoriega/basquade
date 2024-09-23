@@ -2,7 +2,6 @@ import React from "react";
 
 export default function QuienesSomos() {
   return (
-    <div className="">
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In odio nibh, laoreet et velit at, aliquam ornare risus. Sed in dolor ac mauris placerat placerat vel sed dui. Suspendisse a orci sed tellus auctor condimentum in eget urna. Proin accumsan nisl mauris, ullamcorper aliquet ex ultricies eget. Quisque dui eros, rhoncus non orci in, faucibus malesuada eros. Cras et erat lacinia tortor tempor scelerisque. Aenean feugiat sed libero a molestie.
 
@@ -14,6 +13,5 @@ export default function QuienesSomos() {
 
         Aenean ac mattis nunc. Nam nisl enim, fermentum sed aliquet vitae, ultrices luctus nulla. Integer sed porta sem. Fusce elementum sed est ac egestas. Donec diam sapien, rutrum vehicula eros non, rhoncus fermentum nisl. Mauris nec pharetra mauris, a dapibus orci. Suspendisse condimentum rhoncus turpis, vel iaculis odio. Duis placerat massa massa, nec finibus leo ultricies iaculis.
       </p>
-    </div>
   )
 }
