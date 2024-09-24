@@ -6,7 +6,7 @@ const guc = cache(getUsedCategories);
 export default async function Home() {
   const categories = await guc();
   return (
-    <div className="flex items-center justify-center">
+    <div className="self-start flex items-center justify-center">
       <ol className="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8">
         {
           categories.map((category, _) =>
