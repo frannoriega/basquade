@@ -4,7 +4,7 @@ import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 
 export default function Gallery({ books }: { books: BookPreview[] }) {
   return (
-      <ol className="flex flex-col gap-4">
+      <ol className="flex flex-col gap-4 w-full">
         {
           books.map((b) =>
             <Link key={b.id} href={`/api/pdf/${b.id}`}>

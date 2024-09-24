@@ -4,7 +4,7 @@ import { exists } from "./categories";
 
 // Devuelve todos los libros no pendientes
 // asociados a una categoría, o `null` si la categoría no existe.
-async function getBooks(cat: number, page: number = 0, limit: number = 10): Promise<Book[] | null> {
+async function getBooks(cat: number, page: number = 1, limit: number = 10): Promise<Book[] | null> {
   return exists(cat).then((e) => {
     if (!e) {
       return new Promise((resolve) => resolve(null))
@@ -57,15 +57,15 @@ async function getPDF(id: number): Promise<Buffer | null> {
 
 // Devuelve algún PDF que esté pendiente de corrección,
 // o `null` si no hay ninguno pendiente
-async function getPendingPDF(): Promise<Buffer | null> {
+async function getPendingId(): Promise<number | null> {
   return prisma.book.findFirst({
     select: {
-      file: true
+      id: true
     },
     where: {
       pending: true
     }
-  }).then((book) => book ? book.file : null)
+  }).then((book) => book ? book.id : null)
 }
 
-export { getBooks, searchBooks, searchBooksFromCategory, getPDF };
+export { getBooks, searchBooks, searchBooksFromCategory, getPDF, getPendingId };
