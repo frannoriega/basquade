@@ -95,6 +95,8 @@ model Book {
   id          Int             @id @default(autoincrement())
   // El nombre del archivo
   title       String          @db.VarChar(255)
+  // La descripción del archivo
+  description String
   // El archivo, para mostrarlo
   file        Bytes
   // El contenido en forma de lexemas, para habilitar la busqueda por texto

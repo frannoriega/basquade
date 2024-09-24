@@ -90,8 +90,8 @@ async function main() {
     const book_content = fs.readFileSync(`prisma/data/books/book${i + 1}.content`, 'utf8')
     const book_hash = crypto.createHash('md5').update(book_bytes).digest('hex')
     await prisma.$executeRaw`INSERT INTO "Book"
-("id", "title", "file", "content", "md5", "langId", "categoryId", "pending")
-VALUES (${i+1}, 'Book ${i + 1}', ${book_bytes}, to_tsvector('spanish', ${book_content}), ${book_hash}, ${spanish.id}, ${categories[i % 3].id}, ${i % 2 == 0}) ON CONFLICT DO NOTHING;`
+("id", "title", "description", "file", "content", "md5", "langId", "categoryId", "pending")
+VALUES (${i+1}, 'Book ${i + 1}', 'Description ${i+1}', ${book_bytes}, to_tsvector('spanish', ${book_content}), ${book_hash}, ${spanish.id}, ${categories[i % 3].id}, ${i % 2 == 0}) ON CONFLICT DO NOTHING;`
     books.push(i+1)
   }
 
