@@ -1,10 +1,16 @@
 import { BookPreview } from "@/data/book-preview";
 import Link from "next/link";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 
-export default function Gallery({ books }: { books: BookPreview[] }) {
+type GalleryParams = {
+  books: BookPreview[]
+} & React.ComponentProps<"ol">
+
+export default function Gallery({ books, className, ...props }: GalleryParams) {
+  const cns = cn("flex flex-col gap-4 w-full", className)
   return (
-      <ol className="flex flex-col gap-4 w-full">
+      <ol className={cns} {...props}>
         {
           books.map((b) =>
             <Link key={b.id} href={`/api/pdf/${b.id}`}>

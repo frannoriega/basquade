@@ -10,5 +10,5 @@ export default async function Page({ params }: { params: { id: number } }) {
   }
 
   const previews = books.map((b) => new BookPreview(b.id, b.title, ["fran"], "descripción"))
-  return <Gallery books={previews}/>
+  return <Gallery books={previews} className="pt-24"/>
 }
