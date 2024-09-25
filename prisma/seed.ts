@@ -10,6 +10,7 @@ async function main() {
     update: {},
     create: {
       language: 'spanish',
+      display: 'Español'
     },
   })
 
@@ -18,7 +19,8 @@ async function main() {
     update: {},
     create: {
       language: 'english',
-    },
+      display: 'Inglés'
+    }
   })
 
   const portuguese = await prisma.lang.upsert({
@@ -26,6 +28,7 @@ async function main() {
     update: {},
     create: {
       language: 'portuguese',
+      display: 'Portugués'
     },
   })
 

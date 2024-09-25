@@ -45,7 +45,7 @@ export default function PendingPanel({ book, languages, authors }: PendingPanelP
       authors: book.authors.map((a) => { return { id: a.id, text: `${a.name} ${a.surname} (${a.email})` } }),
       lang: {
         id: book.lang.id,
-        text: book.lang.language
+        text: book.lang.display
       },
       category: book.categoryId
     },
@@ -108,7 +108,7 @@ export default function PendingPanel({ book, languages, authors }: PendingPanelP
                   <SelectContent className="">
                     {languages.map(l =>
                       <SelectItem key={l.id} value={l.id.toString()} className='hover:bg-green-600'>
-                        {l.language}
+                        {l.display}
                       </SelectItem>
                     )}
                   </SelectContent>

@@ -29,6 +29,7 @@ model Category {
 model Lang {
   id            Int      @id @default(autoincrement())
   language      String   @db.VarChar(15) @unique
+  display       String
   books         Book[]
 }
 
