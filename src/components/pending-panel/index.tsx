@@ -71,15 +71,15 @@ export default function PendingPanel({ book, languages, authors }: PendingPanelP
       <iframe className="col-span-2 w-full h-full" src={`/api/pending/${book.id}`}></iframe>
       <Toast.Provider swipeDirection="right">
           <Form {...form}>
-            <form className="flex flex-col p-4 gap-4" onSubmit={form.handleSubmit(onSubmit)}>
+            <form className="flex flex-col p-4 gap-8" onSubmit={form.handleSubmit(onSubmit)}>
               <FormField
                 control={form.control}
                 name="title"
                 render={({ field }) =>
-                  <FormItem className="flex flex-col h-16">
+                  <FormItem className="flex flex-col gap-2 h-16">
                     <FormLabel>Título</FormLabel>
                     <FormControl>
-                      <input {...field} required />
+                      <input {...field} required className="p-2 bg-slate-700 rounded-sm"/>
                     </FormControl>
                   </FormItem>
                 } />
@@ -87,10 +87,10 @@ export default function PendingPanel({ book, languages, authors }: PendingPanelP
                 control={form.control}
                 name="description"
                 render={({ field }) =>
-                  <FormItem className="flex flex-col">
+                  <FormItem className="flex flex-col gap-2 h-16">
                     <FormLabel>Descripción</FormLabel>
                     <FormControl>
-                      <input {...field} required />
+                      <input {...field} required className="p-2 bg-slate-700 rounded-sm"/>
                     </FormControl>
                   </FormItem>
                 }
@@ -103,7 +103,7 @@ export default function PendingPanel({ book, languages, authors }: PendingPanelP
                     <FormLabel>Lenguaje</FormLabel>
                     <FormControl>
                       <Select defaultValue={field.value.id.toString()} onValueChange={(id) => field.onChange(languages.find((l) => l.id == Number(id)))}>
-                        <SelectTrigger className=" flex flex-row gap-4 bg-green-200 items-center justify-between p-4 min-h-fit rounded text-violet-500 text-sm hover:bg-red-300" aria-label="Lenguaje">
+                        <SelectTrigger className=" flex flex-row gap-4 bg-slate-700 items-center justify-between p-4 min-h-fit rounded text-sm" aria-label="Lenguaje">
                           <SelectValue placeholder={field.value.text} />
                         </SelectTrigger>
                         <SelectContent className="">
@@ -131,7 +131,7 @@ export default function PendingPanel({ book, languages, authors }: PendingPanelP
                         options={authorOptions.map((a) => { return { value: a.id.toString(), label: a.text}})}
                         selectAllText="Seleccionar todas"
                         searchText="Buscar..."
-                        placeholder="Selecciona los autores" className="w-full h-fit" />
+                        placeholder="Selecciona los autores" className="w-full h-fit bg-slate-700" />
                     </FormControl>
                   </FormItem>
                 }
