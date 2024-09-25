@@ -57,7 +57,7 @@ export default function SearchBar() {
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
       <Dialog.Trigger asChild>
-        <button className="bg-transparent dark:bg-green-800 lg:bg-green-200 rounded-lg lg:w-56 h-12 flex items-center justify-between pl-2 pr-2 text-sm text-green-600 space-x-3 dark:text-green-300 lg:hover:bg-green-300" >
+        <button className="bg-transparent dark:bg-transparent lg:dark:bg-green-700 lg:bg-green-200 rounded-lg lg:w-56 h-12 flex items-center justify-between pl-2 pr-2 text-sm text-green-600 space-x-3 dark:text-green-300 lg:hover:bg-green-300" >
           <svg
             width="24"
             height="24"
