@@ -1,15 +1,25 @@
-import { getPendingId } from "@/lib/db/books"
+import PendingPanel from "@/components/pending-panel";
+import { getAuthors } from "@/lib/db/authors";
+import { getPendingWithAuthor } from "@/lib/db/books";
+import { getLanguages } from "@/lib/db/languages";
 
 export default async function PendingPage() {
-  // const book = await getPendingId();
-  const book = 1;
+  const book = await getPendingWithAuthor()
   if (!book) {
     return <div>No books</div>
   }
+  const strippedBook = {
+    id: book.id,
+    title: book.title,
+    description: book.description,
+    authors: book.authors.map((a) => a.author),
+    lang: book.lang,
+    categoryId: book.categoryId
+  }
+  const languages = await getLanguages()
+  const authors = await getAuthors()
+  console.log(authors)
   return (
-    <div className="grid grid-cols-3 w-full">
-      <iframe className="col-span-2 w-full h-full" src={ `/api/pdf/${book}` }></iframe>
-      <div className="bg-red-200"></div>
-    </div>
+      <PendingPanel book={strippedBook} languages={languages} authors={authors}/>
   )
 }

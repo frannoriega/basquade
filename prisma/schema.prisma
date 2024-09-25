@@ -123,4 +123,5 @@ model AuthorOnBook {
   bookId      Int
   author      Author          @relation(fields: [authorId], references: [id])
   authorId    Int
+  @@unique([bookId, authorId])
 }

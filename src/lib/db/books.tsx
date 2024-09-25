@@ -1,6 +1,10 @@
 import prisma from "@/lib/prisma";
-import { Book } from "@prisma/client";
+import { Book, Prisma } from "@prisma/client";
 import { exists } from "./categories";
+
+type BookWithAuthorsAndLang = Prisma.BookGetPayload<{
+  include: { authors: { include: { author: true }}, lang: true }
+}>
 
 // Devuelve todos los libros no pendientes
 // asociados a una categoría, o `null` si la categoría no existe.
@@ -57,15 +61,33 @@ async function getPDF(id: number): Promise<Buffer | null> {
 
 // Devuelve algún PDF que esté pendiente de corrección,
 // o `null` si no hay ninguno pendiente
-async function getPendingId(): Promise<number | null> {
-  return prisma.book.findFirst({
+async function getPendingPDF(id: number): Promise<Buffer | null> {
+  return prisma.book.findUnique({
     select: {
-      id: true
+      file: true
     },
     where: {
+      id: id,
       pending: true
     }
-  }).then((book) => book ? book.id : null)
+  }).then((book) => book ? book.file : null)
 }
 
-export { getBooks, searchBooks, searchBooksFromCategory, getPDF, getPendingId };
+async function getPendingWithAuthor(): Promise<BookWithAuthorsAndLang | null> {
+  return prisma.book.findFirst({
+    where: {
+      pending: true
+    },
+    include: {
+      authors: {
+        include: {
+          author: true
+        }
+      },
+      lang: true
+    }
+  })
+}
+
+export { getBooks, searchBooks, searchBooksFromCategory, getPDF, getPendingPDF, getPendingWithAuthor };
+export type { BookWithAuthorsAndLang }

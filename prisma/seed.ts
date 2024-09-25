@@ -143,21 +143,6 @@ VALUES (${i+1}, 'Book ${i + 1}', 'Description ${i+1}', ${book_bytes}, to_tsvecto
 
       }
     })
-    await prisma.authorOnBook.create({
-      data: {
-        book: {
-          connect: {
-            id: books[i]
-          }
-        },
-        author: {
-          connect: {
-            id: authors[0].id
-          }
-        },
-
-      }
-    })
   }
 
   // Creamos algunas relaciones entre autores e instituciones
