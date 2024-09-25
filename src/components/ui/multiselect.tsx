@@ -228,14 +228,15 @@ export const MultiSelect = React.forwardRef<
                       <Badge
                         key={value}
                         className={cn(
-                          multiSelectVariants({ variant })
+                          multiSelectVariants({ variant }),
+                          "w-32"
                         )}
                         style={{ animationDuration: `${animation}s` }}
                       >
                         {IconComponent && (
                           <IconComponent className="h-4 w-4 mr-2" />
                         )}
-                        {option?.label}
+                        <span className="w-32 overflow-hidden text-ellipsis">{option?.label}</span>
                         <XCircle
                           className="ml-2 h-4 w-4 cursor-pointer"
                           onClick={(event) => {
@@ -254,7 +255,7 @@ export const MultiSelect = React.forwardRef<
                       )}
                       style={{ animationDuration: `${animation}s` }}
                     >
-                      {`+ ${selectedValues.length - maxCount} more`}
+                      {`+ ${selectedValues.length - maxCount} más`}
                       <XCircle
                         className="ml-2 h-4 w-4 cursor-pointer"
                         onClick={(event) => {
