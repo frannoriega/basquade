@@ -17,6 +17,6 @@ export default async function Search({ searchParams }: { searchParams: SearchPar
 
   const books = filter ? await searchBooksFromCategory(term, filter) : await searchBooks(term)
 
-  const previews = books.map((b) => new BookPreview(b.id, b.title, ["fran"], "descripción"))
+  const previews = books.map((b) => new BookPreview(b.id, b.title, [`${b.author_name} ${b.author_surname} (${b.author_email})`], b.description))
   return <Gallery books={previews}/>
 }

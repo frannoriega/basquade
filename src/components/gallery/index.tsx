@@ -21,8 +21,8 @@ export default function Gallery({ books, className, ...props }: GalleryParams) {
               <CardContent>
                 {b.description}
               </CardContent>
-              <CardFooter className="text-slate-400">
-                Autores: <ul>{b.author.map((a) => <li key={a}>{a}</li>)}</ul>
+              <CardFooter className="gap-1 text-slate-400">
+                <p>Autores: </p><ul>{b.author.map((a) => <li key={a}>{a}</li>)}</ul>
               </CardFooter>
             </Card>
             </Link>
