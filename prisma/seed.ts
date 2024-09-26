@@ -14,7 +14,7 @@ async function main() {
     },
   })
 
-  const english = await prisma.lang.upsert({
+  await prisma.lang.upsert({
     where: { language: 'english' },
     update: {},
     create: {
@@ -23,7 +23,7 @@ async function main() {
     }
   })
 
-  const portuguese = await prisma.lang.upsert({
+  await prisma.lang.upsert({
     where: { language: 'portuguese' },
     update: {},
     create: {

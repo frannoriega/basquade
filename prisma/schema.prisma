@@ -16,6 +16,7 @@ model Admin {
   name        String    @db.VarChar(63)
   lastname    String    @db.VarChar(63)
   dni         Int
+  permanent   Boolean
 }
 
 model Category {
