@@ -2,7 +2,6 @@
 
 import prisma from "@/lib/prisma";
 import { Prisma } from "@prisma/client";
-import { exists } from "./categories";
 
 type BookWithAll = Prisma.BookGetPayload<{
   select: { id: true, title: true, description: true, authors: { select: { author: true } }, lang: true, category: { select: { id: true, name: true } } }
