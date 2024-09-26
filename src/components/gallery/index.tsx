@@ -22,7 +22,7 @@ export default function Gallery({ books, className, ...props }: GalleryParams) {
                 {b.description}
               </CardContent>
               <CardFooter className="gap-1 text-slate-400">
-                <p>Autores: </p><ul>{b.author.map((a) => <li key={a}>{a}</li>)}</ul>
+                <p>Autores: {b.author.join(', ')}</p>
               </CardFooter>
             </Card>
             </Link>

@@ -8,13 +8,11 @@ type BookWithAll = Prisma.BookGetPayload<{
   select: { id: true, title: true, description: true, authors: { select: { author: true } }, lang: true, category: { select: { id: true, name: true } } }
 }>
 
-type BookWithSingleAuthor = {
+type BookWithDisplayAuthor = {
   id: number,
   title: string,
   description: string,
-  author_name: string,
-  author_surname: string,
-  author_email: string
+  authors: string[]
 }
 
 type BookWithAuthor = Prisma.BookGetPayload<{
@@ -52,9 +50,9 @@ async function getBooks(cat: number, page: number = 1, limit: number = 10): Prom
 
 // Busca los libros basados en la frase (`term`) pasada
 // como parámetro
-async function searchBooks(term: string, page: number = 1, limit: number = 10): Promise<BookWithSingleAuthor[]> {
+async function searchBooks(term: string, page: number = 1, limit: number = 10): Promise<BookWithDisplayAuthor[]> {
   const offset = Math.abs(page - 1) * limit;
-  return prisma.$queryRaw`SELECT b.id AS id, b.title AS title, b.description AS description, a.name AS author_name, a.surname AS author_surname, a.email AS author_email FROM "Book" as b JOIN "Lang" as l on b."langId" = l.id JOIN "AuthorOnBook" as ab ON ab."bookId" = b.id JOIN "Author" as a ON ab."authorId" = a.id where b.content @@ websearch_to_tsquery(CAST(l.language AS regconfig), '${term}') AND b.pending = false ORDER BY b.title ASC LIMIT ${limit} OFFSET ${offset}`
+  return prisma.$queryRaw`SELECT b.id AS id, b.title AS title, b.description AS description, array_agg(a.name || ' ' || a.surname || ' (' || a.email || ')') as authors FROM "Book" as b JOIN "Lang" as l on b."langId" = l.id JOIN "AuthorOnBook" as ab ON ab."bookId" = b.id JOIN "Author" as a ON ab."authorId" = a.id where b.content @@ websearch_to_tsquery(CAST(l.language AS regconfig), '${term}') AND b.pending = false GROUP BY b.id ORDER BY b.title ASC LIMIT ${limit} OFFSET ${offset}`
 }
 
 // Busca los libros en una categoría específica, basado
@@ -64,10 +62,9 @@ async function searchBooksFromCategory(
   filter: string,
   page: number = 1,
   limit: number = 0
-): Promise<BookWithSingleAuthor[]> {
+): Promise<BookWithDisplayAuthor[]> {
   const offset = Math.abs(page - 1) * limit;
-  return prisma.$queryRaw`SELECT b.id AS id, b.title AS title, b.description AS description, a.name AS author_name, a.surname AS author_surname, a.email AS author_email FROM "Book" as b JOIN "Lang" as l on b."langId" = l.id JOIN "AuthorOnBook" as ab ON ab."bookId" = b.id JOIN "Author" as a ON ab."authorId" = a.id where b.content @@ websearch_to_tsquery(CAST(l.language AS regconfig), '${term}') AND b."categoryId" = ${filter} AND b.pending = false ORDER BY b.title ASC LIMIT ${limit} OFFSET ${offset}`
-}
+  return prisma.$queryRaw`SELECT b.id AS id, b.title AS title, b.description AS description, array_agg(a.name || ' ' || a.surname || ' (' || a.email || ')') as authors FROM "Book" as b JOIN "Lang" as l on b."langId" = l.id JOIN "AuthorOnBook" as ab ON ab."bookId" = b.id JOIN "Author" as a ON ab."authorId" = a.id where b.content @@ websearch_to_tsquery(CAST(l.language AS regconfig), '${term}') AND b."categoryId" = ${filter} AND b.pending = false GROUP BY b.id ORDER BY b.title ASC LIMIT ${limit} OFFSET ${offset}`}
 
 // Devuelve el PDF asociado al libro, o `null` en caso
 // de que no exista
