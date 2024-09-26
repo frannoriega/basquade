@@ -3,13 +3,15 @@ import { Form, FormControl, FormField, FormItem, FormLabel } from "@/components/
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { MultiSelect } from "@/components/ui/multiselect";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Author, Lang } from "@prisma/client";
+import { Author, Category, Lang } from "@prisma/client";
 import * as Toast from "@radix-ui/react-toast";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
+import { updatePendingBook } from "@/lib/db/books";
+import { validateHeaderName } from "http";
 
 const formSchema = z.object({
   "title": z.string().min(2, {
@@ -20,7 +22,7 @@ const formSchema = z.object({
   }),
   "authors": z.array(z.object({ id: z.number(), text: z.string() })),
   "lang": z.object({ id: z.number(), text: z.string() }),
-  "category": z.number()
+  "category": z.object({ id: z.number(), name: z.string() })
 })
 
 type PendingPanelParams = {
@@ -30,13 +32,20 @@ type PendingPanelParams = {
     description: string,
     authors: Author[],
     lang: Lang,
-    categoryId: number
+    category: {
+      id: number,
+      name: string
+    }
   },
   languages: Lang[],
-  authors: Author[]
+  authors: Author[],
+  categories: {
+    id: number,
+    name: string
+  }[]
 }
 
-export default function PendingPanel({ book, languages, authors }: PendingPanelParams) {
+export default function PendingPanel({ book, languages, authors, categories }: PendingPanelParams) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -47,7 +56,7 @@ export default function PendingPanel({ book, languages, authors }: PendingPanelP
         id: book.lang.id,
         text: book.lang.display
       },
-      category: book.categoryId
+      category: book.category
     },
   })
 
@@ -58,7 +67,18 @@ export default function PendingPanel({ book, languages, authors }: PendingPanelP
     return () => clearTimeout(timerRef.current);
   }, []);
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    console.log(values)
+    const updatedBook = {
+      id: book.id,
+      title: values.title,
+      description: values.description,
+      lang: values.lang.id,
+      authors: values.authors.map((a) => a.id),
+      category: values.category.id
+    }
+    const res = await updatePendingBook(updatedBook);
+    console.log(res)
     setOpen(false);
     window.clearTimeout(timerRef.current);
     timerRef.current = window.setTimeout(() => {
@@ -90,6 +110,29 @@ export default function PendingPanel({ book, languages, authors }: PendingPanelP
               <FormLabel>Descripción</FormLabel>
               <FormControl>
                 <Textarea {...field} required className="p-2 bg-slate-700 rounded-sm" />
+              </FormControl>
+            </FormItem>
+          }
+        />
+        <FormField
+          control={form.control}
+          name="category"
+          render={({ field }) =>
+            <FormItem>
+              <FormLabel>Categoría</FormLabel>
+              <FormControl>
+                <Select defaultValue={field.value.id.toString()} onValueChange={(id) => field.onChange(categories.find((c) => c.id == Number(id)))}>
+                  <SelectTrigger className="flex flex-row gap-4 bg-slate-700 items-center justify-between p-4 min-h-fit rounded text-sm" aria-label="Lenguaje">
+                    <SelectValue placeholder={field.value.name} />
+                  </SelectTrigger>
+                  <SelectContent className="">
+                    {categories.map(c =>
+                      <SelectItem key={c.id} value={c.id.toString()} className='hover:bg-green-600'>
+                        {c.name}
+                      </SelectItem>
+                    )}
+                  </SelectContent>
+                </Select>
               </FormControl>
             </FormItem>
           }

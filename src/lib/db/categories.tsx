@@ -1,5 +1,5 @@
 import prisma from "@/lib/prisma";
-import { Category } from "@prisma/client";
+import { Category, Prisma } from "@prisma/client";
 
 async function exists(cat: number): Promise<boolean> {
   return prisma.category.findFirst({
@@ -22,4 +22,17 @@ async function getUsedCategories(): Promise<Category[]> {
   })
 }
 
-export { getUsedCategories, exists }
+type CategoryWithoutIcon = Prisma.CategoryGetPayload<{
+  select: { id: true, name: true }
+}>
+
+async function getCategories(): Promise<CategoryWithoutIcon[]> {
+  return prisma.category.findMany({
+    select: {
+      id: true,
+      name: true
+    }
+  })
+}
+
+export { getUsedCategories, getCategories, exists }
