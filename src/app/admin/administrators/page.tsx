@@ -14,7 +14,7 @@ export default async function AdministratorsPage() {
     }
   })
   return (
-    <div className="p-4 flex flex-col gap-4">
+    <div className="p-4 flex flex-col gap-4 h-full">
       <div>Administradores</div>
       <AdminList admins={adminOptions}/>
     </div>
