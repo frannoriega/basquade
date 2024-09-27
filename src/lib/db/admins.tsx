@@ -4,11 +4,11 @@ import prisma from "@/lib/prisma";
 import { Admin } from "@prisma/client";
 
 async function getAdmins(): Promise<Admin[]> {
-  return prisma.admin.findMany()
+  return await prisma.admin.findMany()
 }
 
 async function getAdmin(email: string): Promise<Admin | null> {
-  return prisma.admin.findUnique({
+  return await prisma.admin.findUnique({
     where: {
       email: email
     }
@@ -16,7 +16,7 @@ async function getAdmin(email: string): Promise<Admin | null> {
 }
 
 async function removeAdmins(admins: number[]): Promise<number> {
-  return prisma.admin.deleteMany({
+  return await prisma.admin.deleteMany({
     where: {
       id: {
         in: admins
@@ -33,7 +33,7 @@ type NewAdmin = {
 }
 
 async function addAdmin(admin: NewAdmin): Promise<Admin> {
-  return prisma.admin.create({
+  return await prisma.admin.create({
     data: {
       name: admin.name,
       lastname: admin.surname,

@@ -1,5 +1,4 @@
 import AdminList from "@/components/admin-list";
-import { MultiSelect } from "@/components/ui/multiselect";
 import { getAdmins } from "@/lib/db/admins"
 
 export default async function AdministratorsPage() {
