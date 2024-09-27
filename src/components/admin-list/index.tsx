@@ -7,7 +7,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel } from "../ui/form"
 import { Checkbox } from "../ui/checkbox"
 import { Button } from "../ui/button"
 import { removeAdmins as removeAdminsDb, addAdmin as addAdminDb } from "@/lib/db/admins"
-import { Dialog, DialogClose, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "../ui/dialog"
+import { Dialog, DialogClose, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { useState } from "react"
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden"
 
