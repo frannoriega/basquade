@@ -7,8 +7,9 @@ import { Form, FormControl, FormField, FormItem, FormLabel } from "../ui/form"
 import { Checkbox } from "../ui/checkbox"
 import { Button } from "../ui/button"
 import { removeAdmins as removeAdminsDb, addAdmin as addAdminDb } from "@/lib/db/admins"
-import { Dialog, DialogClose, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "../ui/dialog"
+import { Dialog, DialogClose, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "../ui/dialog"
 import { useState } from "react"
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden"
 
 const removeAdminSchema = z.object({
   admins: z.array(z.number())
@@ -148,20 +149,23 @@ export default function AdminList({ admins }: AdminListParams) {
           <DialogTrigger asChild>
             <Button className="">Agregar</Button>
           </DialogTrigger>
-          <DialogContent>
+          <DialogContent className="bg-slate-700">
             <DialogHeader>
-              <DialogTitle>Test</DialogTitle>
+              <DialogTitle>Agregar nuevo administrador</DialogTitle>
+              <VisuallyHidden>
+                <DialogDescription>Formulario para agregar a un nuevo administrador</DialogDescription>
+              </VisuallyHidden>
             </DialogHeader>
             <Form {...addForm}>
-              <form onSubmit={addForm.handleSubmit(addAdmin)}>
+              <form onSubmit={addForm.handleSubmit(addAdmin)} className="flex flex-col gap-4">
                 <FormField
                   control={addForm.control}
                   name="name"
                   render={({ field }) =>
-                    <FormItem>
+                    <FormItem className="flex flex-col">
                       <FormLabel>Nombre</FormLabel>
                       <FormControl>
-                        <input {...field} value={field.value ?? ''} type="text" required/>
+                        <input {...field} value={field.value ?? ''} type="text" required />
                       </FormControl>
                     </FormItem>
                   }
@@ -170,10 +174,10 @@ export default function AdminList({ admins }: AdminListParams) {
                   control={addForm.control}
                   name="surname"
                   render={({ field }) =>
-                    <FormItem>
+                    <FormItem className="flex flex-col">
                       <FormLabel>Apellido</FormLabel>
                       <FormControl>
-                        <input {...field} value={field.value ?? ''} type="text" required/>
+                        <input {...field} value={field.value ?? ''} type="text" required className="col-span-2" />
                       </FormControl>
                     </FormItem>
                   }
@@ -182,10 +186,10 @@ export default function AdminList({ admins }: AdminListParams) {
                   control={addForm.control}
                   name="email"
                   render={({ field }) =>
-                    <FormItem>
+                    <FormItem className="flex flex-col">
                       <FormLabel>Email</FormLabel>
                       <FormControl>
-                        <input {...field} value={field.value ?? ''} type="email" required/>
+                        <input {...field} value={field.value ?? ''} type="email" required className="col-span-2" />
                       </FormControl>
                     </FormItem>
                   }
@@ -194,15 +198,15 @@ export default function AdminList({ admins }: AdminListParams) {
                   control={addForm.control}
                   name="dni"
                   render={({ field }) =>
-                    <FormItem>
+                    <FormItem className="flex flex-col">
                       <FormLabel>DNI</FormLabel>
                       <FormControl>
-                        <input {...field} value={field.value ?? ''} type="text" required/>
+                        <input {...field} value={field.value ?? ''} type="text" required className="col-span-2" />
                       </FormControl>
                     </FormItem>
                   }
                 />
-                <DialogClose>
+                <DialogClose asChild>
                   <Button type="submit">Agregar</Button>
                 </DialogClose>
               </form>
