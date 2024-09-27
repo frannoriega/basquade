@@ -1,6 +1,6 @@
 import NextAuth, { Account, Profile, User } from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
-import { getAdmins } from "@/lib/db/admins"
+import { getAdmin, getAdmins } from "@/lib/db/admins"
 import { AdapterUser } from "next-auth/adapters"
 import { CredentialInput } from "next-auth/providers/credentials"
 import { signIn } from "next-auth/react"
@@ -32,9 +32,7 @@ export const authOptions = {
   },
   callbacks: {
     async signIn({ user }: SignInParams) {
-      const admins = await getAdmins()
-      const isAllowedToSignIn = admins.some((admin, _) => admin.email === user.email)
-      if (isAllowedToSignIn) {
+      if (user.email && await getAdmin(user.email)) {
         return true
       } else {
         // Return false to display a default error message

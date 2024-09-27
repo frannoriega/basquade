@@ -2,7 +2,15 @@ import prisma from "@/lib/prisma";
 import { Admin } from "@prisma/client";
 
 async function getAdmins(): Promise<Admin[]> {
-  return await prisma.admin.findMany()
+  return prisma.admin.findMany()
 }
 
-export { getAdmins }
+async function getAdmin(email: string): Promise<Admin | null> {
+  return prisma.admin.findUnique({
+    where: {
+      email: email
+    }
+  })
+}
+
+export { getAdmins, getAdmin }
