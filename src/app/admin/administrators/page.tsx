@@ -4,6 +4,7 @@ import { getAdmins } from "@/lib/db/admins"
 
 export default async function AdministratorsPage() {
   const admins = await getAdmins();
+  console.log(admins)
   const adminOptions = admins.map((a) => {
     return {
       id: a.id,
