@@ -1,9 +1,10 @@
 import AdminList from "@/components/admin-list";
 import { getAdmins } from "@/lib/db/admins"
 
+export const dynamic = 'force-dynamic'
+
 export default async function AdministratorsPage() {
   const admins = await getAdmins();
-  console.log(admins)
   const adminOptions = admins.map((a) => {
     return {
       id: a.id,
