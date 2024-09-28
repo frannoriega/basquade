@@ -30,7 +30,7 @@ export default function Profile() {
       </DropdownMenuTrigger>
       <DropdownMenuContent className="p-2 w-48 dark:bg-slate-800" align="end">
         <DropdownMenuItem className="dark:hover:bg-slate-700" onClick={() => router.push('/admin')}>Administrar</DropdownMenuItem>
-        <DropdownMenuItem className="dark:hover:bg-slate-700" onClick={() => router.push('/pending')}>Pendientes</DropdownMenuItem>
+        <DropdownMenuItem className="dark:hover:bg-slate-700" onClick={() => router.push('/pendientes')}>Pendientes</DropdownMenuItem>
         <DropdownMenuItem className="dark:hover:bg-slate-700" onClick={() => signOut()}>Cerrar sesión</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

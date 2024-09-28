@@ -8,10 +8,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         <Link href="/admin" className="hover:bg-slate-400">
           <FormattedLi>Dashboard</FormattedLi>
         </Link>
-        <Link href="/admin/administrators">
+        <Link href="/admin/administradores">
           <FormattedLi>Administradores</FormattedLi>
         </Link>
-        <Link href="/admin/cases">
+        <Link href="/admin/casos">
           <FormattedLi>Casos</FormattedLi>
         </Link>
       </ul>

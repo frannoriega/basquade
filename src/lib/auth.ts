@@ -36,7 +36,7 @@ export const authOptions = {
         return true
       } else {
         // Return false to display a default error message
-        return '/unauthorized'
+        return '/denegado'
         // Or you can return a URL to redirect to:
         // return '/unauthorized'
       }
