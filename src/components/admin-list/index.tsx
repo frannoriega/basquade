@@ -8,31 +8,22 @@ import { Checkbox } from "../ui/checkbox"
 import { Button } from "../ui/button"
 import { removeAdmins as removeAdminsDb, addAdmin as addAdminDb } from "@/lib/db/admins"
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import { useState } from "react"
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden"
+import { useRouter } from "next/navigation"
+import { Admin } from "@prisma/client"
 
 const removeAdminSchema = z.object({
-  admins: z.array(z.number())
+  admins: z.array(z.number()).or(z.null())
 })
 
 const addAdminSchema = z.object({
   name: z.string().min(2),
-  surname: z.string().min(2),
+  lastname: z.string().min(2),
   email: z.string().email(),
   dni: z.number({
     coerce: true
   }),
 })
-
-type AdminListParams = {
-  admins: {
-    id: number,
-    fullname: string,
-    email: string,
-    dni: number,
-    permanent: boolean
-  }[]
-}
 
 function equalArrays(a1: number[], a2: number[]) {
   if (a1.length != a2.length) {
@@ -48,12 +39,13 @@ function equalArrays(a1: number[], a2: number[]) {
   return true
 }
 
-export default function AdminList({ admins }: AdminListParams) {
-  const [currentAdmins, setAdmins] = useState(admins)
+export default function AdminList({ admins }: { admins: Admin[] }) {
+  const router = useRouter();
+
   const removeForm = useForm<z.infer<typeof removeAdminSchema>>({
     resolver: zodResolver(removeAdminSchema),
     defaultValues: {
-      admins: []
+      admins: null
     },
   })
 
@@ -62,19 +54,18 @@ export default function AdminList({ admins }: AdminListParams) {
   })
 
   async function removeAdmins(values: z.infer<typeof removeAdminSchema>) {
-    await removeAdminsDb(values.admins)
-    setAdmins(currentAdmins.filter((a) => !values.admins.includes(a.id)))
+    if (values.admins) {
+      await removeAdminsDb(values.admins)
+      removeForm.setValue("admins", null)
+      router.refresh()
+    }
   }
   async function addAdmin(values: z.infer<typeof addAdminSchema>) {
-    const admin = await addAdminDb(values)
-    setAdmins([...currentAdmins, {
-      id: admin.id,
-      fullname: `${admin.name} ${admin.lastname}`,
-      email: admin.email,
-      dni: admin.dni,
-      permanent: admin.permanent
-    }])
+    await addAdminDb(values)
+    router.refresh()
   }
+
+  const deletableAdmins = admins.filter((a) => !a.permanent).map((a) => a.id)
   return (
     <div className="relative w-full h-full flex flex-col gap-4">
       <Form {...removeForm}>
@@ -91,11 +82,11 @@ export default function AdminList({ admins }: AdminListParams) {
                         <FormItem className="pl-2 pr-2 grid justify-items-center items-center">
                           <FormControl>
                             <Checkbox
-                              checked={equalArrays(currentAdmins.filter((a) => !a.permanent).map((a) => a.id), field.value)}
+                              checked={field.value != null && equalArrays(deletableAdmins, field.value)}
                               onCheckedChange={(checked) => {
                                 return checked
-                                  ? field.onChange(currentAdmins.filter((a) => !a.permanent).map((a) => a.id))
-                                  : field.onChange([])
+                                  ? field.onChange(deletableAdmins)
+                                  : field.onChange(null)
                               }}
                             />
                           </FormControl>
@@ -103,13 +94,14 @@ export default function AdminList({ admins }: AdminListParams) {
                       }
                     />
                   </th>
-                  <th className="text-start pl-2">Nombre completo</th>
+                  <th className="text-start pl-2">Nombre</th>
+                  <th className="text-start pl-2">Apellido</th>
                   <th className="text-start pl-2">Email</th>
                   <th className="text-start pl-2 rounded-tr-md">DNI</th>
                 </tr>
               </thead>
               <tbody>
-                {currentAdmins.map((a) => (
+                {admins.map((a) => (
                   <tr key={a.id} className="h-10 border-b border-slate-300">
                     <td className="h-10 grid items-center justify-items-center">
                       {a.permanent ? null :
@@ -121,11 +113,15 @@ export default function AdminList({ admins }: AdminListParams) {
                             <FormItem>
                               <FormControl>
                                 <Checkbox
-                                  checked={field.value?.includes(a.id)}
+                                  checked={(field.value ?? []).includes(a.id)}
                                   onCheckedChange={(checked) => {
-                                    return checked
-                                      ? field.onChange([...field.value, a.id])
-                                      : field.onChange(field.value?.filter((v) => v != a.id))
+                                    if (checked) {
+                                      return field.onChange([...field.value ?? [], a.id])
+                                    } else {
+                                      const vals = field.value?.filter((v) => v != a.id)
+                                      const valsOrNull = (vals ?? []).length == 0 ? null : vals
+                                      return field.onChange(valsOrNull)
+                                    }
                                   }}
                                 />
                               </FormControl>
@@ -134,7 +130,8 @@ export default function AdminList({ admins }: AdminListParams) {
                         />
                       }
                     </td>
-                    <td className="pl-2">{a.fullname}</td>
+                    <td className="pl-2">{a.name}</td>
+                    <td className="pl-2">{a.lastname}</td>
                     <td className="pl-2">{a.email}</td>
                     <td className="pl-2">{a.dni}</td>
                   </tr>
@@ -165,19 +162,19 @@ export default function AdminList({ admins }: AdminListParams) {
                     <FormItem className="flex flex-col">
                       <FormLabel>Nombre</FormLabel>
                       <FormControl>
-                        <input {...field} value={field.value ?? ''} type="text" required />
+                        <input {...field} value={field.value ?? ''} type="text" required className="rounded-sm" />
                       </FormControl>
                     </FormItem>
                   }
                 />
                 <FormField
                   control={addForm.control}
-                  name="surname"
+                  name="lastname"
                   render={({ field }) =>
                     <FormItem className="flex flex-col">
                       <FormLabel>Apellido</FormLabel>
                       <FormControl>
-                        <input {...field} value={field.value ?? ''} type="text" required className="col-span-2" />
+                        <input {...field} value={field.value ?? ''} type="text" required className="rounded-sm" />
                       </FormControl>
                     </FormItem>
                   }
@@ -189,7 +186,7 @@ export default function AdminList({ admins }: AdminListParams) {
                     <FormItem className="flex flex-col">
                       <FormLabel>Email</FormLabel>
                       <FormControl>
-                        <input {...field} value={field.value ?? ''} type="email" required className="col-span-2" />
+                        <input {...field} value={field.value ?? ''} type="email" required className="rounded-sm" />
                       </FormControl>
                     </FormItem>
                   }
@@ -201,7 +198,7 @@ export default function AdminList({ admins }: AdminListParams) {
                     <FormItem className="flex flex-col">
                       <FormLabel>DNI</FormLabel>
                       <FormControl>
-                        <input {...field} value={field.value ?? ''} type="text" required className="col-span-2" />
+                        <input {...field} value={field.value ?? ''} type="text" required className="rounded-sm" />
                       </FormControl>
                     </FormItem>
                   }
@@ -213,7 +210,7 @@ export default function AdminList({ admins }: AdminListParams) {
             </Form>
           </DialogContent>
         </Dialog>
-        {removeForm.getValues().admins.length > 0 ?
+        {(removeForm.getValues().admins ?? []).length > 0 ?
           <Button variant="destructive" type="submit" form="remove-admins" className="self-start">Borrar</Button>
           : null
         }
