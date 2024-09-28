@@ -179,6 +179,7 @@ VALUES (${i+1}, 'Book ${i + 1}', 'Description ${i+1}', ${book_bytes}, to_tsvecto
       update: {},
       create: {
         name: `Caso ${i+1}`,
+        categoryId: agroecologia.id
       }
     }))
   }

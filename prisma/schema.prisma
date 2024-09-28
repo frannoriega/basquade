@@ -24,6 +24,7 @@ model Category {
   name        String   @db.VarChar(255) @unique
   icon        Bytes
   books       Book[]
+  cases       Case[]
 }
 
 // Los idiomas utilizados
@@ -65,6 +66,8 @@ model AuthorOnInstitution {
 model Case {
   id          Int             @id @default(autoincrement())
   name        String          @db.VarChar(255) @unique
+  category    Category        @relation(fields: [categoryId], references: [id])
+  categoryId  Int
   books       CaseOnBook[]
   startCase   CaseOnCase[]    @relation("start")
   endCase     CaseOnCase[]    @relation("end")
