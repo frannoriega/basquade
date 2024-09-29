@@ -106,6 +106,8 @@ model Book {
   file        Bytes
   // El contenido en forma de lexemas, para habilitar la busqueda por texto
   content     Unsupported("tsvector")
+  // La portada para mostrar
+  cover       Bytes
   // Para identificar univocamente segun el contenido del PDF
   md5         String          @unique
   // El idioma del archivo, para optimizar las búsquedas

@@ -11,12 +11,15 @@ class BookPreview {
   readonly title: string;
   // Una breve descripción del contenido del libro.
   readonly description: string;
+  // La portada del libro
+  readonly cover: Buffer;
 
-  constructor(id: number, title: string, author: string[], description: string) {
+  constructor(id: number, title: string, author: string[], description: string, cover: Buffer) {
     this.id = id;
     this.title = title;
     this.author = author;
     this.description = description;
+    this.cover = cover;
   }
 }
 
