@@ -68,7 +68,6 @@ export default function PendingPanel({ book, languages, authors, categories }: P
   }, []);
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values)
     const updatedBook = {
       id: book.id,
       title: values.title,
@@ -78,7 +77,6 @@ export default function PendingPanel({ book, languages, authors, categories }: P
       category: values.category.id
     }
     const res = await updatePendingBook(updatedBook);
-    console.log(res)
     setOpen(false);
     window.clearTimeout(timerRef.current);
     timerRef.current = window.setTimeout(() => {

@@ -10,7 +10,6 @@ export default async function Page({ params }: { params: { id: number } }) {
     notFound()
   }
   const books = await getBooks(Number(params.id))
-  console.log(books)
 
   const previews = books.map((b) => new BookPreview(b.id, b.title, b.authors.map((a) => `${a.author.name} ${a.author.surname} (${a.author.email})`), b.description, b.cover))
   return (

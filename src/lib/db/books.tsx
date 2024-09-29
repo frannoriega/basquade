@@ -124,7 +124,6 @@ type BookUpdate = {
 }
 
 async function updatePendingBook(book: BookUpdate) {
-  console.log(book)
   return prisma.book.update({
     select: {
       id: true
