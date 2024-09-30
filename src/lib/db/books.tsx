@@ -89,8 +89,8 @@ async function getPendingPDF(id: number): Promise<Buffer | null> {
   }).then((book) => book ? book.file : null)
 }
 
-async function getPending(): Promise<BookWithAll | null> {
-  return prisma.book.findFirst({
+async function getPending(): Promise<BookWithAll[]> {
+  return prisma.book.findMany({
     select: {
       id: true,
       title: true,
@@ -114,6 +114,31 @@ async function getPending(): Promise<BookWithAll | null> {
   })
 }
 
+async function getPendingById(id: number): Promise<BookWithAll | null> {
+  return prisma.book.findUnique({
+    select: {
+      id: true,
+      title: true,
+      description: true,
+      authors: {
+        select: {
+          author: true
+        }
+      },
+      lang: true,
+      category: {
+        select: {
+          id: true,
+          name: true
+        }
+      }
+    },
+    where: {
+      pending: true,
+      id: id
+    }
+  })
+}
 type BookUpdate = {
   id: number,
   title: string,
@@ -145,4 +170,4 @@ async function updatePendingBook(book: BookUpdate) {
   })
 }
 
-export { getBooks, searchBooks, searchBooksFromCategory, getPDF, getPendingPDF, getPending, updatePendingBook };
+export { getBooks, searchBooks, searchBooksFromCategory, getPDF, getPendingPDF, getPending, getPendingById, updatePendingBook };

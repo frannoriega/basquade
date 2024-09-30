@@ -1,11 +1,11 @@
 import PendingPanel from "@/components/pending-panel";
 import { getAuthors } from "@/lib/db/authors";
-import { getPending} from "@/lib/db/books";
+import { getPendingById } from "@/lib/db/books";
 import { getCategories } from "@/lib/db/categories";
 import { getLanguages } from "@/lib/db/languages";
 
-export default async function PendingPage() {
-  const book = await getPending()
+export default async function PendingBookPage({ params }: { params: { id: number } }) {
+  const book = await getPendingById(Number(params.id))
   if (!book) {
     return <div>No books</div>
   }
@@ -21,6 +21,6 @@ export default async function PendingPage() {
   const authors = await getAuthors()
   const categories = await getCategories()
   return (
-      <PendingPanel book={strippedBook} languages={languages} authors={authors} categories={categories}/>
+    <PendingPanel book={strippedBook} languages={languages} authors={authors} categories={categories} />
   )
 }

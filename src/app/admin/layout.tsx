@@ -14,6 +14,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         <Link href="/admin/casos">
           <FormattedLi>Casos</FormattedLi>
         </Link>
+        <Link href="/admin/pendientes">
+          <FormattedLi>Pendientes</FormattedLi>
+        </Link>
       </ul>
       <div className="col-span-4">
         {children}

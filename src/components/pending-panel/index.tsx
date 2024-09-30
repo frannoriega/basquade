@@ -76,7 +76,7 @@ export default function PendingPanel({ book, languages, authors, categories }: P
       authors: values.authors.map((a) => a.id),
       category: values.category.id
     }
-    const res = await updatePendingBook(updatedBook);
+    await updatePendingBook(updatedBook);
     setOpen(false);
     window.clearTimeout(timerRef.current);
     timerRef.current = window.setTimeout(() => {
@@ -188,7 +188,7 @@ export default function PendingPanel({ book, languages, authors, categories }: P
   </Toast.Provider>
 
   return (
-    <div className="pt-12 pb-12 md:grid md:grid-cols-3 grid-rows-1 w-full self-stretch auto-cols-max">
+    <div className="p-4 md:grid md:grid-cols-3 grid-rows-1 w-full h-full self-stretch auto-cols-max">
       <div className="md:hidden">{formComponent}</div>
       <iframe className="col-span-2 w-full h-full" src={`/api/pending/${book.id}`}></iframe>
       <div className="hidden md:block">{formComponent}</div>
