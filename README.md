@@ -2,9 +2,10 @@
 
 ## Overview
 
-La biblioteca Basquadé almacena documentos, pdf, archivos y registros vinculados al medio ambiente.
-
-Se integra con un AI que permite preguntar, buscar, y resumir los documentos.
+La biblioteca Basquadé almacena documentos vinculados al medio ambiente.
+Estos documentos pueden buscarse y leerse de forma independiente, o consultando xasos.
+Un caso es un conjunto de documentos que guardan relación entre sí.
+Asimismo, los casos pueden relacionarse entre sí.
 
 Los documentos están clasificados en las siguientes categorías:
 
@@ -17,25 +18,33 @@ Los documentos están clasificados en las siguientes categorías:
 - Protocolos y guías ante contacto con agrotóxicos
 - Plantas medicinales
 
+## Requerimientos
 
-## Getting started
+### Servicios
+Para ejecutar la Basqüadé, se necesita:
+- PostgreSQL 16.4
+- `tesseract` para lectura OCR de libros
 
-1. Clone the repository
-2. Run:
+### Variables de entorno
+Es necesario tener un archivo al menos un archivo `.env.[ENTORNO].local`, con las siguientes
+variables:
+|Variable|Valor|
+|---|---|
+|GOOGLE_CLIENT_ID| ID de cliente OAuth de Google  |
+|GOOGLE_CLIENT_SECRET| Secreto del cliente OAuth de Google |
+|NEXTAUTH_SECRET| Secreto para usar para auth  |
+
+_NOTA: Se puede generar un secreto para usar en `NEXTAUTH_SECRET` ejecutando
+```
+openssl rand -base64 32
+
+```
+
+## Cómo ejecutar
+
+1. Cloná el repositorio
+2. Ejecuta:
    1. `npm install`
-   2. `npm run dev`
-3. Visit 
-   1. `localhost:3000`
-
-## MVP
-
-1. Leer los archivos de un storage (Quiás un drive)
-2. Buscar por titulos, keywords.
-3. Listar y filtrar (buscar ejemplos de bibliotecas online)
-
-
-## Ideas falopas
-
-1. A tiktok like experience by summarizing a document in a tweet like length and scroll trough the files with facts or intresting things about the files.
-
-2. Tag system for books and personalize clasification. 
+   2. `npx prisma migrate reset`
+   3. `npx next dev`
+3. Visita `localhost:3000`
