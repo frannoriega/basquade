@@ -1,8 +1,8 @@
 'use client'
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { LogIn } from "lucide-react";
+import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -16,7 +16,9 @@ export default function Profile() {
     </Avatar>
   }
   if (!session?.data?.user) {
-    return <Link href="/auth/signin" className="hover:underline hover:underline-offset-8">Administrar</Link>
+    return <Link href="/auth/signin" className="hover:bg-slate-200 dark:hover:bg-slate-700 p-2 rounded-md hover:underline-offset-8">
+      <LogIn />
+    </Link>
   }
 
   const avatar = session?.data?.user?.image || undefined;

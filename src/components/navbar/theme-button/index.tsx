@@ -18,7 +18,7 @@ type ThemeButtonProps = Omit<React.ComponentProps<"div">, "children">
 export default function ThemeButton({ className }: ThemeButtonProps) {
   const { setTheme } = useTheme()
 
-  const cns = cn("hover:bg-transparent p-0 size-fit border-primary-800 dark:border-primary-50", className)
+  const cns = cn("hover:bg-slate-200 dark:hover:bg-slate-700 p-0 size-fit border-primary-800 dark:border-primary-50", className)
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
