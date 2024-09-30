@@ -10,7 +10,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { updatePendingBook } from "@/lib/db/books";
+import { updateBook } from "@/lib/db/books";
 import { validateHeaderName } from "http";
 
 const formSchema = z.object({
@@ -76,7 +76,7 @@ export default function PendingPanel({ book, languages, authors, categories }: P
       authors: values.authors.map((a) => a.id),
       category: values.category.id
     }
-    await updatePendingBook(updatedBook);
+    await updateBook(updatedBook);
     setOpen(false);
     window.clearTimeout(timerRef.current);
     timerRef.current = window.setTimeout(() => {

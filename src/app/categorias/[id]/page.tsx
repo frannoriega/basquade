@@ -1,6 +1,6 @@
 import Gallery from "@/components/gallery"
 import { BookPreview } from "@/data/book-preview"
-import { getBooks } from "@/lib/db/books"
+import { getBooksByCategory } from "@/lib/db/books"
 import { getCategory } from "@/lib/db/categories";
 import { notFound } from "next/navigation"
 
@@ -9,7 +9,7 @@ export default async function Page({ params }: { params: { id: number } }) {
   if (!category) {
     notFound()
   }
-  const books = await getBooks(Number(params.id))
+  const books = await getBooksByCategory(Number(params.id))
 
   const previews = books.map((b) => new BookPreview(b.id, b.title, b.authors.map((a) => `${a.author.name} ${a.author.surname} (${a.author.email})`), b.description, b.cover))
   return (

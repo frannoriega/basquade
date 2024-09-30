@@ -19,9 +19,30 @@ type BookWithAuthor = Prisma.BookGetPayload<{
   include: { authors: { include: { author: true } } }
 }>
 
+type BookInfo = {
+  id: number,
+  title: string,
+  description: string
+}
+
+async function getBooks(page: number = 1, limit: number = 10): Promise<BookInfo[]> {
+  return await prisma.book.findMany({
+    select: {
+      id: true,
+      title: true,
+      description: true
+    },
+    orderBy: {
+      title: 'asc'
+    },
+    skip: Math.abs(page - 1) * limit,
+    take: limit
+  })
+}
+
 // Devuelve todos los libros no pendientes
 // asociados a una categoría, o `null` si la categoría no existe.
-async function getBooks(cat: number, page: number = 1, limit: number = 10): Promise<BookWithAuthor[]> {
+async function getBooksByCategory(cat: number, page: number = 1, limit: number = 10): Promise<BookWithAuthor[]> {
   return prisma.book.findMany({
     include: {
       authors: {
@@ -148,7 +169,7 @@ type BookUpdate = {
   authors: number[]
 }
 
-async function updatePendingBook(book: BookUpdate) {
+async function updateBook(book: BookUpdate) {
   return prisma.book.update({
     select: {
       id: true
@@ -170,4 +191,4 @@ async function updatePendingBook(book: BookUpdate) {
   })
 }
 
-export { getBooks, searchBooks, searchBooksFromCategory, getPDF, getPendingPDF, getPending, getPendingById, updatePendingBook };
+export { getBooks, getBooksByCategory, searchBooks, searchBooksFromCategory, getPDF, getPendingPDF, getPending, getPendingById, updateBook };
