@@ -25,6 +25,7 @@ model Category {
   icon        Bytes
   books       Book[]
   cases       Case[]
+  pending     Pending[]
 }
 
 // Los idiomas utilizados
@@ -33,6 +34,7 @@ model Lang {
   language      String   @db.VarChar(15) @unique
   display       String
   books         Book[]
+  pending       Pending[]
 }
 
 // La institución a la que pertenece un autor
@@ -50,6 +52,7 @@ model Author {
   email         String   @db.VarChar(255) @unique
   institutions  AuthorOnInstitution[]
   books         AuthorOnBook[]
+  pending       AuthorOnPending[]
 }
 
 // Tabla que modela la relacion Instutición-Autor
@@ -120,8 +123,29 @@ model Book {
   authors     AuthorOnBook[]
   startCase   CaseOnBook[]    @relation("start")
   endCase     CaseOnBook[]    @relation("end")
-  // Si esta pendiente de corrección o no
-  pending     Boolean
+  needs_revision Boolean
+}
+
+model Pending {
+  id          Int             @id @default(autoincrement())
+  title       String
+  description String
+  file        Bytes
+  md5         String          @unique
+  lang        Lang            @relation(fields: [langId], references: [id])
+  langId      Int
+  category    Category        @relation(fields: [categoryId], references: [id])
+  categoryId  Int
+  authors     AuthorOnPending[]
+}
+
+model AuthorOnPending {
+  id          Int             @id @default(autoincrement())
+  pending     Pending         @relation(fields: [pendingId], references: [id])
+  pendingId   Int
+  author      Author          @relation(fields: [authorId], references: [id])
+  authorId    Int
+  @@unique([pendingId, authorId])
 }
 
 model AuthorOnBook {

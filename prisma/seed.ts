@@ -1,7 +1,6 @@
 import { PrismaClient } from '@prisma/client'
 import * as fs from "fs";
 import * as crypto from 'crypto'
-import { pdfToPng } from "pdf-to-png-converter"
 
 const prisma = new PrismaClient()
 async function main() {
@@ -91,26 +90,14 @@ async function main() {
   let books = []
   for (let i = 0; i < 9; i++) {
     const book_num = i + 1
-    await pdfToPng(`prisma/data/books/book${i + 1}.pdf`, // The function accepts PDF file path or a Buffer
-      {
-        disableFontFace: true, // When `false`, fonts will be rendered using a built-in font renderer that constructs the glyphs with primitive path commands. Default value is true.
-        useSystemFonts: true, // When `true`, fonts that aren't embedded in the PDF document will fallback to a system font. Default value is false.
-        enableXfa: false, // Render Xfa forms if any. Default value is false.
-        viewportScale: 1.0, // The desired scale of PNG viewport. Default value is 1.0.
-        outputFileMask: `cover${book_num}`, // Output filename mask. Default value is 'buffer'.
-        outputFolder: 'prisma/data/books',
-        pagesToProcess: [1],   // Subset of pages to convert (first page = 1), other pages will be skipped if specified.
-        strictPagesToProcess: false, // When `true`, will throw an error if specified page number in pagesToProcess is invalid, otherwise will skip invalid page. Default value is false.
-        verbosityLevel: 0 // Verbosity level. ERRORS: 0, WARNINGS: 1, INFOS: 5. Default value is 0.
-      })
     const book_bytes = fs.readFileSync(`prisma/data/books/book${i + 1}.pdf`, null)
     const book_content = fs.readFileSync(`prisma/data/books/book${i + 1}.content`, 'utf8')
-    const book_cover = fs.readFileSync(`prisma/data/books/cover${i+1}_page_1.png`)
+    const book_cover = fs.readFileSync(`prisma/data/books/book${i+1}.png`)
     const book_hash = crypto.createHash('md5').update(book_bytes).digest('hex')
     const book_name = `Book ${book_num}`
     const book_desc = `Description ${book_num}`
     await prisma.$executeRaw`INSERT INTO "Book"
-("id", "title", "description", "file", "content", "cover", "md5", "langId", "categoryId", "pending")
+("id", "title", "description", "file", "content", "cover", "md5", "langId", "categoryId", "needs_revision")
 VALUES (${book_num}, ${book_name}, ${book_desc}, ${book_bytes}, to_tsvector('spanish', ${book_content}), ${book_cover}, ${book_hash}, ${spanish.id}, ${categories[i % 3].id}, ${i % 2 == 0}) ON CONFLICT DO NOTHING;`
     books.push(i+1)
   }
