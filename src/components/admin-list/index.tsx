@@ -3,7 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-import { Form, FormControl, FormField, FormItem, FormLabel } from "../ui/form"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form"
 import { Checkbox } from "../ui/checkbox"
 import { Button } from "../ui/button"
 import { removeAdmins as removeAdminsDb, addAdmin as addAdminDb } from "@/lib/db/admins"
@@ -11,6 +11,7 @@ import { Dialog, DialogClose, DialogContent, DialogDescription, DialogHeader, Di
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden"
 import { useRouter } from "next/navigation"
 import { Admin } from "@prisma/client"
+import { useState } from "react"
 
 const removeAdminSchema = z.object({
   admins: z.array(z.number()).or(z.null())
@@ -19,7 +20,12 @@ const removeAdminSchema = z.object({
 const addAdminSchema = z.object({
   name: z.string().min(2),
   lastname: z.string().min(2),
-  email: z.string().email(),
+  email: z.string()
+    .email({
+      message: "Ingrese un correo electrónico válido"
+    }).endsWith('gmail.com', {
+      message: "El correo debe ser una cuenta de Gmail"
+    }),
   dni: z.number({
     coerce: true
   }),
@@ -42,6 +48,8 @@ function equalArrays(a1: number[], a2: number[]) {
 export default function AdminList({ admins }: { admins: Admin[] }) {
   const router = useRouter();
 
+  const [addAdminOpen, setAddAdminOpen] = useState(false)
+
   const removeForm = useForm<z.infer<typeof removeAdminSchema>>({
     resolver: zodResolver(removeAdminSchema),
     defaultValues: {
@@ -62,6 +70,7 @@ export default function AdminList({ admins }: { admins: Admin[] }) {
   }
   async function addAdmin(values: z.infer<typeof addAdminSchema>) {
     await addAdminDb(values)
+    setAddAdminOpen(false)
     router.refresh()
   }
 
@@ -142,7 +151,7 @@ export default function AdminList({ admins }: { admins: Admin[] }) {
         </form>
       </Form>
       <div className="w-full flex flex-row-reverse gap-4">
-        <Dialog>
+        <Dialog open={addAdminOpen} onOpenChange={setAddAdminOpen}>
           <DialogTrigger asChild>
             <Button className="">Agregar</Button>
           </DialogTrigger>
@@ -184,10 +193,11 @@ export default function AdminList({ admins }: { admins: Admin[] }) {
                   name="email"
                   render={({ field }) =>
                     <FormItem className="flex flex-col">
-                      <FormLabel>Email</FormLabel>
+                      <FormLabel className="data-[invalid]:text-red-300">Email</FormLabel>
                       <FormControl>
                         <input {...field} value={field.value ?? ''} type="email" required className="rounded-sm" />
                       </FormControl>
+                      <FormMessage className="text-red-300 italic"/>
                     </FormItem>
                   }
                 />
@@ -203,9 +213,7 @@ export default function AdminList({ admins }: { admins: Admin[] }) {
                     </FormItem>
                   }
                 />
-                <DialogClose asChild>
-                  <Button type="submit">Agregar</Button>
-                </DialogClose>
+                <Button type="submit">Agregar</Button>
               </form>
             </Form>
           </DialogContent>

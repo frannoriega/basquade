@@ -1,5 +1,6 @@
 import PendingPanel from "@/components/pending-panel";
-import { getPending} from "@/lib/db/books";
+import { Button } from "@/components/ui/button";
+import { getPending } from "@/lib/db/books";
 import Link from "next/link";
 
 export default async function PendingPage() {
@@ -7,14 +8,16 @@ export default async function PendingPage() {
   if (!books) {
     return <div>No hay pendientes</div>
   }
-  const strippedBooks = books.map((b) => { return {
-    id: b.id,
-    title: b.title,
-    description: b.description,
-    authors: b.authors.map((a) => a.author),
-    lang: b.lang,
-    category: b.category
-  }})
+  const strippedBooks = books.map((b) => {
+    return {
+      id: b.id,
+      title: b.title,
+      description: b.description,
+      authors: b.authors.map((a) => a.author),
+      lang: b.lang,
+      category: b.category
+    }
+  })
   return (
     <div className="p-4 flex flex-col gap-4 h-full">
       <h1>Pendientes</h1>
@@ -31,9 +34,11 @@ export default async function PendingPage() {
             <tr>
               <td>{b.title}</td>
               <td>{b.description}</td>
-              <Link href={`/admin/pendientes/${b.id}`}>
-                <td>Editar</td>
-              </Link>
+              <td>
+                <Button>
+                  Editar
+                </Button>
+              </td>
             </tr>
           ))}
         </tbody>
