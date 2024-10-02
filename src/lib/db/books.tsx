@@ -2,6 +2,7 @@
 
 import prisma from "@/lib/prisma";
 import { Prisma } from "@prisma/client";
+import * as crypto from 'crypto'
 
 type BookWithAll = Prisma.BookGetPayload<{
   select: { id: true, title: true, description: true, authors: { select: { author: true } }, lang: true, category: { select: { id: true, name: true } } }
@@ -191,4 +192,33 @@ async function updateBook(book: BookUpdate) {
   })
 }
 
-export { getBooks, getBooksByCategory, searchBooks, searchBooksFromCategory, getPDF, getPendingPDF, getPending, getPendingById, updateBook };
+type CreateBook = {
+  title: string,
+  description: string,
+  file: number[],
+  lang: {
+    id: number,
+    language: string
+  },
+  categoryId: number
+}
+
+// TODO(fran)
+async function createBook(book: CreateBook): Promise<string> {
+  const file = Buffer.from(book.file)
+  const md5 = crypto.createHash('md5').update(file).digest('hex')
+  const message = await prisma.book.findUnique({
+    where: {
+      md5: md5
+    }
+  }).then((b) => b ? "El libro ya existe" : null )
+  if (message) {
+    return message
+  }
+  await prisma.$executeRaw`INSERT INTO "Pending"
+("title", "description", "file", "md5", "langId", "categoryId")
+VALUES (${book.title}, ${book.description}, ${file}, ${md5}, ${book.lang.id}, ${book.categoryId});`
+  return "Guardado!"
+}
+
+export { getBooks, getBooksByCategory, searchBooks, searchBooksFromCategory, getPDF, getPendingPDF, getPending, getPendingById, updateBook, createBook };
