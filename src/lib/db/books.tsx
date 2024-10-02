@@ -215,9 +215,16 @@ async function createBook(book: CreateBook): Promise<string> {
   if (message) {
     return message
   }
-  await prisma.$executeRaw`INSERT INTO "Pending"
-("title", "description", "file", "md5", "langId", "categoryId")
-VALUES (${book.title}, ${book.description}, ${file}, ${md5}, ${book.lang.id}, ${book.categoryId});`
+  await prisma.pending.create({
+    data: {
+      title: book.title,
+      description: book.description,
+      file: file,
+      md5: md5,
+      langId: book.lang.id,
+      categoryId: book.categoryId
+    }
+  })
   return "Guardado!"
 }
 
