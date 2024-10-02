@@ -2,7 +2,7 @@
 import { useForm } from "react-hook-form";
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "../ui/dialog";
 import { Button } from "../ui/button";
-import { Form, FormControl, FormField, FormItem } from "../ui/form";
+import { Form, FormControl, FormField, FormItem, FormLabel } from "../ui/form";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -10,6 +10,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { createBook } from "@/lib/db/books";
 import React from "react";
 import * as Toast from "@radix-ui/react-toast";
+import { MultiSelect } from "../ui/multiselect";
+import { Author } from "@prisma/client";
 
 type BookListParams = {
   books: {
@@ -25,12 +27,17 @@ type BookListParams = {
   categories: {
     id: number,
     name: string
-  }[]
+  }[],
+  authors: Author[]
 }
 
 const createBookSchema = z.object({
-  title: z.string(), //.min(5),
-  description: z.string(), //.min(20),
+  title: z.string().min(5, {
+    message: "Ingrese un título de al menos 5 letras"
+  }),
+  description: z.string().min(20, {
+    message: "Ingrese una descripción detallada, de al menos 20 letras"
+  }),
   file: z.instanceof(File),
   lang: z.object({
     id: z.number(),
@@ -40,10 +47,13 @@ const createBookSchema = z.object({
   category: z.object({
     id: z.number(),
     name: z.string()
-  })
+  }),
+  authors: z.array(z.object({ id: z.number(), text: z.string() })).min(1, {
+    message: "Ingrese al menos un autor"
+  }),
 })
 
-export default function BookList({ books, languages, categories }: BookListParams) {
+export default function BookList({ books, languages, categories, authors }: BookListParams) {
   const addBook = useForm<z.infer<typeof createBookSchema>>({
     resolver: zodResolver(createBookSchema),
     defaultValues: {
@@ -51,7 +61,8 @@ export default function BookList({ books, languages, categories }: BookListParam
       description: '',
       lang: languages[0],
       category: categories[0],
-      file: new File([], "")
+      file: new File([], ""),
+      authors: []
     }
   })
 
@@ -71,7 +82,8 @@ export default function BookList({ books, languages, categories }: BookListParam
         id: values.lang.id,
         language: values.lang.language
       },
-      categoryId: values.category.id
+      categoryId: values.category.id,
+      authors: values.authors.map((a) => a.id)
     }
     setMsg("Guardado!")
     const message = await createBook(book)
@@ -82,6 +94,9 @@ export default function BookList({ books, languages, categories }: BookListParam
       setOpen(true);
     }, 100);
   }
+  const authorOptions = authors.map((a) => {
+    return { id: a.id, text: `${a.name} ${a.surname} (${a.email})` }
+  })
   return (
     <div className="p-4 flex flex-col gap-4 h-full">
       <h1>Pendientes</h1>
@@ -196,6 +211,25 @@ export default function BookList({ books, languages, categories }: BookListParam
                       </FormControl>
                     </FormItem>
                   )}
+                />
+                <FormField
+                  control={addBook.control}
+                  name="authors"
+                  render={({ field }) =>
+                    <FormItem className="h-fit">
+                      <FormLabel>Autores</FormLabel>
+                      <FormControl>
+                        <MultiSelect
+                          defaultValue={field.value.map((v) => v.id.toString())}
+                          onValueChange={(e) => field.onChange(e.map((a) => { return { id: Number(a), text: authorOptions.find((s) => s.id.toString() === a)?.text } }))}
+                          options={authorOptions.map((a) => { return { value: a.id.toString(), label: a.text } })}
+                          selectAllText="Seleccionar todas"
+                          searchText="Buscar..."
+                          maxCount={1}
+                          placeholder="Selecciona los autores" className="w-full h-fit bg-slate-700 rounded-sm" />
+                      </FormControl>
+                    </FormItem>
+                  }
                 />
                 <DialogClose asChild>
                   <Button type="submit">Agregar</Button>

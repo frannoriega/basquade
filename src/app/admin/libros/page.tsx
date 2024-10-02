@@ -8,7 +8,8 @@ export default async function BooksPage() {
   const books = await getBooks()
   const languages = await getLanguages()
   const categories = await getCategories()
+  const authors = await getAuthors()
   return (
-    <BookList books={books} languages={languages} categories={categories}/>
+    <BookList books={books} languages={languages} categories={categories} authors={authors}/>
   )
 }

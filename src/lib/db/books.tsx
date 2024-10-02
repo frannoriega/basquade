@@ -200,7 +200,8 @@ type CreateBook = {
     id: number,
     language: string
   },
-  categoryId: number
+  categoryId: number,
+  authors: number[]
 }
 
 // TODO(fran)
@@ -211,7 +212,7 @@ async function createBook(book: CreateBook): Promise<string> {
     where: {
       md5: md5
     }
-  }).then((b) => b ? "El libro ya existe" : null )
+  }).then((b) => b ? "El libro ya existe" : null)
   if (message) {
     return message
   }
@@ -222,7 +223,13 @@ async function createBook(book: CreateBook): Promise<string> {
       file: file,
       md5: md5,
       langId: book.lang.id,
-      categoryId: book.categoryId
+      categoryId: book.categoryId,
+      authors: {
+        create: book.authors.map((a) => { return { authorId: a } })
+      }
+    },
+    include: {
+      authors: true
     }
   })
   return "Guardado!"
