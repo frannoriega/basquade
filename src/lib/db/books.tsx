@@ -54,7 +54,7 @@ async function getBooksByCategory(cat: number, page: number = 1, limit: number =
     },
     where: {
       categoryId: cat,
-      pending: false,
+      needs_revision: false,
     },
     orderBy: {
       title: "asc"
@@ -92,7 +92,7 @@ async function getPDF(id: number): Promise<Buffer | null> {
     },
     where: {
       id: id,
-      pending: false
+      needs_revision: false
     }
   }).then((book) => book ? book.file : null)
 }
@@ -106,7 +106,7 @@ async function getPendingPDF(id: number): Promise<Buffer | null> {
     },
     where: {
       id: id,
-      pending: true
+      needs_revision: true
     }
   }).then((book) => book ? book.file : null)
 }
@@ -131,7 +131,7 @@ async function getPending(): Promise<BookWithAll[]> {
       }
     },
     where: {
-      pending: true
+      needs_revision: true
     }
   })
 }
@@ -156,7 +156,7 @@ async function getPendingById(id: number): Promise<BookWithAll | null> {
       }
     },
     where: {
-      pending: true,
+      needs_revision: true,
       id: id
     }
   })
@@ -187,7 +187,7 @@ async function updateBook(book: BookUpdate) {
       },
       langId: book.lang,
       categoryId: book.category,
-      pending: false,
+      needs_revision: false,
     },
   })
 }
