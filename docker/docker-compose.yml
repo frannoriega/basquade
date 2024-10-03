@@ -1,0 +1,17 @@
+services:
+  basquade:
+    build: ../.
+    ports:
+      - "3000:3000"
+    environment:
+      - POSTGRES_PRISMA_URL=postgresql://postgres:basquade@postgres:5432/postgres
+      - POSTGRES_URL_NON_POOLING=postgresql://postgres:basquade@postgres:5432/postgres
+      - NEXTAUTH_SECRET=aUWmgNrf2k9v1f5KRPz5sozBb8YXgD7BfTO7pyPh/h4=
+  postgres:
+    image: postgres
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d:ro
+    environment:
+      - POSTGRES_PASSWORD=basquade
+
+

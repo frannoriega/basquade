@@ -1,6 +1,8 @@
 import React, { cache } from "react";
 import { getUsedCategories } from "@/lib/db/categories";
 
+export const dynamic = 'force-dynamic'
+
 const guc = cache(getUsedCategories);
 
 export default async function Home() {

@@ -1,7 +1,7 @@
-import PendingPanel from "@/components/pending-panel";
 import { Button } from "@/components/ui/button";
 import { getPending } from "@/lib/db/books";
-import Link from "next/link";
+
+export const dynamic = 'force-dynamic'
 
 export default async function PendingPage() {
   const books = await getPending()

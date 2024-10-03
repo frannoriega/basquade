@@ -4,6 +4,8 @@ import { getBooks } from "@/lib/db/books";
 import { getCategories } from "@/lib/db/categories";
 import { getLanguages } from "@/lib/db/languages";
 
+export const dynamic = 'force-dynamic'
+
 export default async function BooksPage() {
   const books = await getBooks()
   const languages = await getLanguages()
