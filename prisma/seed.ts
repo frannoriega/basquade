@@ -6,28 +6,31 @@ const prisma = new PrismaClient()
 async function main() {
   // Creamos los lenguajes
   const spanish = await prisma.lang.upsert({
-    where: { language: 'spanish' },
+    where: { pg_lang: 'spanish' },
     update: {},
     create: {
-      language: 'spanish',
+      pg_lang: 'spanish',
+      tesseract: 'spa',
       display: 'Español'
     },
   })
 
   await prisma.lang.upsert({
-    where: { language: 'english' },
+    where: { pg_lang: 'english' },
     update: {},
     create: {
-      language: 'english',
+      pg_lang: 'english',
+      tesseract: 'eng',
       display: 'Inglés'
     }
   })
 
   await prisma.lang.upsert({
-    where: { language: 'portuguese' },
+    where: { pg_lang: 'portuguese' },
     update: {},
     create: {
-      language: 'portuguese',
+      pg_lang: 'portuguese',
+      tesseract: 'por',
       display: 'Portugués'
     },
   })
@@ -88,7 +91,7 @@ async function main() {
 
   // Creamos algunos libros
   let books = []
-  for (let i = 0; i < 9; i++) {
+  for (let i = 0; i < 6; i++) {
     const book_num = i + 1
     const book_bytes = fs.readFileSync(`prisma/data/books/book${i + 1}.pdf`, null)
     const book_content = fs.readFileSync(`prisma/data/books/book${i + 1}.content`, 'utf8')
@@ -99,7 +102,27 @@ async function main() {
     await prisma.$executeRaw`INSERT INTO "Book"
 ("id", "title", "description", "file", "content", "cover", "md5", "langId", "categoryId", "needs_revision")
 VALUES (${book_num}, ${book_name}, ${book_desc}, ${book_bytes}, to_tsvector('spanish', ${book_content}), ${book_cover}, ${book_hash}, ${spanish.id}, ${categories[i % 3].id}, ${i % 2 == 0}) ON CONFLICT DO NOTHING;`
-    books.push(i+1)
+    books.push(book_num)
+  }
+
+  // Creamos algunos pendientes
+  let pending = []
+  for (let i = 6; i < 9; i++) {
+    const book_num = i + 1
+    const book_bytes = fs.readFileSync(`prisma/data/books/book${i + 1}.pdf`, null)
+    const book_hash = crypto.createHash('md5').update(book_bytes).digest('hex')
+    const book_name = `Book ${book_num}`
+    const book_desc = `Description ${book_num}`
+    pending.push(await prisma.pending.create({
+      data: {
+        title: book_name,
+        description: book_desc,
+        file: book_bytes,
+        md5: book_hash,
+        langId: spanish.id,
+        categoryId: categories[i % 3].id
+      }
+    }))
   }
 
   // Creamos algunos autores
@@ -140,6 +163,25 @@ VALUES (${book_num}, ${book_name}, ${book_desc}, ${book_bytes}, to_tsvector('spa
         book: {
           connect: {
             id: books[i]
+          }
+        },
+        author: {
+          connect: {
+            id: authors[i % 2].id
+          }
+        },
+
+      }
+    })
+  }
+
+  await prisma.authorOnPending.deleteMany({})
+  for (let i = 0; i < pending.length; i++) {
+    await prisma.authorOnPending.create({
+      data: {
+        pending: {
+          connect: {
+            id: pending[i].id
           }
         },
         author: {
@@ -213,8 +255,8 @@ VALUES (${book_num}, ${book_name}, ${book_desc}, ${book_bytes}, to_tsvector('spa
   await prisma.caseOnBook.create({
       data: {
         startId: books[3],
-        endId: books[7],
-        description: `Prueba 4-8`,
+        endId: books[5],
+        description: `Prueba 4-6`,
         caseId: cases[1].id
       }
   })
@@ -229,16 +271,8 @@ VALUES (${book_num}, ${book_name}, ${book_desc}, ${book_bytes}, to_tsvector('spa
   await prisma.caseOnBook.create({
       data: {
         startId: books[0],
-        endId: books[7],
-        description: `Prueba 1-8`,
-        caseId: cases[2].id
-      }
-  })
-  await prisma.caseOnBook.create({
-      data: {
-        startId: books[7],
-        endId: books[8],
-        description: `Prueba 8-9`,
+        endId: books[5],
+        description: `Prueba 1-6`,
         caseId: cases[2].id
       }
   })

@@ -21,7 +21,8 @@ type BookListParams = {
   }[],
   languages: {
     id: number,
-    language: string,
+    pg_lang: string,
+    tesseract: string,
     display: string
   }[],
   categories: {

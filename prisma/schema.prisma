@@ -31,7 +31,8 @@ model Category {
 // Los idiomas utilizados
 model Lang {
   id            Int      @id @default(autoincrement())
-  language      String   @db.VarChar(15) @unique
+  pg_lang       String   @db.VarChar(15) @unique
+  tesseract     String
   display       String
   books         Book[]
   pending       Pending[]
