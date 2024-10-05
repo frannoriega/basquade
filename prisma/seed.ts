@@ -225,6 +225,7 @@ VALUES (${book_num}, ${book_name}, ${book_desc}, ${book_bytes}, to_tsvector('spa
       update: {},
       create: {
         name: `Caso ${i+1}`,
+        description: `Descripción ${i + 1}`,
         categoryId: agroecologia.id
       }
     }))

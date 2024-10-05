@@ -70,6 +70,7 @@ model AuthorOnInstitution {
 model Case {
   id          Int             @id @default(autoincrement())
   name        String          @db.VarChar(255) @unique
+  description String
   category    Category        @relation(fields: [categoryId], references: [id])
   categoryId  Int
   books       CaseOnBook[]
