@@ -84,10 +84,10 @@ model CaseOnBook {
   caseId      Int
   start       Book            @relation("start", fields: [startId], references: [id])
   startId     Int
-  end         Book?           @relation("end", fields: [endId], references: [id])
+  end         Book            @relation("end", fields: [endId], references: [id])
   endId       Int
   description String?
-  @@id([caseId, startId, endId])
+  @@unique([caseId, startId, endId])
 }
 
 // Las relaciones entre dos casos

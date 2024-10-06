@@ -1,30 +1,8 @@
 'use server'
 
 import prisma from "@/lib/prisma";
-import { Prisma } from "@prisma/client";
+import { BookInfo, BookUpdate, BookWithAll, BookWithAuthor, BookWithDisplayAuthor, CreateBook } from "@/types/books";
 import * as crypto from 'crypto'
-
-type BookWithAll = Prisma.BookGetPayload<{
-  select: { id: true, title: true, description: true, authors: { select: { author: true } }, lang: true, category: { select: { id: true, name: true } } }
-}>
-
-type BookWithDisplayAuthor = {
-  id: number,
-  title: string,
-  description: string,
-  cover: Buffer,
-  authors: string[]
-}
-
-type BookWithAuthor = Prisma.BookGetPayload<{
-  include: { authors: { include: { author: true } } }
-}>
-
-type BookInfo = {
-  id: number,
-  title: string,
-  description: string
-}
 
 async function getBooks(page: number = 1, limit: number = 10): Promise<BookInfo[]> {
   return await prisma.book.findMany({
@@ -68,7 +46,7 @@ async function getBooksByCategory(cat: number, page: number = 1, limit: number =
 // como parámetro
 async function searchBooks(term: string, page: number = 1, limit: number = 10): Promise<BookWithDisplayAuthor[]> {
   const offset = Math.abs(page - 1) * limit;
-  return prisma.$queryRaw`SELECT b.id AS id, b.title AS title, b.description AS description, b.cover AS cover, array_agg(a.name || ' ' || a.surname || ' (' || a.email || ')') as authors FROM "Book" as b JOIN "Lang" as l on b."langId" = l.id JOIN "AuthorOnBook" as ab ON ab."bookId" = b.id JOIN "Author" as a ON ab."authorId" = a.id where b.content @@ websearch_to_tsquery(CAST(l.language AS regconfig), '${term}') AND b.pending = false GROUP BY b.id ORDER BY b.title ASC LIMIT ${limit} OFFSET ${offset}`
+  return prisma.$queryRaw`SELECT b.id AS id, b.title AS title, b.description AS description, b.cover AS cover, array_agg(a.name || ' ' || a.surname || ' (' || a.email || ')') as authors FROM "Book" as b JOIN "Lang" as l on b."langId" = l.id JOIN "AuthorOnBook" as ab ON ab."bookId" = b.id JOIN "Author" as a ON ab."authorId" = a.id where b.content @@ websearch_to_tsquery(CAST(l.pg_lang AS regconfig), '${term}') AND b.needs_revision = false GROUP BY b.id ORDER BY b.title ASC LIMIT ${limit} OFFSET ${offset}`
 }
 
 // Busca los libros en una categoría específica, basado
@@ -80,7 +58,7 @@ async function searchBooksFromCategory(
   limit: number = 0
 ): Promise<BookWithDisplayAuthor[]> {
   const offset = Math.abs(page - 1) * limit;
-  return prisma.$queryRaw`SELECT b.id AS id, b.title AS title, b.description AS description, b.cover AS cover, array_agg(a.name || ' ' || a.surname || ' (' || a.email || ')') as authors FROM "Book" as b JOIN "Lang" as l on b."langId" = l.id JOIN "AuthorOnBook" as ab ON ab."bookId" = b.id JOIN "Author" as a ON ab."authorId" = a.id where b.content @@ websearch_to_tsquery(CAST(l.language AS regconfig), '${term}') AND b."categoryId" = ${filter} AND b.pending = false GROUP BY b.id ORDER BY b.title ASC LIMIT ${limit} OFFSET ${offset}`
+  return prisma.$queryRaw`SELECT b.id AS id, b.title AS title, b.description AS description, b.cover AS cover, array_agg(a.name || ' ' || a.surname || ' (' || a.email || ')') as authors FROM "Book" as b JOIN "Lang" as l on b."langId" = l.id JOIN "AuthorOnBook" as ab ON ab."bookId" = b.id JOIN "Author" as a ON ab."authorId" = a.id where b.content @@ websearch_to_tsquery(CAST(l.pg_lang AS regconfig), '${term}') AND b."categoryId" = ${filter} AND b.needs_revision = false GROUP BY b.id ORDER BY b.title ASC LIMIT ${limit} OFFSET ${offset}`
 }
 
 // Devuelve el PDF asociado al libro, o `null` en caso
@@ -161,14 +139,6 @@ async function getPendingById(id: number): Promise<BookWithAll | null> {
     }
   })
 }
-type BookUpdate = {
-  id: number,
-  title: string,
-  description: string,
-  lang: number,
-  category: number,
-  authors: number[]
-}
 
 async function updateBook(book: BookUpdate) {
   return prisma.book.update({
@@ -190,18 +160,6 @@ async function updateBook(book: BookUpdate) {
       needs_revision: false,
     },
   })
-}
-
-type CreateBook = {
-  title: string,
-  description: string,
-  file: number[],
-  lang: {
-    id: number,
-    language: string
-  },
-  categoryId: number,
-  authors: number[]
 }
 
 // TODO(fran)
