@@ -17,6 +17,27 @@ async function getCases() {
   })
 }
 
+async function searchCases(term: string) {
+  return await prisma.case.findMany({
+    where: {
+      OR: [
+        {
+          name: {
+            contains: term,
+            mode: 'insensitive'
+          }
+        },
+        {
+          description: {
+            contains: term,
+            mode: 'insensitive'
+          }
+        }
+      ]
+    }
+  })
+}
+
 type CaseWithBooks = Prisma.CaseGetPayload<{
   select: {
     id: true,
@@ -131,4 +152,4 @@ async function updateCase(col: UpdateCase) {
   })
 }
 
-export { getCaseById, getCases, createCase, updateCase }
+export { getCaseById, getCases, searchCases, createCase, updateCase }

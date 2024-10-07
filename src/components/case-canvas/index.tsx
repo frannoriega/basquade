@@ -6,11 +6,10 @@ import { useCallback, useRef, useState } from 'react';
 import BookNode from './book-node';
 import { updateCase } from '@/lib/db/cases';
 import BookEdge from './book-edge';
-import { Dialog, DialogContent, DialogTrigger } from '../ui/dialog';
+import { Dialog, DialogClose, DialogContent, DialogTrigger } from '../ui/dialog';
 import React from 'react';
 import { searchBooks } from '@/lib/db/books';
 import { BookWithDisplayAuthor } from '@/types/books';
-import { title } from 'process';
 
 type Collection = {
   id: number,
@@ -195,7 +194,7 @@ export default function CaseCanvas({ collection }: CaseCanvasParams) {
             </DialogTrigger>
             <DialogContent>
               <input onChange={changeSearchTerm} />
-              {books.map((b) => <Button key={b.id} onClick={() => addNode(b)}>{b.title}</Button>)}
+              {books.map((b) => <DialogClose asChild><Button key={b.id} onClick={() => addNode(b)}>{b.title}</Button></DialogClose>)}
             </DialogContent>
           </Dialog>
           <Button className='bg-green-300 col-start-3 w-fit' onClick={save}>Guardar</Button>
