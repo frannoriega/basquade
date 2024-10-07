@@ -27,11 +27,11 @@ export default async function RootLayout({
         <link crossOrigin="use-credentials" href="https://fonts.gstatic.com" rel="preconnect" />
         <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet" />
       </head>
-      <body className={`bg-slate-50 dark:bg-slate-900 w-full h-full flex flex-col min-h-screen font-roboto ${inter.className}`}>
+      <body className={`bg-gray-100 dark:bg-gray-950 w-full h-full flex flex-col min-h-screen font-roboto ${inter.className}`}>
         <NextAuthProvider>
           <ThemeProvider attribute="class" enableSystem defaultTheme="system">
             <Navbar />
-            <main className="flex-1 flex overflow-y-auto h-full w-full bg-slate-50 dark:bg-slate-900 container ">
+            <main className="flex-1 flex overflow-y-auto h-full w-full bg-gray-100 dark:bg-gray-950 container ">
               {children}
             </main>
             <Footer />

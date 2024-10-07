@@ -4,7 +4,7 @@ import SearchBar from "@/components/navbar/search";
 
 export default function Navbar() {
   return (
-    <div className="flex h-20 min-w-fit flex-row items-center justify-between gap-4 dark:bg-slate-900 bg-slate-50 pl-8 pr-8 border-slate-300/70 dark:border-slate-800 border-b">
+    <div className="flex h-20 min-w-fit flex-row items-center justify-between gap-4 dark:bg-gray-950 bg-gray-100 pl-8 pr-8 border-gray-300/70 dark:border-gray-800 border-b">
       <a href="/">
         <h1 className="flex flex-col items-center">Biblioteca <span className="text-3xl font-black">Basqüadé</span></h1>
       </a>
