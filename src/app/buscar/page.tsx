@@ -1,11 +1,11 @@
 import Gallery from "@/components/gallery";
 import { BookPreview } from "@/data/book-preview";
-import { searchBooks, searchBooksFromCategory } from "@/lib/db/books";
+import { searchBooks } from "@/lib/db/books";
 import { redirect } from "next/navigation";
 
 type SearchParams = {
   term: string,
-  filter?: string
+  filter?: number
 }
 
 export default async function Search({ searchParams }: { searchParams: SearchParams }) {
@@ -15,7 +15,7 @@ export default async function Search({ searchParams }: { searchParams: SearchPar
     redirect("/")
   }
 
-  const books = filter ? await searchBooksFromCategory(term, filter) : await searchBooks(term)
+  const books = await searchBooks(term, filter ? Number(filter) : null)
 
   const previews = books.map((b) => new BookPreview(b.id, b.title, b.authors, b.description, b.cover))
   return (

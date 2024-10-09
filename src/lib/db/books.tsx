@@ -44,21 +44,21 @@ async function getBooksByCategory(cat: number, page: number = 1, limit: number =
 
 // Busca los libros basados en la frase (`term`) pasada
 // como parámetro
-async function searchBooks(term: string, page: number = 1, limit: number = 10): Promise<BookWithDisplayAuthor[]> {
-  const offset = Math.abs(page - 1) * limit;
-  return prisma.$queryRaw`SELECT b.id AS id, b.title AS title, b.description AS description, b.cover AS cover, array_agg(a.name || ' ' || a.surname || ' (' || a.email || ')') as authors FROM "Book" as b JOIN "Lang" as l on b."langId" = l.id JOIN "AuthorOnBook" as ab ON ab."bookId" = b.id JOIN "Author" as a ON ab."authorId" = a.id where b.content @@ websearch_to_tsquery(CAST(l.pg_lang AS regconfig), '${term}') AND b.needs_revision = false GROUP BY b.id ORDER BY b.title ASC LIMIT ${limit} OFFSET ${offset}`
-}
+// async function searchBooks(term: string, page: number = 1, limit: number = 10): Promise<BookWithDisplayAuthor[]> {
+//   const offset = Math.abs(page - 1) * limit;
+//   return prisma.$queryRaw`SELECT b.id AS id, b.title AS title, b.description AS description, b.cover AS cover, array_agg(a.name || ' ' || a.surname || ' (' || a.email || ')') as authors FROM "Book" as b JOIN "Lang" as l on b."langId" = l.id JOIN "AuthorOnBook" as ab ON ab."bookId" = b.id JOIN "Author" as a ON ab."authorId" = a.id where b.content @@ websearch_to_tsquery(CAST(l.pg_lang AS regconfig), '${term}') AND b.needs_revision = false GROUP BY b.id ORDER BY b.title ASC LIMIT ${limit} OFFSET ${offset}`
+// }
 
 // Busca los libros en una categoría específica, basado
 // en la frase (`term`) pasada como parámetro
-async function searchBooksFromCategory(
+async function searchBooks(
   term: string,
-  filter: string,
+  filter: number | null = null,
   page: number = 1,
   limit: number = 0
 ): Promise<BookWithDisplayAuthor[]> {
   const offset = Math.abs(page - 1) * limit;
-  return prisma.$queryRaw`SELECT b.id AS id, b.title AS title, b.description AS description, b.cover AS cover, array_agg(a.name || ' ' || a.surname || ' (' || a.email || ')') as authors FROM "Book" as b JOIN "Lang" as l on b."langId" = l.id JOIN "AuthorOnBook" as ab ON ab."bookId" = b.id JOIN "Author" as a ON ab."authorId" = a.id where b.content @@ websearch_to_tsquery(CAST(l.pg_lang AS regconfig), '${term}') AND b."categoryId" = ${filter} AND b.needs_revision = false GROUP BY b.id ORDER BY b.title ASC LIMIT ${limit} OFFSET ${offset}`
+  return prisma.$queryRaw`SELECT b.id AS id, b.title AS title, b.description AS description, b.cover AS cover, array_agg(a.name || ' ' || a.surname || ' (' || a.email || ')') as authors FROM "Book" as b JOIN "Lang" as l on b."langId" = l.id JOIN "AuthorOnBook" as ab ON ab."bookId" = b.id JOIN "Author" as a ON ab."authorId" = a.id where b.content @@ websearch_to_tsquery(CAST(l.pg_lang AS regconfig), '${term}') AND b."categoryId" = COALESCE(${filter}, b."categoryId") AND b.needs_revision = false GROUP BY b.id ORDER BY b.title ASC LIMIT ${limit} OFFSET ${offset}`
 }
 
 // Devuelve el PDF asociado al libro, o `null` en caso
@@ -193,4 +193,4 @@ async function createBook(book: CreateBook): Promise<string> {
   return "Guardado!"
 }
 
-export { getBooks, getBooksByCategory, searchBooks, searchBooksFromCategory, getPDF, getPendingPDF, getPending, getPendingById, updateBook, createBook };
+export { getBooks, getBooksByCategory, searchBooks, getPDF, getPendingPDF, getPending, getPendingById, updateBook, createBook };

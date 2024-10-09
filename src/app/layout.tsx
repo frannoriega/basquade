@@ -31,7 +31,7 @@ export default async function RootLayout({
         <NextAuthProvider>
           <ThemeProvider attribute="class" enableSystem defaultTheme="system">
             <Navbar />
-            <main className="flex-1 flex overflow-y-auto h-full w-full bg-gray-100 dark:bg-gray-950 container ">
+            <main className="flex-1 flex overflow-y-auto h-full w-full">
               {children}
             </main>
             <Footer />

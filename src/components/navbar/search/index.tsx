@@ -17,7 +17,14 @@ const formSchema = z.object({
   "filter": z.string()
 })
 
-export default function SearchBar() {
+type SearchBarProps = {
+  categories: {
+    id: number,
+    name: string
+  }[]
+}
+
+export default function SearchBar({ categories }: SearchBarProps) {
   const router = useRouter();
   const [open, setOpen] = useState(false);
 
@@ -37,7 +44,7 @@ export default function SearchBar() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       term: "",
-      filter: "*"
+      filter: "all"
     },
   })
 
@@ -45,11 +52,11 @@ export default function SearchBar() {
   function onSubmit(values: z.infer<typeof formSchema>) {
     const params = new URLSearchParams()
     params.append("term", values.term);
-    if (values.filter != "*") {
+    if (values.filter != "all") {
       params.append("filter", values.filter)
     }
     setOpen(false)
-    router.replace('/search?'+params.toString())
+    router.replace('/buscar?'+params.toString())
   }
 
   const actionKey = useActionKey();
@@ -96,7 +103,7 @@ export default function SearchBar() {
                   render={({ field }) =>
                     <FormItem>
                       <FormControl>
-                        <Filter defaultValue={field.value} onValueChange={field.onChange} />
+                        <Filter defaultValue={field.value} onValueChange={field.onChange} categories={categories}/>
                       </FormControl>
                     </FormItem>
                   } />
@@ -105,7 +112,7 @@ export default function SearchBar() {
                   name="term"
                   render={({ field }) =>
                     <FormControl>
-                      <input {...field} type="search" className="h-full rounded-e-md flex items-end bg-green-200 outline-0 p-2.5 w-full z-20 text-sm placeholder-green-600 text-green-600 dark:placeholder-gray-400 dark:text-white" placeholder="Escribe para realizar una búsqueda" required />
+                      <input {...field} autoFocus type="search" className="h-full rounded-e-md flex items-end bg-gray-200 dark:bg-gray-900 outline-0 p-2.5 w-full z-20 text-sm placeholder-gray-950 text-gray-950 dark:placeholder-gray-100 dark:text-white" placeholder="Escribe para realizar una búsqueda" required />
                     </FormControl>
                   }
                 />
