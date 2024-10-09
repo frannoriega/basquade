@@ -19,17 +19,9 @@ export default function Links({ className, listClassName }: LinksProps) {
       <NavigationMenuList className={lcn}>
         <NavigationMenuItem>
           {/* TODO: Implement pending page */}
-          <Link href="/quienessomos" legacyBehavior passHref>
+          <Link href="/acercade" legacyBehavior passHref>
             <NavigationMenuLink className="hover:underline hover:underline-offset-8">
-              Quienes somos
-            </NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          {/* TODO: Implement pending page */}
-          <Link href="/blog" legacyBehavior passHref>
-            <NavigationMenuLink className="hover:underline hover:underline-offset-8">
-              Blog
+              Acerca de
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>

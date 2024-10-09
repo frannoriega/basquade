@@ -2,7 +2,7 @@ import React from "react";
 
 export default function QuienesSomos() {
   return (
-      <p>
+      <p className="container mx-auto pt-24  columns-3">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In odio nibh, laoreet et velit at, aliquam ornare risus. Sed in dolor ac mauris placerat placerat vel sed dui. Suspendisse a orci sed tellus auctor condimentum in eget urna. Proin accumsan nisl mauris, ullamcorper aliquet ex ultricies eget. Quisque dui eros, rhoncus non orci in, faucibus malesuada eros. Cras et erat lacinia tortor tempor scelerisque. Aenean feugiat sed libero a molestie.
 
         Proin tristique nisl pellentesque euismod tincidunt. Nullam molestie est et condimentum lacinia. Nunc gravida, diam dictum malesuada semper, risus lectus sagittis lectus, non rhoncus mauris odio quis libero. Donec ac velit ut elit consequat tincidunt tristique quis sem. Quisque a euismod augue. Morbi vehicula est ut sollicitudin dapibus. Cras a est sit amet sapien mattis mollis id eget justo. Aliquam vulputate est eget risus gravida, vel efficitur erat blandit. Phasellus nibh nisl, laoreet et mauris id, sodales fringilla tellus. Phasellus orci felis, sagittis vitae elit bibendum, porttitor imperdiet odio. Fusce dictum fermentum orci, vel mattis tellus aliquet vitae. Maecenas accumsan, elit vel maximus congue, magna felis laoreet augue, ac vulputate metus neque quis eros.

@@ -12,7 +12,7 @@ const guc = cache(getUsedCategories);
 export default async function Home() {
   const categories = await guc();
   return (
-    <div className="w-full relative">
+    <div className="w-full">
       <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48 bg-muted">
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center space-y-4 text-center">

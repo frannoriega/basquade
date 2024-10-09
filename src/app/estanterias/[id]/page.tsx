@@ -13,7 +13,7 @@ export default async function Page({ params }: { params: { id: number } }) {
 
   const previews = books.map((b) => new BookPreview(b.id, b.title, b.authors.map((a) => `${a.author.name} ${a.author.surname} (${a.author.email})`), b.description, b.cover))
   return (
-    <div className="pt-24 flex flex-col gap-4 w-full">
+    <div className="pt-24 flex flex-col gap-4 w-full container mx-auto">
       <h1 className="font-black text-2xl">{category.name}</h1>
       <Gallery books={previews} />
     </div>
