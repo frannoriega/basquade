@@ -37,31 +37,34 @@ async function main() {
 
   // Creamos las categorias
   const agro_icon = fs.readFileSync('prisma/data/icons/agroecologia.svg', null);
-  const agroecologia = await prisma.category.upsert({
+  const agroecologia = await prisma.shelf.upsert({
     where: { name: 'Agroecología' },
     update: {},
     create: {
       name: 'Agroecología',
+      description: 'Libros, manuales y proyectos orientados a desarrollar el modelo agroecológico',
       icon: agro_icon
     },
   })
 
   const sentences_icon = fs.readFileSync('prisma/data/icons/sentencias.svg', null);
-  const sentencias = await prisma.category.upsert({
+  const sentencias = await prisma.shelf.upsert({
     where: { name: 'Sentencias' },
     update: {},
     create: {
       name: 'Sentencias',
+      description: 'Documentos sobre sentencias judiciales en casos relacionados al medio ambiente',
       icon: sentences_icon
     },
   })
 
   const research_icon = fs.readFileSync('prisma/data/icons/investigacion.svg', null);
-  const investigacion = await prisma.category.upsert({
+  const investigacion = await prisma.shelf.upsert({
     where: { name: 'Trabajos de investigación' },
     update: {},
     create: {
       name: 'Trabajos de investigación',
+      description: 'Documentos, tesis y papers sobre investigaciones relacionadas al medio ambiente',
       icon: research_icon
     },
   })
@@ -100,7 +103,7 @@ async function main() {
     const book_name = `Book ${book_num}`
     const book_desc = `Description ${book_num}`
     await prisma.$executeRaw`INSERT INTO "Book"
-("id", "title", "description", "file", "content", "cover", "md5", "langId", "categoryId", "needs_revision")
+("id", "title", "description", "file", "content", "cover", "md5", "langId", "shelfId", "needs_revision")
 VALUES (${book_num}, ${book_name}, ${book_desc}, ${book_bytes}, to_tsvector('spanish', ${book_content}), ${book_cover}, ${book_hash}, ${spanish.id}, ${categories[i % 3].id}, ${i % 2 == 0}) ON CONFLICT DO NOTHING;`
     books.push(book_num)
   }
@@ -120,7 +123,7 @@ VALUES (${book_num}, ${book_name}, ${book_desc}, ${book_bytes}, to_tsvector('spa
         file: book_bytes,
         md5: book_hash,
         langId: spanish.id,
-        categoryId: categories[i % 3].id
+        shelfId: categories[i % 3].id
       }
     }))
   }
@@ -218,71 +221,71 @@ VALUES (${book_num}, ${book_name}, ${book_desc}, ${book_bytes}, to_tsvector('spa
   })
 
   // Creamos algunos casos
-  const cases = []
+  const maps = []
   for (let i = 0; i < 3; i++) {
-    cases.push(await prisma.case.upsert({
+    maps.push(await prisma.bookMap.upsert({
       where: { name: `Caso ${i+1}` },
       update: {},
       create: {
         name: `Caso ${i+1}`,
         description: `Descripción ${i + 1}`,
-        categoryId: agroecologia.id
+        shelfId: agroecologia.id
       }
     }))
   }
 
   // Agregamos unas relaciones entre libros
   for (let i = 0; i < books.length - 1; i++) {
-    await prisma.caseOnBook.create({
+    await prisma.bookMapRelation.create({
       data: {
         startId: books[i],
         endId: books[i + 1],
         description: `Prueba ${i+1}-${i+2}`,
-        caseId: cases[0].id
+        mapId: maps[0].id
       }
     })
   }
 
   for (let i = 3; i < books.length - 1; i++) {
-    await prisma.caseOnBook.create({
+    await prisma.bookMapRelation.create({
       data: {
         startId: books[i],
         endId: books[i + 1],
         description: `Prueba ${i+1}-${i+2}`,
-        caseId: cases[1].id
+        mapId: maps[1].id
       }
     })
   }
-  await prisma.caseOnBook.create({
+  await prisma.bookMapRelation.create({
       data: {
         startId: books[3],
         endId: books[5],
         description: `Prueba 4-6`,
-        caseId: cases[1].id
+        mapId: maps[1].id
       }
   })
-  await prisma.caseOnBook.create({
+  await prisma.bookMapRelation.create({
       data: {
         startId: books[0],
         endId: books[3],
         description: `Prueba 1-4`,
-        caseId: cases[2].id
+        mapId: maps[2].id
       }
   })
-  await prisma.caseOnBook.create({
+  await prisma.bookMapRelation.create({
       data: {
         startId: books[0],
         endId: books[5],
         description: `Prueba 1-6`,
-        caseId: cases[2].id
+        mapId: maps[2].id
       }
   })
 
   // Agregamos algunas relaciones caso a caso
-  await prisma.caseOnCase.create({
+  await prisma.atlasRelation.create({
     data: {
-      startId: cases[0].id,
-      endId: cases[1].id,
+      startId: maps[0].id,
+      endId: maps[1].id,
       description: "Relacion"
     }
   })

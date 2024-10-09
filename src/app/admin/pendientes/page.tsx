@@ -15,7 +15,7 @@ export default async function PendingPage() {
       description: b.description,
       authors: b.authors.map((a) => a.author),
       lang: b.lang,
-      category: b.category
+      shelf: b.shelf
     }
   })
   return (

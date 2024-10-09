@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Filter from "@/components/navbar/search/filter";
 import * as Dialog from "@radix-ui/react-dialog";
 import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
@@ -18,13 +18,13 @@ const formSchema = z.object({
 })
 
 type SearchBarProps = {
-  categories: {
+  shelves: {
     id: number,
     name: string
   }[]
 }
 
-export default function SearchBar({ categories }: SearchBarProps) {
+export default function SearchBar({ shelves }: SearchBarProps) {
   const router = useRouter();
   const [open, setOpen] = useState(false);
 
@@ -103,7 +103,7 @@ export default function SearchBar({ categories }: SearchBarProps) {
                   render={({ field }) =>
                     <FormItem>
                       <FormControl>
-                        <Filter defaultValue={field.value} onValueChange={field.onChange} categories={categories}/>
+                        <Filter defaultValue={field.value} onValueChange={field.onChange} shelves={shelves}/>
                       </FormControl>
                     </FormItem>
                   } />

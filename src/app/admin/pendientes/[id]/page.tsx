@@ -1,7 +1,7 @@
 import PendingPanel from "@/components/pending-panel";
 import { getAuthors } from "@/lib/db/authors";
 import { getPendingById } from "@/lib/db/books";
-import { getCategories } from "@/lib/db/categories";
+import { getShelves } from "@/lib/db/shelves";
 import { getLanguages } from "@/lib/db/languages";
 
 export default async function PendingBookPage({ params }: { params: { id: number } }) {
@@ -15,12 +15,12 @@ export default async function PendingBookPage({ params }: { params: { id: number
     description: book.description,
     authors: book.authors.map((a) => a.author),
     lang: book.lang,
-    category: book.category
+    shelf: book.shelf
   }
   const languages = await getLanguages()
   const authors = await getAuthors()
-  const categories = await getCategories()
+  const shelves = await getShelves()
   return (
-    <PendingPanel book={strippedBook} languages={languages} authors={authors} categories={categories} />
+    <PendingPanel book={strippedBook} languages={languages} authors={authors} shelves={shelves} />
   )
 }

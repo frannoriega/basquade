@@ -2,7 +2,7 @@
 import prisma from "../prisma";
 
 async function getAtlas() {
-  return await prisma.caseOnCase.findMany({
+  return await prisma.atlasRelation.findMany({
     select: {
       start: {
         select: {
@@ -28,8 +28,8 @@ type NewAtlas = {
 }[]
 
 async function updateAtlas(updatedAtlas: NewAtlas) {
-  await prisma.caseOnCase.deleteMany({})
-  return await prisma.caseOnCase.createMany({
+  await prisma.atlasRelation.deleteMany({})
+  return await prisma.atlasRelation.createMany({
     data: updatedAtlas.map((a) => {
       return {
         startId: a.start,

@@ -1,3 +1,3 @@
-export default function CasePage() {
-  return <div>Case</div>
+export default function AdminPage() {
+  return <div>Dashboard</div>
 }

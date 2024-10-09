@@ -1,8 +1,8 @@
 'use client'
 import { useForm } from "react-hook-form";
-import { Dialog, DialogClose, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "../ui/dialog";
-import { Button } from "../ui/button";
-import { Form, FormControl, FormField, FormItem, FormLabel } from "../ui/form";
+import { Dialog, DialogClose, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Form, FormControl, FormField, FormItem, FormLabel } from "@/components/ui/form";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -10,7 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { createBook } from "@/lib/db/books";
 import React from "react";
 import * as Toast from "@radix-ui/react-toast";
-import { MultiSelect } from "../ui/multiselect";
+import { MultiSelect } from "@/components/ui/multiselect";
 import { Author } from "@prisma/client";
 
 type BookListParams = {
@@ -25,7 +25,7 @@ type BookListParams = {
     tesseract: string,
     display: string
   }[],
-  categories: {
+  shelves: {
     id: number,
     name: string
   }[],
@@ -45,7 +45,7 @@ const createBookSchema = z.object({
     language: z.string(),
     display: z.string()
   }),
-  category: z.object({
+  shelf: z.object({
     id: z.number(),
     name: z.string()
   }),
@@ -54,14 +54,14 @@ const createBookSchema = z.object({
   }),
 })
 
-export default function BookList({ books, languages, categories, authors }: BookListParams) {
+export default function BookList({ books, languages, shelves, authors }: BookListParams) {
   const addBook = useForm<z.infer<typeof createBookSchema>>({
     resolver: zodResolver(createBookSchema),
     defaultValues: {
       title: '',
       description: '',
       lang: languages[0],
-      category: categories[0],
+      shelf: shelves[0],
       file: new File([], ""),
       authors: []
     }
@@ -83,7 +83,7 @@ export default function BookList({ books, languages, categories, authors }: Book
         id: values.lang.id,
         language: values.lang.language
       },
-      categoryId: values.category.id,
+      shelfId: values.shelf.id,
       authors: values.authors.map((a) => a.id)
     }
     setMsg("Guardado!")
@@ -193,16 +193,16 @@ export default function BookList({ books, languages, categories, authors }: Book
                 />
                 <FormField
                   control={addBook.control}
-                  name="category"
+                  name="shelf"
                   render={({ field }) => (
                     <FormItem>
                       <FormControl>
-                        <Select defaultValue={field.value.id.toString()} onValueChange={(id) => field.onChange(categories.find((c) => c.id == Number(id)))}>
+                        <Select defaultValue={field.value.id.toString()} onValueChange={(id) => field.onChange(shelves.find((c) => c.id == Number(id)))}>
                           <SelectTrigger className="flex flex-row gap-4 bg-slate-700 items-center justify-between p-4 min-h-fit rounded text-sm" aria-label="Lenguaje">
                             <SelectValue placeholder={field.value.name} />
                           </SelectTrigger>
                           <SelectContent className="">
-                            {categories.map(c =>
+                            {shelves.map(c =>
                               <SelectItem key={c.id} value={c.id.toString()} className='hover:bg-green-600'>
                                 {c.name}
                               </SelectItem>

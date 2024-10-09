@@ -10,6 +10,7 @@ datasource db {
   directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
+// Tabla que controla los administradores de la Basqüadé
 model Admin {
   id          Int       @id @default(autoincrement())
   email       String    @db.VarChar(255) @unique
@@ -19,12 +20,15 @@ model Admin {
   permanent   Boolean
 }
 
-model Category {
+// Tabla que representa una temática o categoria bajo la cual
+// agrupar libros.
+model Shelf {
   id          Int      @id @default(autoincrement())
   name        String   @db.VarChar(255) @unique
+  description String
   icon        Bytes
   books       Book[]
-  cases       Case[]
+  maps        BookMap[]
   pending     Pending[]
 }
 
@@ -65,36 +69,36 @@ model AuthorOnInstitution {
   instId      Int
 }
 
-// Un caso. Los casos representan un grafo de libros, es decir,
+// Un mapa conceptual. Los mapas conceptuales representan un grafo de libros, es decir,
 // libros que se relacionan entre sí.
-model Case {
-  id          Int             @id @default(autoincrement())
-  name        String          @db.VarChar(255) @unique
-  description String
-  category    Category        @relation(fields: [categoryId], references: [id])
-  categoryId  Int
-  books       CaseOnBook[]
-  startCase   CaseOnCase[]    @relation("start")
-  endCase     CaseOnCase[]    @relation("end")
+model BookMap {
+  id              Int                @id @default(autoincrement())
+  name            String             @db.VarChar(255) @unique
+  description     String
+  shelf           Shelf              @relation(fields: [shelfId], references: [id])
+  shelfId         Int
+  books           BookMapRelation[]
+  startRelation   AtlasRelation[]    @relation("start")
+  endRelation     AtlasRelation[]    @relation("end")
 }
 
 // Las relaciones entre los libros pertenecientes a un caso
-model CaseOnBook {
-  case        Case            @relation(fields: [caseId], references: [id])
-  caseId      Int
+model BookMapRelation {
+  map         BookMap            @relation(fields: [mapId], references: [id])
+  mapId       Int
   start       Book            @relation("start", fields: [startId], references: [id])
   startId     Int
   end         Book            @relation("end", fields: [endId], references: [id])
   endId       Int
   description String?
-  @@unique([caseId, startId, endId])
+  @@unique([mapId, startId, endId])
 }
 
 // Las relaciones entre dos casos
-model CaseOnCase {
-  start       Case            @relation("start", fields: [startId], references: [id])
+model AtlasRelation {
+  start       BookMap            @relation("start", fields: [startId], references: [id])
   startId     Int
-  end         Case            @relation("end", fields: [endId], references: [id])
+  end         BookMap            @relation("end", fields: [endId], references: [id])
   endId       Int
   description String?
   @@id([startId, endId])
@@ -102,32 +106,33 @@ model CaseOnCase {
 
 // La tabla que guarda los PDFs
 model Book {
-  id          Int             @id @default(autoincrement())
+  id              Int             @id @default(autoincrement())
   // El nombre del archivo
-  title       String          @db.VarChar(255)
+  title           String          @db.VarChar(255)
   // La descripción del archivo
-  description String
+  description     String
   // El archivo, para mostrarlo
-  file        Bytes
+  file            Bytes
   // El contenido en forma de lexemas, para habilitar la busqueda por texto
-  content     Unsupported("tsvector")
+  content         Unsupported("tsvector")
   // La portada para mostrar
-  cover       Bytes
+  cover           Bytes
   // Para identificar univocamente segun el contenido del PDF
-  md5         String          @unique
+  md5             String          @unique
   // El idioma del archivo, para optimizar las búsquedas
-  lang        Lang            @relation(fields: [langId], references: [id])
-  langId      Int
+  lang            Lang            @relation(fields: [langId], references: [id])
+  langId          Int
   // La categoría con la que fue marcado
-  category    Category        @relation(fields: [categoryId], references: [id])
-  categoryId  Int
+  shelf           Shelf        @relation(fields: [shelfId], references: [id])
+  shelfId         Int
   // Los autores del libro
-  authors     AuthorOnBook[]
-  startCase   CaseOnBook[]    @relation("start")
-  endCase     CaseOnBook[]    @relation("end")
-  needs_revision Boolean
+  authors         AuthorOnBook[]
+  startRelation   BookMapRelation[]    @relation("start")
+  endRelation     BookMapRelation[]    @relation("end")
+  needs_revision  Boolean
 }
 
+// Los libros pendientes de procesamiento.
 model Pending {
   id          Int             @id @default(autoincrement())
   title       String
@@ -136,8 +141,8 @@ model Pending {
   md5         String          @unique
   lang        Lang            @relation(fields: [langId], references: [id])
   langId      Int
-  category    Category        @relation(fields: [categoryId], references: [id])
-  categoryId  Int
+  shelf       Shelf        @relation(fields: [shelfId], references: [id])
+  shelfId     Int
   authors     AuthorOnPending[]
 }
 

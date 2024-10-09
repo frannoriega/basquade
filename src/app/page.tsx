@@ -1,16 +1,15 @@
 import React, { cache } from "react";
-import { getUsedCategories } from "@/lib/db/categories";
+import { getUsedShelves } from "@/lib/db/shelves";
 import Link from "next/link";
-import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
 export const dynamic = 'force-dynamic'
 
-const guc = cache(getUsedCategories);
+const guc = cache(getUsedShelves);
 
 export default async function Home() {
-  const categories = await guc();
+  const shelves = await guc();
   return (
     <div className="w-full">
       <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48 bg-muted">
@@ -59,11 +58,11 @@ export default async function Home() {
         <div className="container px-4 md:px-6">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12">Explora nuestras estanterías</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {categories.map((c) => (
-              <Link key={c.id} className="flex flex-col items-center text-center p-4 border rounded-lg shadow-sm" href={`/estanterias/${c.id}`}>
-                <div className="mb-4 w-40 dark:fill-white" dangerouslySetInnerHTML={{ __html: c.icon.toString() }}></div>
+            {shelves.map((c) => (
+              <Link key={c.id} className="w-full flex flex-col items-center justify-self-center text-center p-4 border rounded-lg shadow-sm" href={`/estanterias/${c.id}`}>
+                <div className="mb-4 w-16 h-16 dark:fill-white" dangerouslySetInnerHTML={{ __html: c.icon.toString() }}></div>
                 <h3 className="text-lg font-bold mb-2">{c.name}</h3>
-                <p className="text-sm text-muted-foreground">{c.name}</p>
+                <p className="text-sm text-muted-foreground">{c.description}</p>
               </Link>
             ))}
           </div>

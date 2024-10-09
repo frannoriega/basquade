@@ -4,7 +4,6 @@ import Profile from "@/components/navbar/actions/profile";
 import Links from "@/components/navbar/actions/links";
 import { useState } from "react";
 import Hamburger from 'hamburger-react';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Drawer } from 'vaul';
 
 type MenuProps = {

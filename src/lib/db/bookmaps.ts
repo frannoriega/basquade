@@ -2,8 +2,8 @@
 import { Prisma } from "@prisma/client"
 import prisma from "../prisma"
 
-async function getCases() {
-  return await prisma.case.findMany({
+async function getBookMaps() {
+  return await prisma.bookMap.findMany({
     select: {
       id: true,
       name: true,
@@ -17,8 +17,8 @@ async function getCases() {
   })
 }
 
-async function searchCases(term: string) {
-  return await prisma.case.findMany({
+async function searchBookMaps(term: string) {
+  return await prisma.bookMap.findMany({
     where: {
       OR: [
         {
@@ -38,12 +38,12 @@ async function searchCases(term: string) {
   })
 }
 
-type CaseWithBooks = Prisma.CaseGetPayload<{
+type BookMapWithBooks = Prisma.BookMapGetPayload<{
   select: {
     id: true,
     name: true,
     description: true,
-    categoryId: true,
+    shelfId: true,
     books: {
       select: {
         description: true,
@@ -66,13 +66,13 @@ type CaseWithBooks = Prisma.CaseGetPayload<{
   }
 }>
 
-async function getCaseById(id: number): Promise<CaseWithBooks | null> {
-  return await prisma.case.findUnique({
+async function getBookMapById(id: number): Promise<BookMapWithBooks | null> {
+  return await prisma.bookMap.findUnique({
     select: {
       id: true,
       name: true,
       description: true,
-      categoryId: true,
+      shelfId: true,
       books: {
         select: {
           description: true,
@@ -99,27 +99,27 @@ async function getCaseById(id: number): Promise<CaseWithBooks | null> {
   })
 }
 
-type CreateCase = {
+type CreateBookMap = {
   name: string,
   description: string,
-  categoryId: number
+  shelfId: number
 }
 
-async function createCase(newCase: CreateCase) {
-  return await prisma.case.create({
+async function createBookMap(newBookMap: CreateBookMap) {
+  return await prisma.bookMap.create({
     data: {
-      name: newCase.name,
-      description: newCase.description,
-      categoryId: newCase.categoryId
+      name: newBookMap.name,
+      description: newBookMap.description,
+      shelfId: newBookMap.shelfId
     }
   })
 }
 
-type UpdateCase = {
+type UpdateBookMap = {
   id: number,
   name: string,
   description: string,
-  categoryId: number,
+  shelfId: number,
   books: {
     description: string | null,
     start: number,
@@ -127,15 +127,15 @@ type UpdateCase = {
   }[]
 }
 
-async function updateCase(col: UpdateCase) {
-  return await prisma.case.update({
+async function updateBookMap(col: UpdateBookMap) {
+  return await prisma.bookMap.update({
     where: {
       id: col.id
     },
     data: {
       name: col.name,
       description: col.description,
-      categoryId: col.categoryId,
+      shelfId: col.shelfId,
       books: {
         deleteMany: {},
         createMany: {
@@ -152,4 +152,4 @@ async function updateCase(col: UpdateCase) {
   })
 }
 
-export { getCaseById, getCases, searchCases, createCase, updateCase }
+export { getBookMapById, getBookMaps, searchBookMaps, createBookMap, updateBookMap }

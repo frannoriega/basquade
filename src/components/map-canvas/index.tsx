@@ -1,21 +1,21 @@
 'use client'
-import { Background, Controls, ReactFlow, useEdgesState, useNodesState, addEdge, Edge, Node, OnNodesChange, OnEdgesChange, applyNodeChanges, applyEdgeChanges, OnConnect } from '@xyflow/react'
+import { Background, Controls, ReactFlow, useEdgesState, useNodesState, addEdge, Edge, Node, OnNodesChange, OnEdgesChange, applyNodeChanges, applyEdgeChanges, OnConnect, BackgroundVariant } from '@xyflow/react'
 import '@xyflow/react/dist/style.css';
-import { Button } from '../ui/button';
+import { Button } from '@/components/ui/button';
 import { useCallback, useRef, useState } from 'react';
 import BookNode from './book-node';
-import { updateCase } from '@/lib/db/cases';
+import { updateBookMap } from '@/lib/db/bookmaps';
 import BookEdge from './book-edge';
-import { Dialog, DialogClose, DialogContent, DialogTrigger } from '../ui/dialog';
+import { Dialog, DialogClose, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import React from 'react';
 import { searchBooks } from '@/lib/db/books';
 import { BookWithDisplayAuthor } from '@/types/books';
 
-type Collection = {
+type BookMap = {
   id: number,
   name: string,
   description: string,
-  categoryId: number,
+  shelfId: number,
   books: {
     description: string | null,
     start: {
@@ -31,11 +31,17 @@ type Collection = {
   }[]
 }
 
-type CaseCanvasParams = {
-  collection: Collection
+type BookMapCanvasParams = {
+  bookMap: BookMap
 }
 
-function createNode(id: number, title: string, description: string) {
+type MapNodeData = {
+    id: number,
+    title: string,
+    description: string
+}
+
+function createNode(id: number, title: string, description: string): Node<MapNodeData> {
   return {
     id: id.toString(),
     type: "bookNode",
@@ -51,7 +57,7 @@ function createNode(id: number, title: string, description: string) {
   }
 }
 
-function getNodes(col: Collection): Node[] {
+function getNodes(col: BookMap): Node<MapNodeData>[] {
   return col.books.flatMap((c) => {
     const nodes = [createNode(c.start.id, c.start.title, c.start.description)]
     if (!c.end) {
@@ -64,7 +70,11 @@ function getNodes(col: Collection): Node[] {
   })
 }
 
-function getEdges(col: Collection): Edge[] {
+type MapEdgeData = {
+  description: string | null
+}
+
+function getEdges(col: BookMap): Edge<MapEdgeData>[] {
   return col.books.map((c) => {
     return {
       id: `e${c.start.id}-${c.end ? c.end.id : c.start.id}`,
@@ -78,30 +88,30 @@ function getEdges(col: Collection): Edge[] {
   })
 }
 
-export default function CaseCanvas({ collection }: CaseCanvasParams) {
-  const initialNodes = getNodes(collection)
-  const initialEdges = getEdges(collection)
-  const [nodes, setNodes] = useState<Node[]>(initialNodes);
-  const [edges, setEdges] = useState<Edge[]>(initialEdges);
+export default function BookMapCanvas({ bookMap }: BookMapCanvasParams) {
+  const initialNodes = getNodes(bookMap)
+  const initialEdges = getEdges(bookMap)
+  const [nodes, setNodes] = useState<Node<MapNodeData>[]>(initialNodes);
+  const [edges, setEdges] = useState<Edge<MapEdgeData>[]>(initialEdges);
 
-  const onNodesChange: OnNodesChange = useCallback(
+  const onNodesChange: OnNodesChange<Node<MapNodeData>> = useCallback(
     (changes) => {
       setNodes((nds) => applyNodeChanges(changes, nds)) },
     [setNodes],
   );
-  const onEdgesChange: OnEdgesChange = useCallback(
+  const onEdgesChange: OnEdgesChange<Edge<MapEdgeData>> = useCallback(
     (changes) => setEdges((eds) => applyEdgeChanges(changes, eds)),
     [setEdges],
   );
   const onConnect: OnConnect = useCallback(
     (connection) => {
       const edge = {...connection, type: 'bookEdge', data: { description: ''}}
-      setEdges((eds) => addEdge(edge, eds)) },
+      setEdges((eds) => addEdge<Edge<MapEdgeData>>(edge, eds)) },
     [setEdges],
   );
 
   async function save() {
-    const relations: { [key: string]: number | null } = {}
+    const relations: { [key: string]: { target: number | null, description: string | null } } = {}
     for (const node of nodes) {
       relations[node.data.id.toString()] = {
         target: null,
@@ -111,14 +121,14 @@ export default function CaseCanvas({ collection }: CaseCanvasParams) {
     for (const edge of edges) {
       relations[edge.source] = {
         target: Number(edge.target),
-        description: edge.data.description
+        description: edge.data?.description || null
       }
     }
-    const updatedCase = {
-      id: collection.id,
-      name: collection.name,
-      description: collection.description,
-      categoryId: collection.categoryId,
+    const updatedBookMap = {
+      id: bookMap.id,
+      name: bookMap.name,
+      description: bookMap.description,
+      shelfId: bookMap.shelfId,
       books: Object.entries(relations).map(([k, v]) => {
         return {
           description: v.description,
@@ -127,7 +137,7 @@ export default function CaseCanvas({ collection }: CaseCanvasParams) {
         }
       })
     }
-    await updateCase(updatedCase)
+    await updateBookMap(updatedBookMap)
   }
 
   const [books, setBooks] = useState<BookWithDisplayAuthor[]>([])
@@ -173,7 +183,7 @@ export default function CaseCanvas({ collection }: CaseCanvasParams) {
 
   return (
     <div className='w-full h-full flex flex-col items-center justify-items-center'>
-      <h1>Editando caso {collection.name}</h1>
+      <h1>Editando caso {bookMap.name}</h1>
       <div className='relative bg-slate-200 w-full h-full'>
         <ReactFlow
           nodes={nodes}
@@ -185,7 +195,7 @@ export default function CaseCanvas({ collection }: CaseCanvasParams) {
           onConnect={onConnect}
           fitView>
           <Controls className='text-black' />
-          <Background variant="dots" gap={12} size={1} />
+          <Background variant={BackgroundVariant.Dots} gap={12} size={1} />
         </ReactFlow>
         <div className='absolute bottom-2 w-full grid grid-cols-4 items-center justify-items-center'>
           <Dialog>

@@ -1,10 +1,10 @@
 import Actions from "@/components/navbar/actions";
 import SearchBar from "@/components/navbar/search";
-import { getCategories } from "@/lib/db/categories";
+import { getShelves } from "@/lib/db/shelves";
 import { Sprout } from "lucide-react";
 
 export default async function Navbar() {
-  const categories = await getCategories()
+  const shelves = await getShelves()
   return (
     <div className="sticky top-0 z-10 flex h-20 w-full flex-row items-center justify-between gap-4 dark:bg-gray-950/70 bg-gray-50/70 backdrop-blur-md pl-8 pr-8 border-gray-300/70 dark:border-gray-800 border-b">
       <div className="flex flex-row items-center gap-4">
@@ -14,7 +14,7 @@ export default async function Navbar() {
         </a>
       </div>
       <div className="flex flex-row items-center md:gap-8 gap-6">
-        <SearchBar categories={categories.map((c) => { return { id: c.id, name: c.name } })} />
+        <SearchBar shelves={shelves.map((c) => { return { id: c.id, name: c.name } })} />
         <Actions />
       </div>
     </div>

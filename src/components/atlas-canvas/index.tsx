@@ -1,18 +1,29 @@
 
 'use client'
-import { Background, Controls, ReactFlow, addEdge, Edge, Node, OnNodesChange, OnEdgesChange, applyNodeChanges, applyEdgeChanges, OnConnect, NodeChange } from '@xyflow/react'
+import {
+  Background,
+  Controls,
+  ReactFlow,
+  addEdge,
+  Edge,
+  Node,
+  OnNodesChange,
+  OnEdgesChange,
+  applyNodeChanges,
+  applyEdgeChanges,
+  OnConnect,
+  BackgroundVariant
+} from '@xyflow/react'
 import '@xyflow/react/dist/style.css';
-import { Button } from '../ui/button';
+import { Button } from '@/components/ui/button';
 import { useCallback, useRef, useState } from 'react';
-import { Dialog, DialogClose, DialogContent, DialogTrigger } from '../ui/dialog';
+import { Dialog, DialogClose, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import React from 'react';
-import { searchBooks } from '@/lib/db/books';
-import { BookWithDisplayAuthor } from '@/types/books';
 import { updateAtlas } from '@/lib/db/atlas';
-import CaseNode from './case-node';
-import { getCases, searchCases } from '@/lib/db/cases';
-import { Case } from '@prisma/client';
-import CaseEdge from './case-edge';
+import BookMapNode from './bookmap-node';
+import { searchBookMaps } from '@/lib/db/bookmaps';
+import { BookMap } from '@prisma/client';
+import BookMapEdge from './bookmap-edge';
 
 type Atlas = {
   start: {
@@ -33,7 +44,7 @@ type AtlasCanvasParams = {
 function createNode(id: number, title: string) {
   return {
     id: id.toString(),
-    type: "caseNode",
+    type: "bookMapNode",
     position: {
       x: id * 50,
       y: id * 50
@@ -45,7 +56,7 @@ function createNode(id: number, title: string) {
   }
 }
 
-function getNodes(atlas: Atlas): Node<CaseData>[] {
+function getNodes(atlas: Atlas): Node<BookMapData>[] {
   return atlas.flatMap((c) => {
     return [
       createNode(c.start.id, c.start.name),
@@ -54,7 +65,7 @@ function getNodes(atlas: Atlas): Node<CaseData>[] {
   })
 }
 
-function getEdges(atlas: Atlas): Edge<CaseRelationData>[] {
+function getEdges(atlas: Atlas): Edge<BookMapRelationData>[] {
   return atlas.map((c) => {
     return {
       id: `e${c.start.id}-${c.end.id}`,
@@ -68,35 +79,35 @@ function getEdges(atlas: Atlas): Edge<CaseRelationData>[] {
   })
 }
 
-type CaseData = {
+type BookMapData = {
   id: number,
   title: string
 }
 
-type CaseRelationData = {
+type BookMapRelationData = {
   description?: string
 }
 
 export default function AtlasCanvas({ atlas }: AtlasCanvasParams) {
   const initialNodes = getNodes(atlas)
   const initialEdges = getEdges(atlas)
-  const [nodes, setNodes] = useState<Node<CaseData>[]>(initialNodes);
-  const [edges, setEdges] = useState<Edge<CaseRelationData>[]>(initialEdges);
+  const [nodes, setNodes] = useState<Node<BookMapData>[]>(initialNodes);
+  const [edges, setEdges] = useState<Edge<BookMapRelationData>[]>(initialEdges);
 
-  const onNodesChange: OnNodesChange<Node<CaseData>> = useCallback(
+  const onNodesChange: OnNodesChange<Node<BookMapData>> = useCallback(
     (changes) => {
-      setNodes((nds) => applyNodeChanges<Node<CaseData>>(changes, nds))
+      setNodes((nds) => applyNodeChanges<Node<BookMapData>>(changes, nds))
     },
     [setNodes],
   );
-  const onEdgesChange: OnEdgesChange<Edge<CaseRelationData>> = useCallback(
+  const onEdgesChange: OnEdgesChange<Edge<BookMapRelationData>> = useCallback(
     (changes) => setEdges((eds) => applyEdgeChanges(changes, eds)),
     [setEdges],
   );
   const onConnect: OnConnect = useCallback(
     (connection) => {
-      const edge = { ...connection, type: 'caseEdge', data: { description: '' } }
-      setEdges((eds) => addEdge<Edge<CaseRelationData>>(edge, eds))
+      const edge = { ...connection, type: 'bookMapEdge', data: { description: '' } }
+      setEdges((eds) => addEdge<Edge<BookMapRelationData>>(edge, eds))
     },
     [setEdges],
   );
@@ -112,20 +123,20 @@ export default function AtlasCanvas({ atlas }: AtlasCanvasParams) {
     await updateAtlas(newAtlas)
   }
 
-  const [cases, setCases] = useState<Case[]>([])
+  const [bookMaps, setBookMaps] = useState<BookMap[]>([])
   const [searchTerm, setSearchTerm] = useState('')
   const firstRenderRef = useRef(true)
   React.useEffect(() => {
     if (firstRenderRef.current) {
       return () => { };
     } else {
-      const getCases = setTimeout(async () => {
+      const getBookMaps = setTimeout(async () => {
         // Buscamos los libros
-        const cases = await searchCases(searchTerm)
-        setCases(cases)
+        const bookMaps = await searchBookMaps(searchTerm)
+        setBookMaps(bookMaps)
       }, 3000)
 
-      return () => clearTimeout(getCases)
+      return () => clearTimeout(getBookMaps)
     }
   }, [searchTerm])
 
@@ -134,12 +145,12 @@ export default function AtlasCanvas({ atlas }: AtlasCanvasParams) {
     setSearchTerm(e.target.value)
   }
 
-  function addNode(c: Case) {
+  function addNode(c: BookMap) {
     setNodes([
       ...nodes,
       {
         id: c.id.toString(),
-        type: 'caseNode',
+        type: 'bookMapNode',
         position: {
           x: 50 * c.id,
           y: 50 * c.id
@@ -159,14 +170,14 @@ export default function AtlasCanvas({ atlas }: AtlasCanvasParams) {
         <ReactFlow
           nodes={nodes}
           edges={edges}
-          nodeTypes={{ caseNode: CaseNode }}
-          edgeTypes={{ caseEdge: CaseEdge }}
+          nodeTypes={{ bookMapNode: BookMapNode }}
+          edgeTypes={{ bookMapEdge: BookMapEdge }}
           onNodesChange={onNodesChange}
           onEdgesChange={onEdgesChange}
           onConnect={onConnect}
           fitView>
           <Controls className='text-black' />
-          <Background variant="dots" gap={12} size={1} />
+          <Background variant={BackgroundVariant.Dots} gap={12} size={1} />
         </ReactFlow>
         <div className='absolute bottom-2 w-full grid grid-cols-4 items-center justify-items-center'>
           <Dialog>
@@ -175,7 +186,7 @@ export default function AtlasCanvas({ atlas }: AtlasCanvasParams) {
             </DialogTrigger>
             <DialogContent>
               <input onChange={changeSearchTerm} />
-              {cases.map((b) => <DialogClose asChild><Button key={b.id} onClick={() => addNode(b)}>{b.title}</Button></DialogClose>)}
+              {bookMaps.map((b) => <DialogClose asChild><Button key={b.id} onClick={() => addNode(b)}>{b.name}</Button></DialogClose>)}
             </DialogContent>
           </Dialog>
           <Button className='bg-green-300 col-start-3 w-fit' onClick={save}>Guardar</Button>

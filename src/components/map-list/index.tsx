@@ -1,50 +1,50 @@
 'use client'
 import { useForm } from "react-hook-form";
-import { Dialog, DialogClose, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "../ui/dialog";
-import { Button } from "../ui/button";
-import { Form, FormControl, FormField, FormItem, FormLabel } from "../ui/form";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Form, FormControl, FormField, FormItem, FormLabel } from "@/components/ui/form";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import React from "react";
 import * as Toast from "@radix-ui/react-toast";
-import { createCase } from "@/lib/db/cases";
+import { createBookMap } from "@/lib/db/bookmaps";
 import Link from "next/link";
 
-type CaseListParams = {
-  cases: {
+type BookMapListParams = {
+  bookMaps: {
     id: number,
     name: string,
     description: string,
     books: number
   }[],
-  categories: {
+  shelves: {
     id: number,
     name: string
   }[],
 }
 
-const createCaseSchema = z.object({
+const createBookMapSchema = z.object({
   name: z.string().min(5, {
     message: "Ingrese un nombre de al menos 5 letras"
   }),
   description: z.string().min(20, {
     message: "Ingrese una descripción detallada, de al menos 20 letras"
   }),
-  category: z.object({
+  shelf: z.object({
     id: z.number(),
     name: z.string()
   })
 })
 
-export default function CaseList({ cases, categories }: CaseListParams) {
-  const addCase = useForm<z.infer<typeof createCaseSchema>>({
-    resolver: zodResolver(createCaseSchema),
+export default function BookMapList({ bookMaps, shelves }: BookMapListParams) {
+  const addBookMap = useForm<z.infer<typeof createBookMapSchema>>({
+    resolver: zodResolver(createBookMapSchema),
     defaultValues: {
       name: '',
       description: '',
-      category: categories[0],
+      shelf: shelves[0],
     }
   })
 
@@ -56,14 +56,14 @@ export default function CaseList({ cases, categories }: CaseListParams) {
     return () => clearTimeout(timerRef.current);
   }, []);
 
-  async function submitCase(values: z.infer<typeof createCaseSchema>) {
-    const newCase = {
+  async function submitBookMap(values: z.infer<typeof createBookMapSchema>) {
+    const newBookMap = {
       name: values.name,
       description: values.description,
-      categoryId: values.category.id
+      shelfId: values.shelf.id
     }
-    console.log(newCase)
-    await createCase(newCase)
+    console.log(newBookMap)
+    await createBookMap(newBookMap)
     setMsg("Guardado!")
     setOpen(false);
     window.clearTimeout(timerRef.current);
@@ -73,7 +73,7 @@ export default function CaseList({ cases, categories }: CaseListParams) {
   }
   return (
     <div className="p-4 flex flex-col gap-4 h-full">
-      <h1>Casos</h1>
+      <h1>Mapas conceptuales</h1>
       <table className="table-auto w-full">
         <thead>
           <tr>
@@ -84,13 +84,13 @@ export default function CaseList({ cases, categories }: CaseListParams) {
           </tr>
         </thead>
         <tbody>
-          {cases.map((b) => (
+          {bookMaps.map((b) => (
             <tr key={b.id}>
               <td>{b.name}</td>
               <td>{b.description}</td>
               <td>{b.books}</td>
               <td>
-                <Link href={`/admin/casos/${b.id}`}>Editar</Link>
+                <Link href={`/admin/mapas/${b.id}`}>Editar</Link>
                 <Button variant="destructive">Borrar</Button>
               </td>
             </tr>
@@ -109,10 +109,10 @@ export default function CaseList({ cases, categories }: CaseListParams) {
                 <DialogDescription>Formulario para agregar a un nuevo caso</DialogDescription>
               </VisuallyHidden>
             </DialogHeader>
-            <Form {...addCase}>
-              <form onSubmit={addCase.handleSubmit(submitCase)}>
+            <Form {...addBookMap}>
+              <form onSubmit={addBookMap.handleSubmit(submitBookMap)}>
                 <FormField
-                  control={addCase.control}
+                  control={addBookMap.control}
                   name="name"
                   render={({ field }) => (
                     <FormItem>
@@ -124,7 +124,7 @@ export default function CaseList({ cases, categories }: CaseListParams) {
                   )}
                 />
                 <FormField
-                  control={addCase.control}
+                  control={addBookMap.control}
                   name="description"
                   render={({ field }) => (
                     <FormItem>
@@ -136,17 +136,17 @@ export default function CaseList({ cases, categories }: CaseListParams) {
                   )}
                 />
                 <FormField
-                  control={addCase.control}
-                  name="category"
+                  control={addBookMap.control}
+                  name="shelf"
                   render={({ field }) => (
                     <FormItem>
                       <FormControl>
-                        <Select defaultValue={field.value.id.toString()} onValueChange={(id) => field.onChange(categories.find((c) => c.id == Number(id)))}>
+                        <Select defaultValue={field.value.id.toString()} onValueChange={(id) => field.onChange(shelves.find((c) => c.id == Number(id)))}>
                           <SelectTrigger className="flex flex-row gap-4 bg-slate-700 items-center justify-between p-4 min-h-fit rounded text-sm" aria-label="Lenguaje">
                             <SelectValue placeholder={field.value.name} />
                           </SelectTrigger>
                           <SelectContent className="">
-                            {categories.map(c =>
+                            {shelves.map(c =>
                               <SelectItem key={c.id} value={c.id.toString()} className='hover:bg-green-600'>
                                 {c.name}
                               </SelectItem>

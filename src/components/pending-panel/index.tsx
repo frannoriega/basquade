@@ -3,7 +3,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel } from "@/components/
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { MultiSelect } from "@/components/ui/multiselect";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Author, Category, Lang } from "@prisma/client";
+import { Author, Shelf, Lang } from "@prisma/client";
 import * as Toast from "@radix-ui/react-toast";
 import React from "react";
 import { useForm } from "react-hook-form";
@@ -11,7 +11,6 @@ import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { updateBook } from "@/lib/db/books";
-import { validateHeaderName } from "http";
 
 const formSchema = z.object({
   "title": z.string().min(2, {
@@ -22,7 +21,7 @@ const formSchema = z.object({
   }),
   "authors": z.array(z.object({ id: z.number(), text: z.string() })),
   "lang": z.object({ id: z.number(), text: z.string() }),
-  "category": z.object({ id: z.number(), name: z.string() })
+  "shelf": z.object({ id: z.number(), name: z.string() })
 })
 
 type PendingPanelParams = {
@@ -32,20 +31,20 @@ type PendingPanelParams = {
     description: string,
     authors: Author[],
     lang: Lang,
-    category: {
+    shelf: {
       id: number,
       name: string
     }
   },
   languages: Lang[],
   authors: Author[],
-  categories: {
+  shelves: {
     id: number,
     name: string
   }[]
 }
 
-export default function PendingPanel({ book, languages, authors, categories }: PendingPanelParams) {
+export default function PendingPanel({ book, languages, authors, shelves }: PendingPanelParams) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -56,7 +55,7 @@ export default function PendingPanel({ book, languages, authors, categories }: P
         id: book.lang.id,
         text: book.lang.display
       },
-      category: book.category
+      shelf: book.shelf
     },
   })
 
@@ -74,7 +73,7 @@ export default function PendingPanel({ book, languages, authors, categories }: P
       description: values.description,
       lang: values.lang.id,
       authors: values.authors.map((a) => a.id),
-      category: values.category.id
+      shelf: values.shelf.id
     }
     await updateBook(updatedBook);
     setOpen(false);
@@ -114,17 +113,17 @@ export default function PendingPanel({ book, languages, authors, categories }: P
         />
         <FormField
           control={form.control}
-          name="category"
+          name="shelf"
           render={({ field }) =>
             <FormItem>
-              <FormLabel>Categoría</FormLabel>
+              <FormLabel>Estantería</FormLabel>
               <FormControl>
-                <Select defaultValue={field.value.id.toString()} onValueChange={(id) => field.onChange(categories.find((c) => c.id == Number(id)))}>
+                <Select defaultValue={field.value.id.toString()} onValueChange={(id) => field.onChange(shelves.find((c) => c.id == Number(id)))}>
                   <SelectTrigger className="flex flex-row gap-4 bg-slate-700 items-center justify-between p-4 min-h-fit rounded text-sm" aria-label="Lenguaje">
                     <SelectValue placeholder={field.value.name} />
                   </SelectTrigger>
                   <SelectContent className="">
-                    {categories.map(c =>
+                    {shelves.map(c =>
                       <SelectItem key={c.id} value={c.id.toString()} className='hover:bg-green-600'>
                         {c.name}
                       </SelectItem>

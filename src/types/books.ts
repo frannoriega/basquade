@@ -1,8 +1,7 @@
 import { Prisma } from "@prisma/client"
-import { type } from "os"
 
 type BookWithAll = Prisma.BookGetPayload<{
-  select: { id: true, title: true, description: true, authors: { select: { author: true } }, lang: true, category: { select: { id: true, name: true } } }
+  select: { id: true, title: true, description: true, authors: { select: { author: true } }, lang: true, shelf: { select: { id: true, name: true } } }
 }>
 
 type BookWithDisplayAuthor = {
@@ -28,7 +27,7 @@ type BookUpdate = {
   title: string,
   description: string,
   lang: number,
-  category: number,
+  shelf: number,
   authors: number[]
 }
 
@@ -40,7 +39,7 @@ type CreateBook = {
     id: number,
     language: string
   },
-  categoryId: number,
+  shelfId: number,
   authors: number[]
 }
 

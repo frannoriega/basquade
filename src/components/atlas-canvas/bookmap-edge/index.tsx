@@ -1,13 +1,11 @@
-
 import {
   BaseEdge,
   EdgeLabelRenderer,
   getStraightPath,
   useReactFlow,
 } from '@xyflow/react';
-import { ChangeEvent } from 'react';
 
-type CaseEdgeParams = {
+type BookMapEdgeParams = {
   id: string,
   sourceX: number,
   sourceY: number,
@@ -18,7 +16,7 @@ type CaseEdgeParams = {
   }
 }
 
-export default function CaseEdge({ id, sourceX, sourceY, targetX, targetY, data }: CaseEdgeParams) {
+export default function BookMapEdge({ id, sourceX, sourceY, targetX, targetY, data }: BookMapEdgeParams) {
   const { setEdges } = useReactFlow();
   const [edgePath, labelX, labelY] = getStraightPath({
     sourceX,

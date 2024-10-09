@@ -20,8 +20,8 @@ async function getBooks(page: number = 1, limit: number = 10): Promise<BookInfo[
 }
 
 // Devuelve todos los libros no pendientes
-// asociados a una categoría, o `null` si la categoría no existe.
-async function getBooksByCategory(cat: number, page: number = 1, limit: number = 10): Promise<BookWithAuthor[]> {
+// asociados a una estantería, o `null` si la estantería no existe.
+async function getBooksByShelf(cat: number, page: number = 1, limit: number = 10): Promise<BookWithAuthor[]> {
   return prisma.book.findMany({
     include: {
       authors: {
@@ -31,7 +31,7 @@ async function getBooksByCategory(cat: number, page: number = 1, limit: number =
       }
     },
     where: {
-      categoryId: cat,
+      shelfId: cat,
       needs_revision: false,
     },
     orderBy: {
@@ -42,14 +42,7 @@ async function getBooksByCategory(cat: number, page: number = 1, limit: number =
   })
 }
 
-// Busca los libros basados en la frase (`term`) pasada
-// como parámetro
-// async function searchBooks(term: string, page: number = 1, limit: number = 10): Promise<BookWithDisplayAuthor[]> {
-//   const offset = Math.abs(page - 1) * limit;
-//   return prisma.$queryRaw`SELECT b.id AS id, b.title AS title, b.description AS description, b.cover AS cover, array_agg(a.name || ' ' || a.surname || ' (' || a.email || ')') as authors FROM "Book" as b JOIN "Lang" as l on b."langId" = l.id JOIN "AuthorOnBook" as ab ON ab."bookId" = b.id JOIN "Author" as a ON ab."authorId" = a.id where b.content @@ websearch_to_tsquery(CAST(l.pg_lang AS regconfig), '${term}') AND b.needs_revision = false GROUP BY b.id ORDER BY b.title ASC LIMIT ${limit} OFFSET ${offset}`
-// }
-
-// Busca los libros en una categoría específica, basado
+// Busca los libros en una estantería específica, basado
 // en la frase (`term`) pasada como parámetro
 async function searchBooks(
   term: string,
@@ -58,7 +51,7 @@ async function searchBooks(
   limit: number = 0
 ): Promise<BookWithDisplayAuthor[]> {
   const offset = Math.abs(page - 1) * limit;
-  return prisma.$queryRaw`SELECT b.id AS id, b.title AS title, b.description AS description, b.cover AS cover, array_agg(a.name || ' ' || a.surname || ' (' || a.email || ')') as authors FROM "Book" as b JOIN "Lang" as l on b."langId" = l.id JOIN "AuthorOnBook" as ab ON ab."bookId" = b.id JOIN "Author" as a ON ab."authorId" = a.id where b.content @@ websearch_to_tsquery(CAST(l.pg_lang AS regconfig), '${term}') AND b."categoryId" = COALESCE(${filter}, b."categoryId") AND b.needs_revision = false GROUP BY b.id ORDER BY b.title ASC LIMIT ${limit} OFFSET ${offset}`
+  return prisma.$queryRaw`SELECT b.id AS id, b.title AS title, b.description AS description, b.cover AS cover, array_agg(a.name || ' ' || a.surname || ' (' || a.email || ')') as authors FROM "Book" as b JOIN "Lang" as l on b."langId" = l.id JOIN "AuthorOnBook" as ab ON ab."bookId" = b.id JOIN "Author" as a ON ab."authorId" = a.id where b.content @@ websearch_to_tsquery(CAST(l.pg_lang AS regconfig), '${term}') AND b."shelfId" = COALESCE(${filter}, b."shelfId") AND b.needs_revision = false GROUP BY b.id ORDER BY b.title ASC LIMIT ${limit} OFFSET ${offset}`
 }
 
 // Devuelve el PDF asociado al libro, o `null` en caso
@@ -101,7 +94,7 @@ async function getPending(): Promise<BookWithAll[]> {
         }
       },
       lang: true,
-      category: {
+      shelf: {
         select: {
           id: true,
           name: true
@@ -126,7 +119,7 @@ async function getPendingById(id: number): Promise<BookWithAll | null> {
         }
       },
       lang: true,
-      category: {
+      shelf: {
         select: {
           id: true,
           name: true
@@ -156,7 +149,7 @@ async function updateBook(book: BookUpdate) {
         create: book.authors.map((a) => { return { author: { connect: { id: a } } } })
       },
       langId: book.lang,
-      categoryId: book.category,
+      shelfId: book.shelf,
       needs_revision: false,
     },
   })
@@ -181,7 +174,7 @@ async function createBook(book: CreateBook): Promise<string> {
       file: file,
       md5: md5,
       langId: book.lang.id,
-      categoryId: book.categoryId,
+      shelfId: book.shelfId,
       authors: {
         create: book.authors.map((a) => { return { authorId: a } })
       }
@@ -193,4 +186,4 @@ async function createBook(book: CreateBook): Promise<string> {
   return "Guardado!"
 }
 
-export { getBooks, getBooksByCategory, searchBooks, getPDF, getPendingPDF, getPending, getPendingById, updateBook, createBook };
+export { getBooks, getBooksByShelf, searchBooks, getPDF, getPendingPDF, getPending, getPendingById, updateBook, createBook };

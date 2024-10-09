@@ -24,7 +24,7 @@ class PendingBook:
     self.file = row[3]
     self.md5 = row[4]
     self.lang = Lang(row[5], row[6], row[7])
-    self.categoryId = row[8]
+    self.shelfId = row[8]
 
 class Book:
   def __init__(self, pending, content, cover, authors):
@@ -112,7 +112,7 @@ def main():
   # Procesamos todos los que se puedan en un período de 3 horas
   while time.time() - start < 10800:
     select_pending = f"SELECT b.id, b.title, b.description, b.file, b.md5, b.\"langId\", l.pg_lang, \
-      l.tesseract, b.\"categoryId\" FROM \"Pending\" AS b JOIN \"Lang\" AS l ON b.\"langId\" = l.id ORDER BY b.id LIMIT {BOOK_LIMIT};"
+      l.tesseract, b.\"shelfId\" FROM \"Pending\" AS b JOIN \"Lang\" AS l ON b.\"langId\" = l.id ORDER BY b.id LIMIT {BOOK_LIMIT};"
 
     cursor = conn.cursor()
     cursor.execute(select_pending)
@@ -135,12 +135,12 @@ def main():
       logger.info("Libro pendiente %s, '%s' procesado. Guardando en base de datos...", pending.id, pending.title)
 
       insert_book = f"INSERT INTO \"Book\" (id, title, description, file, content, cover, md5, \"langId\", \
-        \"categoryId\", needs_revision) VALUES (default, %s, %s, %s, \
+        \"shelfId\", needs_revision) VALUES (default, %s, %s, %s, \
       to_tsvector(CAST(%s AS regconfig), %s), %s, %s, %s, %s, false) \
        ON CONFLICT DO NOTHING RETURNING id;"
       cursor.execute(insert_book, (pending.title, pending.description, bytes(pending.file),
                                    pending.lang.pg_lang, content, cover.getvalue(), pending.md5,
-                                   pending.lang.id, pending.categoryId))
+                                   pending.lang.id, pending.shelfId))
       book_id = cursor.fetchone()
 
       delete_authors = f"DELETE FROM \"AuthorOnPending\" WHERE \"pendingId\" = {pending.id};"

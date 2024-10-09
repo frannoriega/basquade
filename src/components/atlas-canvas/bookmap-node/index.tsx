@@ -1,7 +1,7 @@
 
 import { Handle, Position } from "@xyflow/react"
 
-type CaseNodeData = {
+type BookMapNodeData = {
   data: {
     id: number,
     title: string,
@@ -9,7 +9,7 @@ type CaseNodeData = {
   }
 }
 
-export default function CaseNode({ data }: CaseNodeData) {
+export default function BookMapNode({ data }: BookMapNodeData) {
   return (
     <div className="bg-white p-2 rounded-md dark:text-black">
       <Handle type="target" position={Position.Top}/>

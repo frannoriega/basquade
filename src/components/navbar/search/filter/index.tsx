@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/select"
 
 type FilterProps = {
-  categories: {
+  shelves: {
     id: number,
     name: string
   }[]
@@ -25,7 +25,7 @@ const Filter = React.forwardRef<
         <SelectItem className='focus:bg-green-200 dark:focus:bg-green-800' value='all'>
           Todos
         </SelectItem>
-        {props.categories.map(c =>
+        {props.shelves.map(c =>
           <SelectItem key={c.id} value={c.id.toString()} className='focus:bg-green-200 dark:focus:bg-green-800'>
             {c.name}
           </SelectItem>
