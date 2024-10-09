@@ -59,7 +59,7 @@ export default async function Home() {
           <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12">Explora nuestras estanterías</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {shelves.map((c) => (
-              <Link key={c.id} className="w-full flex flex-col items-center justify-self-center text-center p-4 border rounded-lg shadow-sm" href={`/estanterias/${c.id}`}>
+              <Link key={c.id} className="w-full flex flex-col items-center justify-self-center text-center p-4 border rounded-lg shadow-sm focus:border-green-300 dark:focus:border-green-800 focus:shadow" href={`/estanterias/${c.id}`}>
                 <div className="mb-4 w-16 h-16 dark:fill-white" dangerouslySetInnerHTML={{ __html: c.icon.toString() }}></div>
                 <h3 className="text-lg font-bold mb-2">{c.name}</h3>
                 <p className="text-sm text-muted-foreground">{c.description}</p>

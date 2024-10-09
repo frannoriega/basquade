@@ -184,7 +184,7 @@ export default function BookMapCanvas({ bookMap }: BookMapCanvasParams) {
   return (
     <div className='w-full h-full flex flex-col items-center justify-items-center'>
       <h1>Editando caso {bookMap.name}</h1>
-      <div className='relative bg-slate-200 w-full h-full'>
+      <div className='relative bg-gray-200 w-full h-full'>
         <ReactFlow
           nodes={nodes}
           edges={edges}

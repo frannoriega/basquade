@@ -95,7 +95,7 @@ export default function PendingPanel({ book, languages, authors, shelves }: Pend
             <FormItem className="flex flex-col gap-2 h-16">
               <FormLabel>Título</FormLabel>
               <FormControl>
-                <input {...field} required className="p-2 bg-slate-700 rounded-sm" />
+                <input {...field} required className="p-2 bg-gray-700 rounded-sm" />
               </FormControl>
             </FormItem>
           } />
@@ -106,7 +106,7 @@ export default function PendingPanel({ book, languages, authors, shelves }: Pend
             <FormItem className="flex flex-col gap-2">
               <FormLabel>Descripción</FormLabel>
               <FormControl>
-                <Textarea {...field} required className="p-2 bg-slate-700 rounded-sm" />
+                <Textarea {...field} required className="p-2 bg-gray-700 rounded-sm" />
               </FormControl>
             </FormItem>
           }
@@ -119,12 +119,12 @@ export default function PendingPanel({ book, languages, authors, shelves }: Pend
               <FormLabel>Estantería</FormLabel>
               <FormControl>
                 <Select defaultValue={field.value.id.toString()} onValueChange={(id) => field.onChange(shelves.find((c) => c.id == Number(id)))}>
-                  <SelectTrigger className="flex flex-row gap-4 bg-slate-700 items-center justify-between p-4 min-h-fit rounded text-sm" aria-label="Lenguaje">
+                  <SelectTrigger className="flex flex-row gap-4 bg-gray-700 items-center justify-between p-4 min-h-fit rounded text-sm" aria-label="Lenguaje">
                     <SelectValue placeholder={field.value.name} />
                   </SelectTrigger>
                   <SelectContent className="">
                     {shelves.map(c =>
-                      <SelectItem key={c.id} value={c.id.toString()} className='hover:bg-green-600'>
+                      <SelectItem key={c.id} value={c.id.toString()} className='focus:bg-green-600'>
                         {c.name}
                       </SelectItem>
                     )}
@@ -142,12 +142,12 @@ export default function PendingPanel({ book, languages, authors, shelves }: Pend
               <FormLabel>Lenguaje</FormLabel>
               <FormControl>
                 <Select defaultValue={field.value.id.toString()} onValueChange={(id) => field.onChange(languages.find((l) => l.id == Number(id)))}>
-                  <SelectTrigger className="flex flex-row gap-4 bg-slate-700 items-center justify-between p-4 min-h-fit rounded text-sm" aria-label="Lenguaje">
+                  <SelectTrigger className="flex flex-row gap-4 bg-gray-700 items-center justify-between p-4 min-h-fit rounded text-sm" aria-label="Lenguaje">
                     <SelectValue placeholder={field.value.text} />
                   </SelectTrigger>
                   <SelectContent className="">
                     {languages.map(l =>
-                      <SelectItem key={l.id} value={l.id.toString()} className='hover:bg-green-600'>
+                      <SelectItem key={l.id} value={l.id.toString()} className='focus:bg-green-600'>
                         {l.display}
                       </SelectItem>
                     )}
@@ -171,7 +171,7 @@ export default function PendingPanel({ book, languages, authors, shelves }: Pend
                   selectAllText="Seleccionar todas"
                   searchText="Buscar..."
                   maxCount={1}
-                  placeholder="Selecciona los autores" className="w-full h-fit bg-slate-700 rounded-sm" />
+                  placeholder="Selecciona los autores" className="w-full h-fit bg-gray-700 rounded-sm" />
               </FormControl>
             </FormItem>
           }

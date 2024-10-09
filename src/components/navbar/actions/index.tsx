@@ -9,7 +9,7 @@ export default function Actions() {
     <>
       <div className="lg:flex-row hidden lg:flex lg:gap-8 gap-6 items-center">
         <Links/>
-        <Separator.Root className="self-center w-px h-7 bg-slate-900 dark:bg-slate-50" decorative orientation="vertical"/>
+        <Separator.Root className="self-center w-px h-7 bg-gray-900 dark:bg-gray-50" decorative orientation="vertical"/>
         <Profile />
         <ThemeButton className="h-10 w-10"/>
       </div>

@@ -127,7 +127,7 @@ export default function BookList({ books, languages, shelves, authors }: BookLis
           <DialogTrigger asChild>
             <Button className="">Agregar</Button>
           </DialogTrigger>
-          <DialogContent className="bg-slate-700">
+          <DialogContent className="bg-gray-700">
             <DialogHeader>
               <DialogTitle>Agregar nuevo administrador</DialogTitle>
               <VisuallyHidden>
@@ -176,12 +176,12 @@ export default function BookList({ books, languages, shelves, authors }: BookLis
                     <FormItem>
                       <FormControl>
                         <Select defaultValue={field.value.id.toString()} onValueChange={(id) => field.onChange(languages.find((l) => l.id == Number(id)))}>
-                          <SelectTrigger className="flex flex-row gap-4 bg-slate-700 items-center justify-between p-4 min-h-fit rounded text-sm" aria-label="Lenguaje">
+                          <SelectTrigger className="flex flex-row gap-4 bg-gray-700 items-center justify-between p-4 min-h-fit rounded text-sm" aria-label="Lenguaje">
                             <SelectValue placeholder={field.value.display} />
                           </SelectTrigger>
                           <SelectContent className="">
                             {languages.map(l =>
-                              <SelectItem key={l.id} value={l.id.toString()} className='hover:bg-green-600'>
+                              <SelectItem key={l.id} value={l.id.toString()} className='focus:bg-green-600'>
                                 {l.display}
                               </SelectItem>
                             )}
@@ -198,12 +198,12 @@ export default function BookList({ books, languages, shelves, authors }: BookLis
                     <FormItem>
                       <FormControl>
                         <Select defaultValue={field.value.id.toString()} onValueChange={(id) => field.onChange(shelves.find((c) => c.id == Number(id)))}>
-                          <SelectTrigger className="flex flex-row gap-4 bg-slate-700 items-center justify-between p-4 min-h-fit rounded text-sm" aria-label="Lenguaje">
+                          <SelectTrigger className="flex flex-row gap-4 bg-gray-700 items-center justify-between p-4 min-h-fit rounded text-sm" aria-label="Lenguaje">
                             <SelectValue placeholder={field.value.name} />
                           </SelectTrigger>
                           <SelectContent className="">
                             {shelves.map(c =>
-                              <SelectItem key={c.id} value={c.id.toString()} className='hover:bg-green-600'>
+                              <SelectItem key={c.id} value={c.id.toString()} className='focus:bg-green-600'>
                                 {c.name}
                               </SelectItem>
                             )}
@@ -227,7 +227,7 @@ export default function BookList({ books, languages, shelves, authors }: BookLis
                           selectAllText="Seleccionar todas"
                           searchText="Buscar..."
                           maxCount={1}
-                          placeholder="Selecciona los autores" className="w-full h-fit bg-slate-700 rounded-sm" />
+                          placeholder="Selecciona los autores" className="w-full h-fit bg-gray-700 rounded-sm" />
                       </FormControl>
                     </FormItem>
                   }

@@ -15,10 +15,10 @@ export default function SignIn({ searchParams }: { searchParams: SignInParams })
         <h1 className="text-3xl font-black">Solo administradores</h1>
         <span className="max-w-prose">Este espacio esta reservado exclusivamente para administradores de la Biblioteca Basqüadé</span>
         <button onClick={() => signIn(googleProvider.id, { callbackUrl: callbackUrl })} className="flex flex-row items-stretch content-center">
-          <div className="p-4 bg-slate-100 rounded-l-lg border border-slate-900 dark:border-slate-50">
+          <div className="p-4 bg-gray-100 rounded-l-lg border border-gray-900 dark:border-gray-50">
             <GoogleIcon className="w-6" />
           </div>
-          <span className="flex items-center rounded-r-lg border-t border-r border-b border-slate-900 dark:border-slate-50 bg-slate-100 dark:bg-slate-800 px-4">Iniciar sesión con {googleProvider.name}</span>
+          <span className="flex items-center rounded-r-lg border-t border-r border-b border-gray-900 dark:border-gray-50 bg-gray-100 dark:bg-gray-800 px-4">Iniciar sesión con {googleProvider.name}</span>
         </button>
       </div>
     </div>

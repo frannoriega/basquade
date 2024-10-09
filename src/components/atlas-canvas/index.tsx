@@ -166,7 +166,7 @@ export default function AtlasCanvas({ atlas }: AtlasCanvasParams) {
   return (
     <div className='w-full h-full flex flex-col items-center justify-items-center'>
       <h1>Editando Atlas</h1>
-      <div className='relative bg-slate-200 w-full h-full'>
+      <div className='relative bg-gray-200 w-full h-full'>
         <ReactFlow
           nodes={nodes}
           edges={edges}

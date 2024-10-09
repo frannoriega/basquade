@@ -64,7 +64,7 @@ export default function SearchBar({ shelves }: SearchBarProps) {
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
       <Dialog.Trigger asChild>
-        <button className="bg-transparent dark:bg-transparent lg:dark:bg-green-900 lg:bg-green-200 rounded-lg lg:w-56 h-12 flex items-center justify-between pl-2 pr-2 text-sm text-green-900 space-x-3 dark:text-green-200 lg:hover:bg-green-200 lg:dark:hover:bg-green-800" >
+        <button className="bg-transparent dark:bg-transparent lg:dark:bg-green-900 lg:bg-green-200 rounded-lg lg:w-56 h-12 flex items-center justify-between pl-2 pr-2 text-sm text-green-900 space-x-3 dark:text-green-200 lg:focus:bg-green-200 lg:dark:focus:bg-green-800" >
           <svg
             width="24"
             height="24"

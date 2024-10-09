@@ -20,7 +20,7 @@ export default function Links({ className, listClassName }: LinksProps) {
         <NavigationMenuItem>
           {/* TODO: Implement pending page */}
           <Link href="/acercade" legacyBehavior passHref>
-            <NavigationMenuLink className="hover:underline hover:underline-offset-8">
+            <NavigationMenuLink className="focus:underline focus:underline-offset-8">
               Acerca de
             </NavigationMenuLink>
           </Link>
@@ -28,7 +28,7 @@ export default function Links({ className, listClassName }: LinksProps) {
         <NavigationMenuItem>
           {/* TODO: Implement pending page */}
           <Link href="/quienessomos" legacyBehavior passHref>
-            <NavigationMenuLink className="hover:underline hover:underline-offset-8">
+            <NavigationMenuLink className="focus:underline focus:underline-offset-8">
               Contacto
             </NavigationMenuLink>
           </Link>

@@ -79,10 +79,10 @@ export default function AdminList({ admins }: { admins: Admin[] }) {
     <div className="relative w-full h-full flex flex-col gap-4">
       <Form {...removeForm}>
         <form id="remove-admins" className="flex flex-col h-full" onSubmit={removeForm.handleSubmit(removeAdmins)}>
-          <div className="grow self-stretch h-full rounded-lg overflow-hidden border border-slate-300">
+          <div className="grow self-stretch h-full rounded-lg overflow-hidden border border-gray-300">
             <table className="table-auto w-full border-collapse">
               <thead className="w-full p-4 h-full rounded-t-md">
-                <tr className="row w-full text-start rounded-t-md border-b bg-slate-700">
+                <tr className="row w-full text-start rounded-t-md border-b bg-gray-700">
                   <th className="h-10 rounded-tl-md">
                     <FormField
                       control={removeForm.control}
@@ -111,7 +111,7 @@ export default function AdminList({ admins }: { admins: Admin[] }) {
               </thead>
               <tbody>
                 {admins.map((a) => (
-                  <tr key={a.id} className="h-10 border-b border-slate-300">
+                  <tr key={a.id} className="h-10 border-b border-gray-300">
                     <td className="h-10 grid items-center justify-items-center">
                       {a.permanent ? null :
                         <FormField
@@ -155,7 +155,7 @@ export default function AdminList({ admins }: { admins: Admin[] }) {
           <DialogTrigger asChild>
             <Button className="">Agregar</Button>
           </DialogTrigger>
-          <DialogContent className="bg-slate-700">
+          <DialogContent className="bg-gray-700">
             <DialogHeader>
               <DialogTitle>Agregar nuevo administrador</DialogTitle>
               <VisuallyHidden>

@@ -17,7 +17,7 @@ export default function Profile() {
     </Avatar>
   }
   if (!session?.data?.user) {
-    return <Link href="/auth/signin" className="hover:bg-slate-200 dark:hover:bg-slate-700 p-2 rounded-md hover:underline-offset-8 w-fit">
+    return <Link href="/auth/signin" className="focus:bg-gray-200 dark:focus:bg-gray-700 p-2 rounded-md focus:underline-offset-8 w-fit">
       <LogIn />
     </Link>
   }
@@ -33,9 +33,9 @@ export default function Profile() {
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="p-2 w-48 dark:bg-slate-800" align="end">
-            <DropdownMenuItem className="dark:hover:bg-slate-700" onClick={() => router.push('/admin')}>Administrar</DropdownMenuItem>
-            <DropdownMenuItem className="dark:hover:bg-slate-700" onClick={() => signOut()}>Cerrar sesión</DropdownMenuItem>
+          <DropdownMenuContent className="p-2 w-48 bg-gray-100 dark:bg-gray-800" align="end">
+            <DropdownMenuItem className="focus:bg-green-200 dark:focus:bg-green-800" onClick={() => router.push('/admin')}>Administrar</DropdownMenuItem>
+            <DropdownMenuItem className="focus:bg-green-200 dark:focus:bg-green-800" onClick={() => signOut()}>Cerrar sesión</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
