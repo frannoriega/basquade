@@ -1,6 +1,8 @@
 import FacebookIcon from "@/components/ui/icons/facebook";
 import InstagramIcon from "@/components/ui/icons/instagram";
 import TwitterIcon from "@/components/ui/icons/twitter";
+import GithubIcon from "@/components/ui/icons/github"
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -8,21 +10,24 @@ export default function Footer() {
       <div className="w-full flex flex-row items-center justify-between px-8">
         <ul className="bg-gray-50 dark:bg-gray-950 h-12 flex flex-row items-center gap-4">
           <li>
-            <a href='#' aria-label="Facebook">
+            <Link href='#' aria-label="Facebook">
               <FacebookIcon className="h-6 dark:fill-gray-50 fill-gray-900"/>
-            </a>
+            </Link>
           </li>
           <li>
-            <a href='#' aria-label="Twitter">
+            <Link href='#' aria-label="Twitter">
               <TwitterIcon className="h-6 dark:fill-gray-50 fill-gray-900"/>
-            </a>
+            </Link>
           </li>
           <li>
-            <a href='#' aria-label="Instagram">
+            <Link href='#' aria-label="Instagram">
               <InstagramIcon className="h-6 dark:fill-gray-50 fill-gray-900"/>
-            </a>
+            </Link>
           </li>
         </ul>
+        <Link href="https://github.com/frannoriega/basquade" aria-label="Github">
+          <GithubIcon className="h-6 dark:fill-gray-50 fill-gray-900" />
+        </Link>
       </div>
     </div>
   )
