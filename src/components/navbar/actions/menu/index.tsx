@@ -23,7 +23,7 @@ export default function Menu({ className }: MenuProps) {
             <Profile />
             <Links listClassName="flex flex-col items-start p-4" />
             <Separator.Root decorative className="self-center w-2/3 h-px bg-gray-700 dark:bg-gray-400" orientation="horizontal"/>
-            <div className="flex flex-row justify-between p-4">
+            <div className="flex flex-row justify-between items-center p-4">
               <span>Cambiar tema</span>
               <ThemeButton />
             </div>
