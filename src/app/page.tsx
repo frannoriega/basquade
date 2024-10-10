@@ -50,7 +50,7 @@ export default async function Home() {
             </Link>
             <Link className="w-full flex flex-col items-center justify-self-center text-center p-4 border rounded-lg shadow-sm border-gray-300 dark:border-gray-600 hover:border-green-300 dark:hover:border-green-800 hover:shadow" href={`/atlas`}>
               <Globe className="mb-4 w-16 h-16"/>
-              <h3 className="text-lg font-bold mb-2">Altas conceptual</h3>
+              <h3 className="text-lg font-bold mb-2">Atlas conceptual</h3>
               <p className="text-sm text-muted-foreground">Explora las distintas relaciones que existen entre nuestros distintos mapas conceptuales</p>
             </Link>
           </div>
