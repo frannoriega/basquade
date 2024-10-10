@@ -82,7 +82,7 @@ export default function AdminList({ admins }: { admins: Admin[] }) {
           <div className="grow self-stretch h-full rounded-lg overflow-hidden border border-gray-300">
             <table className="table-auto w-full border-collapse">
               <thead className="w-full p-4 h-full rounded-t-md">
-                <tr className="row w-full text-start rounded-t-md border-b bg-gray-700">
+                <tr className="row w-full text-start rounded-t-md border-b bg-accent dark:bg-gray-700">
                   <th className="h-10 rounded-tl-md">
                     <FormField
                       control={removeForm.control}
