@@ -19,7 +19,7 @@ export default async function Home() {
                 Bienvenido a la Biblioteca Basqüadé
               </h1>
               <p className="mx-auto max-w-prose text-muted-foreground md:text-xl">
-                Explora nuestra extensiva colección de documentos digitales, a través de nuestras distintas estanterías virtuales.
+                Explora nuestra extensa colección de documentos digitales, a través de nuestras distintas estanterías virtuales.
               </p>
             </div>
           </div>
@@ -48,7 +48,7 @@ export default async function Home() {
               <h3 className="text-lg font-bold mb-2">Mapas conceptuales</h3>
               <p className="text-sm text-muted-foreground">Explora las distintas relaciones que existen entre nuestros documentos</p>
             </Link>
-            <Link className="w-full flex flex-col items-center justify-self-center text-center p-4 border rounded-lg shadow-sm border-gray-300 dark:border-gray-600 hover:border-green-300 dark:hover:border-green-800 hover:shadow" href={`/mapas`}>
+            <Link className="w-full flex flex-col items-center justify-self-center text-center p-4 border rounded-lg shadow-sm border-gray-300 dark:border-gray-600 hover:border-green-300 dark:hover:border-green-800 hover:shadow" href={`/atlas`}>
               <Globe className="mb-4 w-16 h-16"/>
               <h3 className="text-lg font-bold mb-2">Altas conceptual</h3>
               <p className="text-sm text-muted-foreground">Explora las distintas relaciones que existen entre nuestros distintos mapas conceptuales</p>

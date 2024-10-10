@@ -18,8 +18,11 @@ export default function Profile() {
     </Avatar>
   }
   if (!session?.data?.user) {
-    return <Link href="/auth/signin" className="focus:bg-gray-200 dark:focus:bg-gray-700 m-4 mt-8  rounded-md flex flex-row gap-2 focus:underline-offset-8 w-fit">
-      Iniciar sesión
+    return <Link href="/auth/signin" className="focus:bg-gray-200 dark:focus:bg-gray-700 rounded-md flex flex-row gap-2 focus:underline-offset-8 w-fit">
+      <LogIn className="hidden lg:block m-2"/>
+      <span className="block lg:hidden p-4">
+        Iniciar sesión
+      </span>
     </Link>
   }
 
