@@ -56,10 +56,15 @@ export default function SearchBar({ shelves }: SearchBarProps) {
       params.append("filter", values.filter)
     }
     setOpen(false)
-    router.replace('/buscar?'+params.toString())
+    router.replace('/buscar?' + params.toString())
   }
 
   const actionKey = useActionKey();
+
+  const keyboardComponent =
+    actionKey.length == 0
+      ? <div className="rounded-full bg-green-400 dark:bg-green-700 w-8 h-6 animate-pulse"></div>
+      : <><abbr className="no-underline" title={actionKey[1]}>{actionKey[0]}</abbr>K</>
 
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
@@ -81,7 +86,7 @@ export default function SearchBar({ shelves }: SearchBarProps) {
           </svg>
           <span className="hidden lg:flex flex-auto">Buscar</span>
           <kbd className="hidden lg:inline-block font-sans font-semibold">
-            <abbr className="no-underline" title={actionKey[1]}>{actionKey[0]}</abbr>K
+            {keyboardComponent}
           </kbd>
         </button>
       </Dialog.Trigger>
@@ -103,7 +108,7 @@ export default function SearchBar({ shelves }: SearchBarProps) {
                   render={({ field }) =>
                     <FormItem>
                       <FormControl>
-                        <Filter defaultValue={field.value} onValueChange={field.onChange} shelves={shelves}/>
+                        <Filter defaultValue={field.value} onValueChange={field.onChange} shelves={shelves} />
                       </FormControl>
                     </FormItem>
                   } />

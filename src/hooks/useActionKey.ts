@@ -4,7 +4,7 @@ const ACTION_KEY_DEFAULT = ['Ctrl ', 'Control']
 const ACTION_KEY_APPLE = ['⌘ ', 'Command']
 
 export function useActionKey() {
-  let [actionKey, setActionKey] = useState(ACTION_KEY_DEFAULT)
+  let [actionKey, setActionKey] = useState([])
 
   useEffect(() => {
     if (typeof navigator !== 'undefined') {
@@ -13,6 +13,8 @@ export function useActionKey() {
       } else {
         setActionKey(ACTION_KEY_DEFAULT)
       }
+    } else {
+      setActionKey([])
     }
   }, [])
 
