@@ -86,7 +86,7 @@ export default function SearchBar({ shelves }: SearchBarProps) {
         </button>
       </Dialog.Trigger>
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed top-0 right-0 left-0 bottom-0 backdrop-blur-md bg-gray-700/30" />
+        <Dialog.Overlay className="fixed top-20 right-0 left-0 bottom-0 backdrop-blur-md bg-gray-700/30" />
         <Dialog.Content className="absolute top-40 grid grid-cols-12 gap-4 w-full">
           <VisuallyHidden.Root>
             <Dialog.Title>Buscar</Dialog.Title>

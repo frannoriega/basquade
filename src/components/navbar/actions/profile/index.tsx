@@ -2,10 +2,11 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { LogIn } from "lucide-react";
+import { LogIn, User } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import ThemeButton from "../../theme-button";
 
 export default function Profile() {
   const router = useRouter();
@@ -17,8 +18,8 @@ export default function Profile() {
     </Avatar>
   }
   if (!session?.data?.user) {
-    return <Link href="/auth/signin" className="focus:bg-gray-200 dark:focus:bg-gray-700 p-2 rounded-md focus:underline-offset-8 w-fit">
-      <LogIn />
+    return <Link href="/auth/signin" className="focus:bg-gray-200 dark:focus:bg-gray-700 m-4 mt-8  rounded-md flex flex-row gap-2 focus:underline-offset-8 w-fit">
+      Iniciar sesión
     </Link>
   }
 
@@ -27,11 +28,8 @@ export default function Profile() {
     <>
       <div className="hidden lg:block">
         <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Avatar>
-              <AvatarImage referrerPolicy='no-referrer' src={avatar} alt='Imagen de usuario' />
-              <AvatarFallback>CN</AvatarFallback>
-            </Avatar>
+          <DropdownMenuTrigger>
+            <ConfiguredAvatar avatar={avatar} />
           </DropdownMenuTrigger>
           <DropdownMenuContent className="p-2 w-48 bg-gray-100 dark:bg-gray-800" align="end">
             <DropdownMenuItem className="focus:bg-green-200 dark:focus:bg-green-800" onClick={() => router.push('/admin')}>Administrar</DropdownMenuItem>
@@ -42,19 +40,25 @@ export default function Profile() {
       <div className="lg:hidden">
         <Accordion type="single" collapsible>
           <AccordionItem value="item-1">
-            <AccordionTrigger>
-              <Avatar>
-                <AvatarImage referrerPolicy='no-referrer' src={avatar} alt='Imagen de usuario' />
-                <AvatarFallback>CN</AvatarFallback>
-              </Avatar>
+            <AccordionTrigger className="mx-4 ">
+              <ConfiguredAvatar avatar={avatar} />
             </AccordionTrigger>
-            <AccordionContent className="flex flex-col gap-4 pt-2">
-              <Link href="/admin">Administrar</Link>
-              <Link href="/" onClick={() => signOut()}>Cerrar sesión</Link>
+            <AccordionContent className="p-0 flex flex-col justify-between bg-gray-200 dark:bg-gray-700">
+              <Link href="/admin" className="p-2 hover:bg-green-300 dark:hover:bg-green-700">Administrar</Link>
+              <Link href="/" className="p-2 hover:bg-green-300 dark:hover:bg-green-700" onClick={() => signOut()}>Cerrar sesión</Link>
             </AccordionContent>
           </AccordionItem>
         </Accordion>
       </div>
     </>
   );
+}
+
+function ConfiguredAvatar({ avatar }: { avatar: string | undefined } & React.ComponentProps<typeof Avatar>) {
+  return (
+    <Avatar>
+      <AvatarImage referrerPolicy='no-referrer' src={avatar} alt='Imagen de usuario' />
+      <AvatarFallback>CN</AvatarFallback>
+    </Avatar>
+  )
 }
