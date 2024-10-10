@@ -12,7 +12,7 @@ export default async function Navbar() {
         <Sprout className="h-6 w-6 sm:h-8 sm:w-8" />
         <h1 className="items-center text-xl sm:text-3xl font-black">Basqüadé</h1>
       </Link>
-      <div className="flex flex-row items-center md:gap-8 gap-6">
+      <div className="flex flex-row items-center md:gap-8 gap-0">
         <SearchBar shelves={shelves.map((c) => { return { id: c.id, name: c.name } })} />
         <Actions />
       </div>

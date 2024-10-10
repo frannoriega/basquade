@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { useActionKey } from "@/hooks/useActionKey";
 import { useRouter } from "next/navigation";
+import { Search } from "lucide-react";
 
 const formSchema = z.object({
   "term": z.string().min(2, {
@@ -63,29 +64,20 @@ export default function SearchBar({ shelves }: SearchBarProps) {
 
   const keyboardComponent =
     actionKey.length == 0
-      ? <div className="rounded-full bg-green-400 dark:bg-green-700 w-8 h-6 animate-pulse"></div>
-      : <><abbr className="no-underline" title={actionKey[1]}>{actionKey[0]}</abbr>K</>
+      ? <div className="rounded-md bg-gray-300 dark:bg-gray-600 w-6 h-2 animate-pulse"></div>
+      : <><span className="text-base">{actionKey[0]}</span>K</>
 
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
       <Dialog.Trigger asChild>
-        <button className="bg-transparent dark:bg-transparent lg:dark:bg-green-900 lg:bg-green-200 rounded-lg lg:w-56 h-12 flex items-center justify-between pl-2 pr-2 text-sm text-green-900 space-x-3 dark:text-green-200 lg:focus:bg-green-200 lg:dark:focus:bg-green-800" >
-          <svg
-            width="24"
-            height="24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="flex-none"
-            aria-hidden="true"
-          >
-            <path d="m19 19-3.5-3.5" />
-            <circle cx="11" cy="11" r="6" />
-          </svg>
-          <span className="hidden lg:flex flex-auto">Buscar</span>
-          <kbd className="hidden lg:inline-block font-sans font-semibold">
+        <button className="bg-transparent dark:bg-transparent lg:dark:bg-green-900 lg:bg-green-200 rounded-lg lg:w-56 h-12 flex items-center justify-between pl-4 pr-4 text-sm text-green-900 space-x-3 dark:text-green-200 lg:focus:bg-green-200 lg:dark:focus:bg-green-800" >
+          <div className="flex flex-row items-center">
+            <Search className="mr-2 h-4 w-4" />
+            <span className="hidden lg:inline-block">
+              Buscar
+            </span>
+          </div>
+          <kbd className="pointer-events-none hidden lg:inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[12px] font-medium text-muted-foreground opacity-100">
             {keyboardComponent}
           </kbd>
         </button>
