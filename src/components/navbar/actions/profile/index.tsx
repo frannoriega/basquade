@@ -61,7 +61,7 @@ function ConfiguredAvatar({ avatar }: { avatar: string | undefined } & React.Com
   return (
     <Avatar>
       <AvatarImage referrerPolicy='no-referrer' src={avatar} alt='Imagen de usuario' />
-      <AvatarFallback>CN</AvatarFallback>
+      <AvatarFallback><User /></AvatarFallback>
     </Avatar>
   )
 }
