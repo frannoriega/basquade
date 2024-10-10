@@ -10,6 +10,7 @@ import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { useActionKey } from "@/hooks/useActionKey";
 import { useRouter } from "next/navigation";
 import { Search } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const formSchema = z.object({
   "term": z.string().min(2, {
@@ -64,7 +65,7 @@ export default function SearchBar({ shelves }: SearchBarProps) {
 
   const keyboardComponent =
     actionKey.length == 0
-      ? <div className="rounded-md bg-gray-300 dark:bg-gray-600 w-6 h-2 animate-pulse"></div>
+      ? <Skeleton className="bg-gray-200 dark:bg-gray-700 w-5 h-2"/>
       : <><span className="text-base">{actionKey[0]}</span>K</>
 
   return (
