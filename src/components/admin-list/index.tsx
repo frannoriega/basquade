@@ -157,7 +157,7 @@ export default function AdminList({ admins }: { admins: Admin[] }) {
           </DialogContent>
         </Dialog>
         {removeForm.getValues().admins.length > 0 ?
-          <Button variant="destructive" type="submit" form="remove-admins" className="self-start">Borrar</Button>
+          <Button variant="destructive" type="submit" form="remove-admins" className="self-start">Borrar ({removeForm.getValues().admins.length})</Button>
           : null
         }
       </div>
