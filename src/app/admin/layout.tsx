@@ -53,14 +53,16 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           </div>
           <ul className="flex flex-col">
             {links.map((e) => (
-              <PanelOption key={e.link} href={e.link}>
-                {e.icon}
-                <h2>{e.title}</h2>
-              </PanelOption>
+              <Link key={e.link} href={e.link} onClick={() => setSelected(e.link)} className="hover:bg-gray-200 dark:hover:bg-gray-700">
+                <li className={`w-full p-4 focus:bg-gray-400 flex flex-row gap-2 ${selected == e.link ? "bg-gray-200 dark:bg-gray-700" : null}`}>
+                  {e.icon}
+                  <h2>{e.title}</h2>
+                </li>
+              </Link>
             ))}
           </ul>
         </div>
-        <div className="lg:col-span-3 xl:col-span-4">
+        <div className="lg:col-span-3 xl:col-span-4 flex flex-col">
           {children}
         </div>
       </div>
@@ -71,7 +73,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               <NavigationMenuItem key={e.link}>
                 {/* TODO: Implement pending page */}
                 <Link href={e.link} legacyBehavior passHref>
-                  <NavigationMenuLink onClick={() => setSelected(i)} className={cn(buttonVariants({ variant: 'default', size: 'sm'}), `px-3 py-6 rounded-none bg-inherit text-inherit hover:bg-gray-200 dark:hover:bg-gray-700 ${selected == e.link ? "bg-gray-200 dark:bg-gray-700" : null}`)}>
+                  <NavigationMenuLink onClick={() => setSelected(e.link)} className={cn(buttonVariants({ variant: 'default', size: 'sm' }), `px-3 py-6 rounded-none bg-inherit text-inherit hover:bg-gray-200 dark:hover:bg-gray-700 ${selected == e.link ? "bg-gray-200 dark:bg-gray-700" : null}`)}>
                     {e.icon}
                   </NavigationMenuLink>
                 </Link>
@@ -84,16 +86,5 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         </div>
       </div>
     </>
-  )
-}
-
-function PanelOption({ className, children, href }: React.ComponentProps<typeof Link>) {
-  const cns = cn("w-full p-4 focus:bg-gray-400 flex flex-row gap-2", className)
-  return (
-    <Link href={href} className="hover:border-s-4 hover:border-green-800">
-      <li className={cns}>
-        {children}
-      </li>
-    </Link>
   )
 }

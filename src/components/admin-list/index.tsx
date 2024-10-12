@@ -62,7 +62,7 @@ export default function AdminList({ admins }: { admins: Admin[] }) {
   }
 
   return (
-    <div className="relative w-full h-full gap-4 flex flex-col">
+    <div className="relative w-full h-full gap-4 flex flex-col self-stretch grow">
       <Form {...removeForm}>
         <form id="remove-admins" className="flex flex-col self-stretch grow" onSubmit={removeForm.handleSubmit(removeAdmins)}>
           <FormField
