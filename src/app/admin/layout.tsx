@@ -79,7 +79,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             ))}
           </NavigationMenuList>
         </NavigationMenu>
-        <div className="w-full">
+        <div className="w-full flex flex-col self-stretch grow">
           {children}
         </div>
       </div>

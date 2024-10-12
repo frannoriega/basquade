@@ -62,31 +62,30 @@ export default function AdminList({ admins }: { admins: Admin[] }) {
   }
 
   return (
-    <div className="relative w-full h-full flex flex-col gap-4">
+    <div className="relative w-full h-full gap-4 flex flex-col">
       <Form {...removeForm}>
-        <form id="remove-admins" className="flex flex-col h-full" onSubmit={removeForm.handleSubmit(removeAdmins)}>
-          <div className="grow self-stretch h-full rounded-lg overflow-hidden border border-gray-300">
-            <FormField
-              control={removeForm.control}
-              name="admins"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <DataTable
-                      columns={columns}
-                      data={admins}
-                      enableRowSelection={(row) => !row.original.permanent}
-                      getRowId={row => row.id.toString()}
-                      onSelect={(rows) => {
-                        const admins = Object.entries(rows).filter(([_, v]) => v).map(([k, _]) => Number(k))
-                        field.onChange(admins)
-                      }}
-                    />
-                  </FormControl>
-                </FormItem>
-              )}
-            />
-          </div>
+        <form id="remove-admins" className="flex flex-col self-stretch grow" onSubmit={removeForm.handleSubmit(removeAdmins)}>
+          <FormField
+            control={removeForm.control}
+            name="admins"
+            render={({ field }) => (
+              <FormItem className="flex flex-col self-stretch grow">
+                <FormControl>
+                  <DataTable
+                    columns={columns}
+                    data={admins}
+                    enableRowSelection={(row) => !row.original.permanent}
+                    getRowId={row => row.id.toString()}
+                    onSelect={(rows) => {
+                      const admins = Object.entries(rows).filter(([_, v]) => v).map(([k, _]) => Number(k))
+                      field.onChange(admins)
+                    }}
+                    filterBy="email"
+                  />
+                </FormControl>
+              </FormItem>
+            )}
+          />
         </form>
       </Form>
       <div className="w-full flex flex-row-reverse gap-4">

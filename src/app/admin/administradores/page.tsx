@@ -7,12 +7,12 @@ export const dynamic = 'force-dynamic'
 export default async function AdministratorsPage() {
   const admins = await getAdmins();
   return (
-    <div className="p-4 flex flex-col gap-4 h-full">
+    <div className="p-4 flex flex-col gap-4 self-stretch grow">
       <div className="flex flex-row gap-4">
-        <Users className="h-10 self-end"/>
+        <Users className="h-10 self-end" />
         <h1 className="text-3xl font-semibold">Administradores</h1>
       </div>
-      <AdminList admins={admins}/>
+      <AdminList admins={admins} />
     </div>
   )
 }
