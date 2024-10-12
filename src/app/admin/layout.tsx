@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList } from "@radix-ui/react-navigation-menu";
 import { LayoutDashboard, Settings, UsersRound, Map, ListTodo, BookText, Globe } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 const links = [
@@ -40,7 +41,8 @@ const links = [
 ]
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
-  const [selected, setSelected] = useState(0)
+  const pathname = usePathname()
+  const [selected, setSelected] = useState(pathname)
   return (
     <>
       <div className="hidden lg:grid mx-8 grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 rounded-lg overflow-hidden w-full pt-12 pb-12">
@@ -69,7 +71,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               <NavigationMenuItem key={e.link}>
                 {/* TODO: Implement pending page */}
                 <Link href={e.link} legacyBehavior passHref>
-                  <NavigationMenuLink onClick={() => setSelected(i)} className={cn(buttonVariants({ variant: 'default', size: 'sm'}), `px-3 py-6 rounded-none bg-inherit text-inherit hover:bg-gray-200 dark:hover:bg-gray-700 ${selected == i ? "bg-gray-200 dark:bg-gray-700" : null}`)}>
+                  <NavigationMenuLink onClick={() => setSelected(i)} className={cn(buttonVariants({ variant: 'default', size: 'sm'}), `px-3 py-6 rounded-none bg-inherit text-inherit hover:bg-gray-200 dark:hover:bg-gray-700 ${selected == e.link ? "bg-gray-200 dark:bg-gray-700" : null}`)}>
                     {e.icon}
                   </NavigationMenuLink>
                 </Link>
