@@ -1,5 +1,4 @@
-import Gallery from "@/components/gallery";
-import { BookPreview } from "@/data/book-preview";
+import BookTable from "@/components/book-table";
 import { searchBooks } from "@/lib/db/books";
 import { redirect } from "next/navigation";
 
@@ -17,11 +16,11 @@ export default async function Search({ searchParams }: { searchParams: SearchPar
 
   const books = await searchBooks(term, filter ? Number(filter) : null)
 
-  const previews = books.map((b) => new BookPreview(b.id, b.title, b.authors, b.description, b.cover))
+  const previews = books.map((b) => { return { "id": b.id, "title": b.title, "authors": b.authors, "description": b.description } })
   return (
     <div className="pt-24 flex flex-col gap-4 w-full">
       <h1 className="font-black text-2xl">Mostrando resultados para "{term}"</h1>
-      <Gallery books={previews}/>
+      <BookTable books={previews} />
     </div>
   )
 }
