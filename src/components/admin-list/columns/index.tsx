@@ -18,6 +18,7 @@ function getHeaderFunc(label: string): ColumnDefTemplate<HeaderContext<Admin, un
     <Button
       variant="ghost"
       onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+      className="hover:bg-inherit p-0"
     >
       {label}
       <ArrowUpDown className="ml-2 h-4 w-4" />

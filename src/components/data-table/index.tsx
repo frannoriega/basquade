@@ -21,7 +21,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { Suspense, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuTrigger } from "../ui/dropdown-menu"
 import { Button } from "../ui/button"
 import { Input } from "../ui/input"
@@ -36,7 +36,8 @@ interface DataTableProps<TData, TValue> {
     parent?: Row<TData>
   ) => string,
   onSelect?: (values: { [id: string]: boolean }) => void,
-  filterBy?: string
+  filterBy?: { key: string, display: string },
+  hideableColumns?: boolean
 }
 
 export function DataTable<TData, TValue>({
@@ -45,7 +46,8 @@ export function DataTable<TData, TValue>({
   enableRowSelection,
   getRowId,
   onSelect,
-  filterBy
+  filterBy,
+  hideableColumns
 }: DataTableProps<TData, TValue>) {
   const [isClient, setIsClient] = useState(false);
   useEffect(() => {
@@ -94,42 +96,44 @@ export function DataTable<TData, TValue>({
       <div className="flex items-center py-4">
         { filterBy &&
           <Input
-            placeholder={`Filtrar por ${filterBy}`}
-            value={table.getColumn(filterBy)?.getFilterValue() as string || ''}
+            placeholder={`Filtrar por ${filterBy.display.toLowerCase()}`}
+            value={table.getColumn(filterBy.key)?.getFilterValue() as string || ''}
             onChange={(event) =>
-              table.getColumn(filterBy)?.setFilterValue(event.target.value)
+              table.getColumn(filterBy.key)?.setFilterValue(event.target.value)
             }
             className="max-w-sm"
           />
         }
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="ml-auto">
-              Columnas
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            {table
-              .getAllColumns()
-              .filter(
-                (column) => column.getCanHide()
-              )
-              .map((column) => {
-                return (
-                  <DropdownMenuCheckboxItem
-                    key={column.id}
-                    className="capitalize"
-                    checked={column.getIsVisible()}
-                    onCheckedChange={(value) =>
-                      column.toggleVisibility(!!value)
-                    }
-                  >
-                    {column.id}
-                  </DropdownMenuCheckboxItem>
+        { ( hideableColumns ?? true ) &&
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" className="ml-auto">
+                Columnas
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              {table
+                .getAllColumns()
+                .filter(
+                  (column) => column.getCanHide()
                 )
-              })}
-          </DropdownMenuContent>
-        </DropdownMenu>
+                .map((column) => {
+                  return (
+                    <DropdownMenuCheckboxItem
+                      key={column.id}
+                      className="capitalize"
+                      checked={column.getIsVisible()}
+                      onCheckedChange={(value) =>
+                        column.toggleVisibility(!!value)
+                      }
+                    >
+                      {column.id}
+                    </DropdownMenuCheckboxItem>
+                  )
+                })}
+            </DropdownMenuContent>
+          </DropdownMenu>
+        }
       </div>
       <div className="rounded-md border self-stretch grow">
         <Table>
