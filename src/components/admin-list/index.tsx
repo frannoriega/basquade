@@ -4,7 +4,6 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
-import { Checkbox } from "@/components/ui/checkbox"
 import { Button } from "@/components/ui/button"
 import { removeAdmins as removeAdminsDb, addAdmin as addAdminDb } from "@/lib/db/admins"
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
@@ -12,9 +11,11 @@ import { VisuallyHidden } from "@radix-ui/react-visually-hidden"
 import { useRouter } from "next/navigation"
 import { Admin } from "@prisma/client"
 import { useState } from "react"
+import { DataTable } from "../data-table"
+import { columns } from "./columns"
 
 const removeAdminSchema = z.object({
-  admins: z.array(z.number()).or(z.null())
+  admins: z.array(z.number())
 })
 
 const addAdminSchema = z.object({
@@ -31,20 +32,6 @@ const addAdminSchema = z.object({
   }),
 })
 
-function equalArrays(a1: number[], a2: number[]) {
-  if (a1.length != a2.length) {
-    return false
-  }
-  const a1_sorted = a1.sort()
-  const a2_sorted = a2.sort()
-  for (var i = 0; i < a1.length; i++) {
-    if (a1_sorted[i] != a2_sorted[i]) {
-      return false
-    }
-  }
-  return true
-}
-
 export default function AdminList({ admins }: { admins: Admin[] }) {
   const router = useRouter();
 
@@ -53,7 +40,7 @@ export default function AdminList({ admins }: { admins: Admin[] }) {
   const removeForm = useForm<z.infer<typeof removeAdminSchema>>({
     resolver: zodResolver(removeAdminSchema),
     defaultValues: {
-      admins: null
+      admins: []
     },
   })
 
@@ -64,7 +51,7 @@ export default function AdminList({ admins }: { admins: Admin[] }) {
   async function removeAdmins(values: z.infer<typeof removeAdminSchema>) {
     if (values.admins) {
       await removeAdminsDb(values.admins)
-      removeForm.setValue("admins", null)
+      removeForm.setValue("admins", [])
       router.refresh()
     }
   }
@@ -74,79 +61,31 @@ export default function AdminList({ admins }: { admins: Admin[] }) {
     router.refresh()
   }
 
-  const deletableAdmins = admins.filter((a) => !a.permanent).map((a) => a.id)
   return (
     <div className="relative w-full h-full flex flex-col gap-4">
       <Form {...removeForm}>
         <form id="remove-admins" className="flex flex-col h-full" onSubmit={removeForm.handleSubmit(removeAdmins)}>
           <div className="grow self-stretch h-full rounded-lg overflow-hidden border border-gray-300">
-            <table className="table-auto w-full border-collapse">
-              <thead className="w-full p-4 h-full rounded-t-md">
-                <tr className="row w-full text-start rounded-t-md border-b bg-accent dark:bg-gray-700">
-                  <th className="h-10 rounded-tl-md">
-                    <FormField
-                      control={removeForm.control}
-                      name="admins"
-                      render={({ field }) =>
-                        <FormItem className="pl-2 pr-2 grid justify-items-center items-center">
-                          <FormControl>
-                            <Checkbox
-                              checked={field.value != null && equalArrays(deletableAdmins, field.value)}
-                              onCheckedChange={(checked) => {
-                                return checked
-                                  ? field.onChange(deletableAdmins)
-                                  : field.onChange(null)
-                              }}
-                            />
-                          </FormControl>
-                        </FormItem>
-                      }
+            <FormField
+              control={removeForm.control}
+              name="admins"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <DataTable
+                      columns={columns}
+                      data={admins}
+                      enableRowSelection={(row) => !row.original.permanent}
+                      getRowId={row => row.id.toString()}
+                      onSelect={(rows) => {
+                        const admins = Object.entries(rows).filter(([_, v]) => v).map(([k, _]) => Number(k))
+                        field.onChange(admins)
+                      }}
                     />
-                  </th>
-                  <th className="text-start pl-2">Nombre</th>
-                  <th className="text-start pl-2">Apellido</th>
-                  <th className="text-start pl-2">Email</th>
-                  <th className="text-start pl-2 rounded-tr-md">DNI</th>
-                </tr>
-              </thead>
-              <tbody>
-                {admins.map((a) => (
-                  <tr key={a.id} className="h-10 border-b border-gray-300">
-                    <td className="h-10 grid items-center justify-items-center">
-                      {a.permanent ? null :
-                        <FormField
-                          control={removeForm.control}
-                          name="admins"
-                          key={a.id}
-                          render={({ field }) =>
-                            <FormItem>
-                              <FormControl>
-                                <Checkbox
-                                  checked={(field.value ?? []).includes(a.id)}
-                                  onCheckedChange={(checked) => {
-                                    if (checked) {
-                                      return field.onChange([...field.value ?? [], a.id])
-                                    } else {
-                                      const vals = field.value?.filter((v) => v != a.id)
-                                      const valsOrNull = (vals ?? []).length == 0 ? null : vals
-                                      return field.onChange(valsOrNull)
-                                    }
-                                  }}
-                                />
-                              </FormControl>
-                            </FormItem>
-                          }
-                        />
-                      }
-                    </td>
-                    <td className="pl-2">{a.name}</td>
-                    <td className="pl-2">{a.lastname}</td>
-                    <td className="pl-2">{a.email}</td>
-                    <td className="pl-2">{a.dni}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+                  </FormControl>
+                </FormItem>
+              )}
+            />
           </div>
         </form>
       </Form>
@@ -197,7 +136,7 @@ export default function AdminList({ admins }: { admins: Admin[] }) {
                       <FormControl>
                         <input {...field} value={field.value ?? ''} type="email" required className="rounded-sm" />
                       </FormControl>
-                      <FormMessage className="text-red-300 italic"/>
+                      <FormMessage className="text-red-300 italic" />
                     </FormItem>
                   }
                 />
@@ -218,7 +157,7 @@ export default function AdminList({ admins }: { admins: Admin[] }) {
             </Form>
           </DialogContent>
         </Dialog>
-        {(removeForm.getValues().admins ?? []).length > 0 ?
+        {removeForm.getValues().admins.length > 0 ?
           <Button variant="destructive" type="submit" form="remove-admins" className="self-start">Borrar</Button>
           : null
         }
