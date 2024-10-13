@@ -186,4 +186,39 @@ async function createBook(book: CreateBook): Promise<string> {
   return "Guardado!"
 }
 
-export { getBooks, getBooksByShelf, searchBooks, getPDF, getPendingPDF, getPending, getPendingById, updateBook, createBook };
+async function deleteBooks(books: number[]) {
+  const deleteAuthorRelations = prisma.authorOnBook.deleteMany({
+    where: {
+      bookId: {
+        in: books
+      }
+    }
+  })
+  const deleteBookMapRelations = prisma.bookMapRelation.deleteMany({
+    where: {
+      OR: [
+        {
+          startId: {
+            in: books
+          }
+        },
+        {
+          endId: {
+            in: books
+          }
+        }
+      ]
+    }
+  })
+  const deleteBooks = prisma.book.deleteMany({
+    where: {
+      id: {
+        in: books
+      }
+    }
+  })
+
+  return await prisma.$transaction([deleteAuthorRelations, deleteBookMapRelations, deleteBooks])
+}
+
+export { getBooks, getBooksByShelf, searchBooks, getPDF, getPendingPDF, getPending, getPendingById, updateBook, createBook, deleteBooks };

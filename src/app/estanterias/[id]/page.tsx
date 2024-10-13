@@ -1,4 +1,5 @@
-import BookTable from "@/components/book-table"
+import { columns } from "@/components/book-table/static";
+import { DataTable } from "@/components/data-table";
 import { getBooksByShelf } from "@/lib/db/books"
 import { getShelf } from "@/lib/db/shelves";
 import { notFound } from "next/navigation"
@@ -21,7 +22,11 @@ export default async function Page({ params }: { params: { id: number } }) {
   return (
     <div className="py-12 flex flex-col gap-4 w-full container mx-auto">
       <h1 className="font-black text-4xl text-center">{shelf.name}</h1>
-      <BookTable books={previews} />
+      <DataTable
+        columns={columns}
+        data={previews}
+        filterBy={{ key: "title", display: "título" }}
+      />
     </div>
   )
 }

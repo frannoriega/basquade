@@ -54,12 +54,17 @@ export function DataTable<TData, TValue>({
     setIsClient(true);
   }, []);
 
-
   const [sorting, setSorting] = useState<SortingState>([])
+
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>(
     []
   )
+
   const [rowSelection, setRowSelection] = useState({})
+  useEffect(() => {
+    setRowSelection({})
+  }, [data])
+
   const [columnVisibility, setColumnVisibility] =
     useState<VisibilityState>({})
 
@@ -89,12 +94,14 @@ export function DataTable<TData, TValue>({
     },
   })
 
+  console.log(table.getHeaderGroups())
+
   // Fix para problemas de hydration con extensiones de navegador ¯\_(ツ)_/¯
   if (!isClient) return null
   return (
     <div className="flex flex-col self-stretch grow">
       <div className="flex items-center py-4">
-        { filterBy &&
+        {filterBy &&
           <Input
             placeholder={`Filtrar por ${filterBy.display.toLowerCase()}`}
             value={table.getColumn(filterBy.key)?.getFilterValue() as string || ''}
@@ -104,7 +111,7 @@ export function DataTable<TData, TValue>({
             className="max-w-sm"
           />
         }
-        { ( hideableColumns ?? true ) &&
+        {(hideableColumns ?? true) &&
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline" className="ml-auto">
@@ -136,13 +143,13 @@ export function DataTable<TData, TValue>({
         }
       </div>
       <div className="rounded-md border self-stretch grow">
-        <Table>
-          <TableHeader>
+        <Table className="block md:table w-full">
+          <TableHeader className="block md:table-header-group">
             {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id}>
+              <TableRow key={headerGroup.id} className="block md:table-row absolute md:static -top-[9999px] md:top-auto -left-[9999px] md:left-auto">
                 {headerGroup.headers.map((header) => {
                   return (
-                    <TableHead key={header.id}>
+                    <TableHead key={header.id} className="block md:table-cell">
                       {header.isPlaceholder
                         ? null
                         : flexRender(
@@ -155,23 +162,33 @@ export function DataTable<TData, TValue>({
               </TableRow>
             ))}
           </TableHeader>
-          <TableBody>
+          <TableBody className="block md:table-row-group">
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
+                  className="block md:table-row p-1"
                 >
-                  {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
+                  {row.getVisibleCells().map((cell, i) => (
+                    <TableCell key={cell.id} className="block md:table-cell relative md:static pl-[calc(50%+10px)] !text-left whitespace-pre-wrap md:whitespace-normal break-words md:break-normal md:pl-4">
+                      <div className="h-full absolute top-0 md:static flex flex-row items-center md:hidden left-4 w-[calc(50%-20px)] md:w-0 text-left whitespace-pre-wrap break-words">
+                        {table.getHeaderGroups()[0].headers[i].isPlaceholder
+                          ? null
+                          : flexRender(
+                            table.getHeaderGroups()[0].headers[i].column.columnDef.header,
+                            table.getHeaderGroups()[0].headers[i].getContext()
+                          )
+                        }
+                      </div>
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </TableCell>
                   ))}
                 </TableRow>
               ))
             ) : (
-              <TableRow className="hover:bg-inherit">
-                <TableCell colSpan={columns.length} className="h-24 text-center">
+              <TableRow className="hover:bg-inherit block md:table-row">
+                <TableCell colSpan={columns.length} className="h-24 text-center block md:table-cell">
                   No hay resultados.
                 </TableCell>
               </TableRow>
