@@ -1,4 +1,6 @@
 import BookTable from "@/components/book-table";
+import { columns } from "@/components/book-table/static";
+import { DataTable } from "@/components/data-table";
 import { searchBooks } from "@/lib/db/books";
 import { redirect } from "next/navigation";
 
@@ -20,7 +22,11 @@ export default async function Search({ searchParams }: { searchParams: SearchPar
   return (
     <div className="pt-24 flex flex-col gap-4 w-full">
       <h1 className="font-black text-2xl">Mostrando resultados para "{term}"</h1>
-      <BookTable books={previews} />
+      <DataTable
+        columns={columns}
+        data={previews}
+        filterBy={{ key: "title", display: "título" }}
+      />
     </div>
   )
 }
