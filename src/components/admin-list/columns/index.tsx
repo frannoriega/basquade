@@ -56,19 +56,23 @@ export const columns: ColumnDef<Admin>[] = [
     enableHiding: false,
   },
   {
+    id: 'Nombre',
     accessorKey: 'name',
-    header: getHeaderFunc('Nombre')
+    header: getHeaderFunc('Nombre'),
   },
   {
+    id: 'Apellido',
     accessorKey: 'lastname',
-    header: getHeaderFunc('Apellido')
+    header: getHeaderFunc('Apellido'),
   },
   {
+    id: 'Email',
     accessorKey: 'email',
-    header: getHeaderFunc('Email')
+    header: getHeaderFunc('Email'),
   },
   {
+    id: 'DNI',
     accessorKey: 'dni',
-    header: getHeaderFunc('DNI')
+    header: getHeaderFunc('DNI'),
   }
 ]

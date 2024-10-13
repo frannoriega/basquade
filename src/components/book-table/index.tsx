@@ -5,11 +5,11 @@ import { Dialog, DialogClose, DialogContent, DialogDescription, DialogHeader, Di
 import { Button } from "../ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
-import { BookInfo } from "@/types/books";
+import { BookInfo, BookWithAuthor } from "@/types/books";
 import { Author } from "@prisma/client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createBook, deleteBooks } from "@/lib/db/books";
 import { useRouter } from "next/navigation";
 import { columns } from "./editable";
@@ -138,14 +138,12 @@ export default function BookTable({ books, languages, shelves, authors }: BookTa
                   <DataTable
                     columns={columns}
                     data={books}
-                    filterBy={{ key: "title", display: "título" }}
-                    getRowId={row => row.id.toString()}
+                    filterBy="Título"
                     onSelect={(rows) => {
                       const books = Object.entries(rows).filter(([_, v]) => v).map(([k, _]) => Number(k))
                       field.onChange(books)
                       setToDelete(books)
                     }}
-                    hideableColumns
                   />
                 </FormControl>
               </FormItem>

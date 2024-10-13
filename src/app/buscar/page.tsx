@@ -1,4 +1,3 @@
-import BookTable from "@/components/book-table";
 import { columns } from "@/components/book-table/static";
 import { DataTable } from "@/components/data-table";
 import { searchBooks } from "@/lib/db/books";
@@ -20,12 +19,12 @@ export default async function Search({ searchParams }: { searchParams: SearchPar
 
   const previews = books.map((b) => { return { "id": b.id, "title": b.title, "authors": b.authors, "description": b.description } })
   return (
-    <div className="pt-24 flex flex-col gap-4 w-full">
+    <div className="py-12 flex flex-col gap-4 w-full container mx-auto">
       <h1 className="font-black text-2xl">Mostrando resultados para "{term}"</h1>
       <DataTable
         columns={columns}
         data={previews}
-        filterBy={{ key: "title", display: "título" }}
+        filterBy="Título"
       />
     </div>
   )

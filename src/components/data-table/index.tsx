@@ -36,7 +36,7 @@ interface DataTableProps<TData, TValue> {
     parent?: Row<TData>
   ) => string,
   onSelect?: (values: { [id: string]: boolean }) => void,
-  filterBy?: { key: string, display: string },
+  filterBy?: string,
   hideableColumns?: boolean
 }
 
@@ -103,10 +103,10 @@ export function DataTable<TData, TValue>({
       <div className="flex items-center py-4">
         {filterBy &&
           <Input
-            placeholder={`Filtrar por ${filterBy.display.toLowerCase()}`}
-            value={table.getColumn(filterBy.key)?.getFilterValue() as string || ''}
+            placeholder={`Filtrar por ${filterBy.toLowerCase()}`}
+            value={(table.getColumn(filterBy)?.getFilterValue() as string) ?? ""}
             onChange={(event) =>
-              table.getColumn(filterBy.key)?.setFilterValue(event.target.value)
+              table.getColumn(filterBy)?.setFilterValue(event.target.value)
             }
             className="max-w-sm"
           />

@@ -1,4 +1,4 @@
-import { Prisma } from "@prisma/client"
+import { Author, Prisma } from "@prisma/client"
 
 type BookWithAll = Prisma.BookGetPayload<{
   select: { id: true, title: true, description: true, authors: { select: { author: true } }, lang: true, shelf: { select: { id: true, name: true } } }
@@ -20,6 +20,7 @@ type BookInfo = {
   id: number,
   title: string,
   description: string
+  authors: Author[]
 }
 
 type BookUpdate = {

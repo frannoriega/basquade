@@ -5,18 +5,40 @@ import { BookInfo, BookUpdate, BookWithAll, BookWithAuthor, BookWithDisplayAutho
 import * as crypto from 'crypto'
 
 async function getBooks(page: number = 1, limit: number = 10): Promise<BookInfo[]> {
-  return await prisma.book.findMany({
+  return (await prisma.book.findMany({
     select: {
       id: true,
       title: true,
-      description: true
+      description: true,
+      authors: {
+        select: {
+          author: true
+        }
+      }
+    },
+    where: {
+      needs_revision: false
     },
     orderBy: {
       title: 'asc'
     },
     skip: Math.abs(page - 1) * limit,
     take: limit
-  })
+  })).map(b => {
+      return {
+        id: b.id,
+        title: b.title,
+        description: b.description,
+        authors: b.authors.map(a => {
+          return {
+            id: a.author.id,
+            name: a.author.name,
+            surname: a.author.surname,
+            email: a.author.email
+          }
+        })
+      }
+    })
 }
 
 // Devuelve todos los libros no pendientes

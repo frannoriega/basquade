@@ -13,10 +13,10 @@ export default async function Page({ params }: { params: { id: number } }) {
 
   const previews = books.map((b) => {
     return {
-      "id": b.id,
-      "title": b.title,
-      "description": b.description,
-      "authors": b.authors.map((a) => `${a.author.name} ${a.author.surname} (${a.author.email})`),
+      id: b.id,
+      title: b.title,
+      description: b.description,
+      authors: b.authors.map((a) => `${a.author.name} ${a.author.surname} (${a.author.email})`),
     }
   })
   return (
@@ -25,7 +25,7 @@ export default async function Page({ params }: { params: { id: number } }) {
       <DataTable
         columns={columns}
         data={previews}
-        filterBy={{ key: "title", display: "título" }}
+        filterBy="Título"
       />
     </div>
   )

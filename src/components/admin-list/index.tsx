@@ -80,7 +80,7 @@ export default function AdminList({ admins }: { admins: Admin[] }) {
                       const admins = Object.entries(rows).filter(([_, v]) => v).map(([k, _]) => Number(k))
                       field.onChange(admins)
                     }}
-                    filterBy={{ key: "email", display: "email" }}
+                    filterBy="Email"
                   />
                 </FormControl>
               </FormItem>
