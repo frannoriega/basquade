@@ -1,6 +1,7 @@
 
 "use client"
 import { Button, buttonVariants } from "@/components/ui/button";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { BookPreview } from "@/data/book-preview";
 import { reportBook } from "@/lib/db/books";
 import { ColumnDef, ColumnDefTemplate, HeaderContext } from "@tanstack/react-table";
@@ -53,9 +54,27 @@ export const columns: ColumnDef<BookPreview>[] = [
       }
       return (
         <div className="flex flex-row">
-          <Link href={`/api/pdf/${bookId}`} className={buttonVariants({ variant: 'ghost' })}><Eye /></Link>
-          {session.data?.user &&
-            <Button variant='ghost' onClick={() => report(Number(bookId))}><Flag /></Button>}
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Link href={`/api/pdf/${bookId}`} className={buttonVariants({ variant: 'ghost' })}><Eye /></Link>
+              </TooltipTrigger>
+              <TooltipContent>
+                Abrir libro
+              </TooltipContent>
+            </Tooltip>
+            {session.data?.user &&
+              (
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button variant='ghost' onClick={() => report(Number(bookId))}><Flag /></Button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    Reportar libro
+                  </TooltipContent>
+                </Tooltip>
+              )}
+          </TooltipProvider>
         </div>
       )
     }

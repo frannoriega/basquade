@@ -19,6 +19,7 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 type Language = {
   id: number,
@@ -99,21 +100,37 @@ export function columns(formId: string, languages: Language[], shelves: Shelf[],
       header: getHeaderFunc('Acciones'),
       cell: ({ row }) => (
         <div className="flex flex-row gap-4">
-          <Link href={`/api/pdf/${row.original.id}`} className={buttonVariants({ variant: 'ghost' })}><EyeIcon /></Link>
-          <Dialog>
-            <DialogTrigger asChild>
-              <Button variant='ghost'><Pencil /></Button>
-            </DialogTrigger>
-            <DialogContent>
-              <DialogHeader>
-                <DialogTitle className="p-4 text-center">Editando documento "{row.original.title}"</DialogTitle>
-                <VisuallyHidden>
-                  <DialogDescription>Pantalla para editar el documento {row.original.title}</DialogDescription>
-                </VisuallyHidden>
-              </DialogHeader>
-              <UpdateForm book={row.original} languages={languages} shelves={shelves} authors={authors} />
-            </DialogContent>
-          </Dialog>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Link href={`/api/pdf/${row.original.id}`} className={buttonVariants({ variant: 'ghost' })}><EyeIcon /></Link>
+              </TooltipTrigger>
+              <TooltipContent>
+                Abrir libro
+              </TooltipContent>
+            </Tooltip>
+            <Dialog>
+              <DialogTrigger asChild>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button variant='ghost'><Pencil /></Button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    Editar libro
+                  </TooltipContent>
+                </Tooltip>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle className="p-4 text-center">Editando documento "{row.original.title}"</DialogTitle>
+                  <VisuallyHidden>
+                    <DialogDescription>Pantalla para editar el documento {row.original.title}</DialogDescription>
+                  </VisuallyHidden>
+                </DialogHeader>
+                <UpdateForm book={row.original} languages={languages} shelves={shelves} authors={authors} />
+              </DialogContent>
+            </Dialog>
+          </TooltipProvider>
         </div>
       )
     }
