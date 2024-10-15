@@ -39,11 +39,11 @@ export default function AdminList({ admins }: { admins: Admin[] }) {
   })
 
   async function removeAdmins(ids: number[]) {
-    console.log(ids)
     setToDelete([])
     await removeAdminsDb(ids)
     router.refresh()
   }
+
   async function addAdmin(values: z.infer<typeof addAdminSchema>) {
     await addAdminDb(values)
     setAddAdminOpen(false)
@@ -53,7 +53,7 @@ export default function AdminList({ admins }: { admins: Admin[] }) {
 
   function openToast() {
     toast({
-      className: "p-8 bg-red-300",
+      className: "p-4 bg-green-200 dark:bg-green-700",
       description: (
           <span>Guardado</span>
       ),
@@ -69,8 +69,8 @@ export default function AdminList({ admins }: { admins: Admin[] }) {
         data={admins}
         enableRowSelection={(row) => !row.original.permanent}
         getRowId={row => row.id.toString()}
-        onSelect={(rows) => {
-          const admins = rows.map(id => Number(id))
+        onSelect={(ids) => {
+          const admins = ids.map(id => Number(id))
           setToDelete(admins)
         }}
         filterBy={{ id: 'email', display: "Email" }}

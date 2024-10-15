@@ -3,7 +3,7 @@ import { DataTable } from "@/components/data-table";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "../ui/dialog";
 import { Button } from "../ui/button";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
-import { BookInfo, BookWithAuthor } from "@/types/books";
+import { BookInfo, BookWithAuthor, CreateBook } from "@/types/books";
 import { Author } from "@prisma/client";
 import { useState } from "react";
 import { deleteBooks } from "@/lib/db/books";
@@ -11,6 +11,7 @@ import { useRouter } from "next/navigation";
 import { columns } from "./editable";
 import AddForm from "../add-form";
 import * as Toast from "@radix-ui/react-toast"
+import { useToast } from "@/hooks/use-toast";
 
 type BookTableParams = {
   formId: string,
@@ -28,11 +29,11 @@ type BookTableParams = {
   authors: Author[]
 }
 
-export default function BookTable({ formId, books, languages, shelves, authors }: BookTableParams) {
-  const router = useRouter();
+export default function BookTable({ books, languages, shelves, authors }: BookTableParams) {
+  const router = useRouter()
+  const { toast } = useToast()
 
   const [open, setOpen] = useState(false);
-  const [toastOpen, setToastOpen] = useState(false);
 
   async function removeBooks(ids: number[]) {
     setToDelete([])
@@ -42,10 +43,13 @@ export default function BookTable({ formId, books, languages, shelves, authors }
 
   const [toDelete, setToDelete] = useState<number[]>([])
 
-  function afterSubmit() {
+  function afterSubmit(book: CreateBook) {
     setOpen(false)
     router.refresh()
-    setToastOpen(true)
+    toast({
+      className: "p-4 bg-green-200 dark:bg-green-700",
+      description: `Libro '${book.title}' guardado con éxito`
+    })
   }
 
   return (
@@ -78,11 +82,6 @@ export default function BookTable({ formId, books, languages, shelves, authors }
         {toDelete.length > 0 &&
           <Button variant="destructive" onClick={() => removeBooks(toDelete)} className="self-start">Borrar ({toDelete.length})</Button>
         }
-        <Toast.Root open={toastOpen} onOpenChange={setToastOpen}>
-          <Toast.Description>
-            Guardado
-          </Toast.Description>
-        </Toast.Root>
       </div>
     </>
   )

@@ -6,10 +6,8 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
 import { Input } from "../ui/input"
 import { Author } from "@prisma/client"
-import { BookInfo } from "@/types/books"
-import { useEffect, useRef, useState } from "react"
+import {  CreateBook } from "@/types/books"
 import { createBook } from "@/lib/db/books"
-import * as Toast from "@radix-ui/react-toast"
 import { Button } from "../ui/button"
 
 type AddFormParams = {
@@ -25,7 +23,7 @@ type AddFormParams = {
     name: string
   }[],
   authors: Author[],
-  afterSubmit?: () => void
+  afterSubmit?: (book: CreateBook) => void
 }
 
 const CreateBookSchema = z.object({
@@ -50,16 +48,9 @@ const CreateBookSchema = z.object({
 })
 
 export default function AddForm({ formId, languages, shelves, authors, afterSubmit }: AddFormParams) {
-  const [open, setOpen] = useState(false);
-  const [msg, setMsg] = useState("Guardado!");
-  const timerRef = useRef(0);
-
-  useEffect(() => {
-    return () => clearTimeout(timerRef.current);
-  }, []);
 
   async function submitBook(values: z.infer<typeof CreateBookSchema>) {
-    const book = {
+    const book: NewBook = {
       title: values.title,
       description: values.description,
       file: Buffer.from(await values.file.arrayBuffer()).toJSON().data,
@@ -69,7 +60,7 @@ export default function AddForm({ formId, languages, shelves, authors, afterSubm
     }
     await createBook(book)
     if (afterSubmit) {
-      afterSubmit()
+      afterSubmit(book)
     }
   }
   const form = useForm<z.infer<typeof CreateBookSchema>>({
@@ -198,13 +189,6 @@ export default function AddForm({ formId, languages, shelves, authors, afterSubm
           <Button type="submit">Agregar</Button>
         </form>
       </Form>
-      <Toast.Provider swipeDirection="right">
-        <Toast.Root open={open} onOpenChange={setOpen}
-          className="p-5 grid grid-cols-2">
-          <Toast.Title>{msg}</Toast.Title>
-        </Toast.Root>
-        <Toast.Viewport className="fixed right-0 bottom-0" />
-      </Toast.Provider>
     </>
   )
 }
