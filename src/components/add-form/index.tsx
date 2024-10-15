@@ -33,7 +33,9 @@ const CreateBookSchema = z.object({
   description: z.string().min(20, {
     message: "Ingrese una descripción detallada, de al menos 20 letras"
   }),
-  file: z.instanceof(File),
+  file: z.instanceof(File)
+  .refine((file) => file.size > 0, "Cargue un PDF")
+  .refine((file) => file.size < 10 * 1024 * 1024, "El PDF no puede ser mayor a 10MB"),
   lang: z.object({
     id: z.number(),
     display: z.string()
@@ -50,7 +52,7 @@ const CreateBookSchema = z.object({
 export default function AddForm({ formId, languages, shelves, authors, afterSubmit }: AddFormParams) {
 
   async function submitBook(values: z.infer<typeof CreateBookSchema>) {
-    const book: NewBook = {
+    const book: CreateBook = {
       title: values.title,
       description: values.description,
       file: Buffer.from(await values.file.arrayBuffer()).toJSON().data,
@@ -63,6 +65,7 @@ export default function AddForm({ formId, languages, shelves, authors, afterSubm
       afterSubmit(book)
     }
   }
+
   const form = useForm<z.infer<typeof CreateBookSchema>>({
     resolver: zodResolver(CreateBookSchema),
     defaultValues: {
@@ -101,6 +104,7 @@ export default function AddForm({ formId, languages, shelves, authors, afterSubm
             name="description"
             render={({ field }) => (
               <FormItem className="flex flex-col gap-2">
+                <FormLabel>Descripción</FormLabel>
                 <FormControl>
                   <Input {...field} />
                 </FormControl>
@@ -113,8 +117,13 @@ export default function AddForm({ formId, languages, shelves, authors, afterSubm
             name="file"
             render={({ field }) => (
               <FormItem className="flex flex-col gap-2">
+                <FormLabel>Cargar libro</FormLabel>
                 <FormControl>
-                  <Input type="file" onChange={(e) => field.onChange(e.target.files ? e.target.files[0] : null)} />
+                  <Input
+                    type="file"
+                    accept='application/pdf'
+                    className="h-fit file:p-1 file:bg-gray-700 file:text-gray-200 dark:file:bg-gray-200 dark:file:text-gray-700 file:rounded-md"
+                    onChange={(e) => field.onChange(e.target.files && e.target.files[0])} />
                 </FormControl>
                 <FormMessage className="text-red-300 italic" />
               </FormItem>
@@ -125,9 +134,10 @@ export default function AddForm({ formId, languages, shelves, authors, afterSubm
             name="lang"
             render={({ field }) => (
               <FormItem className="flex flex-col gap-2">
+                <FormLabel>Idioma</FormLabel>
                 <FormControl>
                   <Select defaultValue={field.value.id.toString()} onValueChange={(id) => field.onChange(languages.find((l) => l.id == Number(id)))}>
-                    <SelectTrigger className="flex flex-row gap-4 bg-gray-700 items-center justify-between p-4 min-h-fit rounded text-sm" aria-label="Lenguaje">
+                    <SelectTrigger className="flex flex-row gap-4 items-center justify-between p-4 min-h-fit rounded text-sm" aria-label="Lenguaje">
                       <SelectValue placeholder={field.value.display} />
                     </SelectTrigger>
                     <SelectContent className="">
@@ -148,9 +158,10 @@ export default function AddForm({ formId, languages, shelves, authors, afterSubm
             name="shelf"
             render={({ field }) => (
               <FormItem className="flex flex-col gap-2">
+                <FormLabel>Estantería</FormLabel>
                 <FormControl>
                   <Select defaultValue={field.value.id.toString()} onValueChange={(id) => field.onChange(shelves.find((c) => c.id == Number(id)))}>
-                    <SelectTrigger className="flex flex-row gap-4 bg-gray-700 items-center justify-between p-4 min-h-fit rounded text-sm" aria-label="Lenguaje">
+                    <SelectTrigger className="flex flex-row gap-4 items-center justify-between p-4 min-h-fit rounded text-sm" aria-label="Lenguaje">
                       <SelectValue placeholder={field.value.name} />
                     </SelectTrigger>
                     <SelectContent className="">
@@ -180,7 +191,8 @@ export default function AddForm({ formId, languages, shelves, authors, afterSubm
                     selectAllText="Seleccionar todas"
                     searchText="Buscar..."
                     maxCount={1}
-                    placeholder="Selecciona los autores" className="w-full h-fit bg-gray-700 rounded-sm" />
+                    placeholder="Selecciona los autores"
+                    className="w-full h-fit bg-background hover:bg-background rounded-sm placeholder-white placeholder:text-white" />
                 </FormControl>
                 <FormMessage className="text-red-300 italic" />
               </FormItem>

@@ -27,7 +27,7 @@ export default async function PendingPage() {
         <ListTodo className="h-10 self-end" />
         <h1 className="text-3xl font-semibold">Pendientes</h1>
       </div>
-      <BookTable formId={'pending-form'} books={books} languages={languages} shelves={shelves} authors={authors} />
+      <BookTable books={books} languages={languages} shelves={shelves} authors={authors} />
     </div>
   )
 }

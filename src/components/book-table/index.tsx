@@ -14,7 +14,6 @@ import * as Toast from "@radix-ui/react-toast"
 import { useToast } from "@/hooks/use-toast";
 
 type BookTableParams = {
-  formId: string,
   books: BookInfo[],
   languages: {
     id: number,
@@ -26,10 +25,11 @@ type BookTableParams = {
     id: number,
     name: string
   }[],
-  authors: Author[]
+  authors: Author[],
+  allowCreate?: boolean
 }
 
-export default function BookTable({ books, languages, shelves, authors }: BookTableParams) {
+export default function BookTable({ books, languages, shelves, authors, allowCreate }: BookTableParams) {
   const router = useRouter()
   const { toast } = useToast()
 
@@ -65,20 +65,22 @@ export default function BookTable({ books, languages, shelves, authors }: BookTa
         }}
       />
       <div className="w-full flex flex-row-reverse gap-4">
-        <Dialog open={open} onOpenChange={setOpen}>
-          <DialogTrigger asChild>
-            <Button className="">Agregar</Button>
-          </DialogTrigger>
-          <DialogContent className="bg-gray-700">
-            <DialogHeader>
-              <DialogTitle>Agregar nuevo libro</DialogTitle>
-              <VisuallyHidden>
-                <DialogDescription>Formulario para agregar a un nuevo libro</DialogDescription>
-              </VisuallyHidden>
-            </DialogHeader>
-            <AddForm languages={languages} shelves={shelves} authors={authors} afterSubmit={afterSubmit} />
-          </DialogContent>
-        </Dialog>
+        { allowCreate &&
+          <Dialog open={open} onOpenChange={setOpen}>
+            <DialogTrigger asChild>
+              <Button className="">Agregar</Button>
+            </DialogTrigger>
+            <DialogContent className="bg-gray-700">
+              <DialogHeader>
+                <DialogTitle>Agregar nuevo libro</DialogTitle>
+                <VisuallyHidden>
+                  <DialogDescription>Formulario para agregar a un nuevo libro</DialogDescription>
+                </VisuallyHidden>
+              </DialogHeader>
+              <AddForm languages={languages} shelves={shelves} authors={authors} afterSubmit={afterSubmit} />
+            </DialogContent>
+          </Dialog>
+        }
         {toDelete.length > 0 &&
           <Button variant="destructive" onClick={() => removeBooks(toDelete)} className="self-start">Borrar ({toDelete.length})</Button>
         }
