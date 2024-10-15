@@ -1,5 +1,4 @@
 import BookTable from "@/components/book-table";
-import { Button } from "@/components/ui/button";
 import { getAuthors } from "@/lib/db/authors";
 import { getPending } from "@/lib/db/books";
 import { getLanguages } from "@/lib/db/languages";
@@ -14,6 +13,8 @@ export default async function PendingPage() {
       id: b.id,
       title: b.title,
       description: b.description,
+      lang: b.lang,
+      shelf: b.shelf,
       authors: b.authors.map(a => a.author)
     }
   })
@@ -26,7 +27,7 @@ export default async function PendingPage() {
         <ListTodo className="h-10 self-end" />
         <h1 className="text-3xl font-semibold">Pendientes</h1>
       </div>
-      <BookTable books={books} languages={languages} shelves={shelves} authors={authors} />
+      <BookTable formId={'pending-form'} books={books} languages={languages} shelves={shelves} authors={authors} />
     </div>
   )
 }

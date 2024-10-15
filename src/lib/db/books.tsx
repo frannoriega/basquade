@@ -10,6 +10,14 @@ async function getBooks(page: number = 1, limit: number = 10): Promise<BookInfo[
       id: true,
       title: true,
       description: true,
+      lang: true,
+      shelf: {
+        select: {
+          id: true,
+          name: true,
+          description: true
+        }
+      },
       authors: {
         select: {
           author: true
@@ -29,6 +37,8 @@ async function getBooks(page: number = 1, limit: number = 10): Promise<BookInfo[
         id: b.id,
         title: b.title,
         description: b.description,
+        lang: b.lang,
+        shelf: b.shelf,
         authors: b.authors.map(a => {
           return {
             id: a.author.id,
@@ -104,7 +114,7 @@ async function getPendingPDF(id: number): Promise<Buffer | null> {
   }).then((book) => book ? book.file : null)
 }
 
-async function getPending(): Promise<BookWithAll[]> {
+async function getPendingRevision(): Promise<BookWithAll[]> {
   return prisma.book.findMany({
     select: {
       id: true,
@@ -119,9 +129,10 @@ async function getPending(): Promise<BookWithAll[]> {
       shelf: {
         select: {
           id: true,
-          name: true
+          name: true,
+          description: true
         }
-      }
+      },
     },
     where: {
       needs_revision: true
@@ -141,12 +152,7 @@ async function getPendingById(id: number): Promise<BookWithAll | null> {
         }
       },
       lang: true,
-      shelf: {
-        select: {
-          id: true,
-          name: true
-        }
-      }
+      shelf: true
     },
     where: {
       needs_revision: true,
@@ -156,7 +162,7 @@ async function getPendingById(id: number): Promise<BookWithAll | null> {
 }
 
 async function updateBook(book: BookUpdate) {
-  return prisma.book.update({
+  return await prisma.book.update({
     select: {
       id: true
     },
@@ -195,7 +201,7 @@ async function createBook(book: CreateBook): Promise<string> {
       description: book.description,
       file: file,
       md5: md5,
-      langId: book.lang.id,
+      langId: book.langId,
       shelfId: book.shelfId,
       authors: {
         create: book.authors.map((a) => { return { authorId: a } })
@@ -243,4 +249,4 @@ async function deleteBooks(books: number[]) {
   return await prisma.$transaction([deleteAuthorRelations, deleteBookMapRelations, deleteBooks])
 }
 
-export { getBooks, getBooksByShelf, searchBooks, getPDF, getPendingPDF, getPending, getPendingById, updateBook, createBook, deleteBooks };
+export { getBooks, getBooksByShelf, searchBooks, getPDF, getPendingPDF, getPendingRevision as getPending, getPendingById, updateBook, createBook, deleteBooks };

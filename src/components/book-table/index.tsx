@@ -18,6 +18,7 @@ import * as Toast from "@radix-ui/react-toast";
 import { useForm } from "react-hook-form";
 
 type BookTableParams = {
+  formId: string,
   books: BookInfo[],
   languages: {
     id: number,
@@ -46,7 +47,6 @@ const createBookSchema = z.object({
   file: z.instanceof(File),
   lang: z.object({
     id: z.number(),
-    language: z.string(),
     display: z.string()
   }),
   shelf: z.object({
@@ -58,7 +58,7 @@ const createBookSchema = z.object({
   }),
 })
 
-export default function BookTable({ books, languages, shelves, authors }: BookTableParams) {
+export default function BookTable({ formId, books, languages, shelves, authors }: BookTableParams) {
   const router = useRouter();
 
   const addBook = useForm<z.infer<typeof createBookSchema>>({
@@ -66,7 +66,7 @@ export default function BookTable({ books, languages, shelves, authors }: BookTa
     defaultValues: {
       title: '',
       description: '',
-      lang: languages[0],
+      lang: { id: languages[0].id, display: languages[0].display },
       shelf: shelves[0],
       file: new File([], ""),
       authors: []
@@ -93,10 +93,7 @@ export default function BookTable({ books, languages, shelves, authors }: BookTa
       title: values.title,
       description: values.description,
       file: Buffer.from(await values.file.arrayBuffer()).toJSON().data,
-      lang: {
-        id: values.lang.id,
-        language: values.lang.language
-      },
+      langId: values.lang.id,
       shelfId: values.shelf.id,
       authors: values.authors.map((a) => a.id)
     }
@@ -114,43 +111,27 @@ export default function BookTable({ books, languages, shelves, authors }: BookTa
     return { id: a.id, text: `${a.name} ${a.surname} (${a.email})` }
   })
 
-  async function removeBooks(values: z.infer<typeof removeBookSchema>) {
+  async function removeBooks(ids: number[]) {
+    console.log(ids)
     setToDelete([])
-    if (values.books) {
-      await deleteBooks(values.books)
-      removeForm.setValue("books", [])
-      router.refresh()
-    }
+    await deleteBooks(ids)
+    router.refresh()
   }
 
   const [toDelete, setToDelete] = useState<number[]>([])
 
   return (
     <>
-      <Form {...removeForm}>
-        <form id="remove-books" className="flex flex-col self-stretch grow" onSubmit={removeForm.handleSubmit(removeBooks)}>
-          <FormField
-            control={removeForm.control}
-            name="books"
-            render={({ field }) => (
-              <FormItem className="flex flex-col self-stretch grow">
-                <FormControl>
-                  <DataTable
-                    columns={columns}
-                    data={books}
-                    filterBy="Título"
-                    onSelect={(rows) => {
-                      const books = Object.entries(rows).filter(([_, v]) => v).map(([k, _]) => Number(k))
-                      field.onChange(books)
-                      setToDelete(books)
-                    }}
-                  />
-                </FormControl>
-              </FormItem>
-            )}
-          />
-        </form>
-      </Form>
+      <DataTable
+        columns={columns(formId, languages, shelves, authors)}
+        data={books}
+        filterBy={{ id: 'title', display: 'Título' }}
+        getRowId={row => row.id.toString()}
+        onSelect={(ids) => {
+          const numIds = ids.map((id) => Number(id))
+          setToDelete(numIds)
+        }}
+      />
       <div className="w-full flex flex-row-reverse gap-4">
         <Dialog>
           <DialogTrigger asChild>
@@ -268,9 +249,8 @@ export default function BookTable({ books, languages, shelves, authors }: BookTa
             </Form>
           </DialogContent>
         </Dialog>
-        {toDelete.length > 0 ?
-          <Button variant="destructive" type="submit" form="remove-books" className="self-start">Borrar ({toDelete.length})</Button>
-          : null
+        {toDelete.length > 0 &&
+          <Button variant="destructive" onClick={() => removeBooks(toDelete)} className="self-start">Borrar ({toDelete.length})</Button>
         }
         <Toast.Provider swipeDirection="right">
           <Toast.Root open={open} onOpenChange={setOpen}

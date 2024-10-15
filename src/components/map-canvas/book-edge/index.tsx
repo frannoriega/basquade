@@ -37,7 +37,6 @@ export default function BookEdge({ id, sourceX, sourceY, targetX, targetY, data 
             description: event.target.value
           },
         }
-        console.log(res)
         return res
       }
     }))

@@ -18,7 +18,7 @@ export default async function BooksPage() {
         <BookText className="h-10 self-end" />
         <h1 className="text-3xl font-semibold">Libros</h1>
       </div>
-      <BookTable books={books} languages={languages} shelves={shelves} authors={authors} />
+      <BookTable formId={'book-form'} books={books} languages={languages} shelves={shelves} authors={authors} />
     </div>
   )
 }

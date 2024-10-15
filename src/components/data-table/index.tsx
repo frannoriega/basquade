@@ -3,6 +3,7 @@
 import {
   ColumnDef,
   ColumnFiltersState,
+  InitialTableState,
   Row,
   SortingState,
   VisibilityState,
@@ -35,9 +36,10 @@ interface DataTableProps<TData, TValue> {
     index: number,
     parent?: Row<TData>
   ) => string,
-  onSelect?: (values: { [id: string]: boolean }) => void,
-  filterBy?: string,
-  hideableColumns?: boolean
+  onSelect?: (values: string[]) => void,
+  filterBy?: { id: string, display: string },
+  hideableColumns?: boolean,
+  initialState?: InitialTableState
 }
 
 export function DataTable<TData, TValue>({
@@ -47,7 +49,8 @@ export function DataTable<TData, TValue>({
   getRowId,
   onSelect,
   filterBy,
-  hideableColumns
+  hideableColumns,
+  initialState
 }: DataTableProps<TData, TValue>) {
   const [isClient, setIsClient] = useState(false);
   useEffect(() => {
@@ -60,7 +63,7 @@ export function DataTable<TData, TValue>({
     []
   )
 
-  const [rowSelection, setRowSelection] = useState({})
+  const [rowSelection, setRowSelection] = useState<{ [id: string]: boolean }>({})
   useEffect(() => {
     setRowSelection({})
   }, [data])
@@ -70,7 +73,7 @@ export function DataTable<TData, TValue>({
 
   if (onSelect) {
     useEffect(() => {
-      onSelect(rowSelection)
+      onSelect(Object.entries(rowSelection).filter(([_, v]) => v).map(([k, _]) => k))
     }, [rowSelection])
   }
 
@@ -86,6 +89,7 @@ export function DataTable<TData, TValue>({
     onRowSelectionChange: setRowSelection,
     enableRowSelection: enableRowSelection,
     onColumnVisibilityChange: setColumnVisibility,
+    initialState: initialState,
     state: {
       sorting,
       columnFilters,
@@ -94,8 +98,6 @@ export function DataTable<TData, TValue>({
     },
   })
 
-  console.log(table.getHeaderGroups())
-
   // Fix para problemas de hydration con extensiones de navegador ¯\_(ツ)_/¯
   if (!isClient) return null
   return (
@@ -103,10 +105,10 @@ export function DataTable<TData, TValue>({
       <div className="flex items-center py-4">
         {filterBy &&
           <Input
-            placeholder={`Filtrar por ${filterBy.toLowerCase()}`}
-            value={(table.getColumn(filterBy)?.getFilterValue() as string) ?? ""}
+            placeholder={`Filtrar por ${filterBy.display.toLowerCase()}`}
+            value={(table.getColumn(filterBy.id)?.getFilterValue() as string) ?? ""}
             onChange={(event) =>
-              table.getColumn(filterBy)?.setFilterValue(event.target.value)
+              table.getColumn(filterBy.id)?.setFilterValue(event.target.value)
             }
             className="max-w-sm"
           />

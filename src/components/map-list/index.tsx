@@ -62,7 +62,6 @@ export default function BookMapList({ bookMaps, shelves }: BookMapListParams) {
       description: values.description,
       shelfId: values.shelf.id
     }
-    console.log(newBookMap)
     await createBookMap(newBookMap)
     setMsg("Guardado!")
     setOpen(false);

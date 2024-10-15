@@ -80,9 +80,10 @@ export default function AdminList({ admins }: { admins: Admin[] }) {
                       const admins = Object.entries(rows).filter(([_, v]) => v).map(([k, _]) => Number(k))
                       field.onChange(admins)
                     }}
-                    filterBy="Email"
+                    filterBy={{ id: 'email', display: "Email" }}
                   />
                 </FormControl>
+                <FormMessage />
               </FormItem>
             )}
           />
@@ -111,6 +112,7 @@ export default function AdminList({ admins }: { admins: Admin[] }) {
                       <FormControl>
                         <input {...field} value={field.value ?? ''} type="text" required className="rounded-sm" />
                       </FormControl>
+                      <FormMessage />
                     </FormItem>
                   }
                 />
@@ -123,6 +125,7 @@ export default function AdminList({ admins }: { admins: Admin[] }) {
                       <FormControl>
                         <input {...field} value={field.value ?? ''} type="text" required className="rounded-sm" />
                       </FormControl>
+                      <FormMessage />
                     </FormItem>
                   }
                 />
@@ -148,6 +151,7 @@ export default function AdminList({ admins }: { admins: Admin[] }) {
                       <FormControl>
                         <input {...field} value={field.value ?? ''} type="text" required className="rounded-sm" />
                       </FormControl>
+                      <FormMessage />
                     </FormItem>
                   }
                 />

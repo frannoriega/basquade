@@ -3,6 +3,8 @@ import { getAuthors } from "@/lib/db/authors";
 import { getPendingById } from "@/lib/db/books";
 import { getShelves } from "@/lib/db/shelves";
 import { getLanguages } from "@/lib/db/languages";
+import UpdateForm from "@/components/update-form";
+import { Button } from "@/components/ui/button";
 
 export default async function PendingBookPage({ params }: { params: { id: number } }) {
   const book = await getPendingById(Number(params.id))
@@ -21,6 +23,7 @@ export default async function PendingBookPage({ params }: { params: { id: number
   const authors = await getAuthors()
   const shelves = await getShelves()
   return (
-    <PendingPanel book={strippedBook} languages={languages} authors={authors} shelves={shelves} />
+    <UpdateForm book={strippedBook} languages={languages} authors={authors} shelves={shelves} formId={"pending-indiv-form"} >
+    </UpdateForm>
   )
 }
