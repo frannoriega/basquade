@@ -24,7 +24,7 @@ export default async function Search({ searchParams }: { searchParams: SearchPar
       <DataTable
         columns={columns}
         data={previews}
-        filterBy="Título"
+        filterBy={ { id: 'title', display: 'Título' } }
       />
     </div>
   )

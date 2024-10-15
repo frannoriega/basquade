@@ -1,25 +1,16 @@
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import { BookInfo, BookUpdate } from "@/types/books";
+import { BookInfo } from "@/types/books";
 import { ColumnDef, ColumnDefTemplate, HeaderContext } from "@tanstack/react-table";
-import { ArrowUpDown, EyeIcon, Pencil } from "lucide-react";
+import { ArrowUpDown, EyeIcon, Pencil, Trash2 } from "lucide-react";
 import Link from "next/link";
 import UpdateForm from "@/components/update-form";
 import { Author } from "@prisma/client";
-import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogOverlay, DialogPortal, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
-import { useState } from "react";
-import Actions from "../actions";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { MultiSelect } from "@/components/ui/multiselect";
-import { updateBook } from "@/lib/db/books";
-import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { deleteBooks } from "@/lib/db/books";
+import { useRouter } from "next/navigation";
 
 type Language = {
   id: number,
@@ -46,7 +37,7 @@ function getHeaderFunc(label: string): ColumnDefTemplate<HeaderContext<BookInfo,
   )
 }
 
-export function columns(formId: string, languages: Language[], shelves: Shelf[], authors: Author[]): ColumnDef<BookInfo>[] {
+export function columns(languages: Language[], shelves: Shelf[], authors: Author[]): ColumnDef<BookInfo>[] {
   return [
     {
       id: "select",
@@ -95,10 +86,16 @@ export function columns(formId: string, languages: Language[], shelves: Shelf[],
       )
     },
     {
-      id: 'Acciones',
       accessorKey: 'id',
-      header: getHeaderFunc('Acciones'),
-      cell: ({ row }) => (
+      header: 'Acciones',
+      enableSorting: false,
+      cell: ({ row }) => {
+        const router = useRouter()
+        async function remove(id: number) {
+          await deleteBooks([id])
+          router.refresh()
+        }
+        return (
         <div className="flex flex-row gap-4">
           <TooltipProvider>
             <Tooltip>
@@ -130,9 +127,17 @@ export function columns(formId: string, languages: Language[], shelves: Shelf[],
                 <UpdateForm book={row.original} languages={languages} shelves={shelves} authors={authors} />
               </DialogContent>
             </Dialog>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button variant='ghost' onClick={() => remove(row.original.id)}><Trash2 /></Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                Borrar libro
+              </TooltipContent>
+            </Tooltip>
           </TooltipProvider>
         </div>
-      )
+      ) }
     }
   ]
 }

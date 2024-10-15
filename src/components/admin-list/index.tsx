@@ -13,10 +13,7 @@ import { Admin } from "@prisma/client"
 import { useState } from "react"
 import { DataTable } from "../data-table"
 import { columns } from "./columns"
-
-const removeAdminSchema = z.object({
-  admins: z.array(z.number())
-})
+import { useToast } from "@/hooks/use-toast"
 
 const addAdminSchema = z.object({
   name: z.string().min(2),
@@ -37,58 +34,47 @@ export default function AdminList({ admins }: { admins: Admin[] }) {
 
   const [addAdminOpen, setAddAdminOpen] = useState(false)
 
-  const removeForm = useForm<z.infer<typeof removeAdminSchema>>({
-    resolver: zodResolver(removeAdminSchema),
-    defaultValues: {
-      admins: []
-    },
-  })
-
   const addForm = useForm<z.infer<typeof addAdminSchema>>({
     resolver: zodResolver(addAdminSchema),
   })
 
-  async function removeAdmins(values: z.infer<typeof removeAdminSchema>) {
-    if (values.admins) {
-      await removeAdminsDb(values.admins)
-      removeForm.setValue("admins", [])
-      router.refresh()
-    }
+  async function removeAdmins(ids: number[]) {
+    console.log(ids)
+    setToDelete([])
+    await removeAdminsDb(ids)
+    router.refresh()
   }
   async function addAdmin(values: z.infer<typeof addAdminSchema>) {
     await addAdminDb(values)
     setAddAdminOpen(false)
-    router.refresh()
   }
+
+  const { toast } = useToast()
+
+  function openToast() {
+    toast({
+      className: "p-8 bg-red-300",
+      description: (
+          <span>Guardado</span>
+      ),
+    })
+  }
+
+  const [toDelete, setToDelete] = useState<number[]>([])
 
   return (
     <div className="relative w-full h-full gap-4 flex flex-col self-stretch grow">
-      <Form {...removeForm}>
-        <form id="remove-admins" className="flex flex-col self-stretch grow" onSubmit={removeForm.handleSubmit(removeAdmins)}>
-          <FormField
-            control={removeForm.control}
-            name="admins"
-            render={({ field }) => (
-              <FormItem className="flex flex-col self-stretch grow">
-                <FormControl>
-                  <DataTable
-                    columns={columns}
-                    data={admins}
-                    enableRowSelection={(row) => !row.original.permanent}
-                    getRowId={row => row.id.toString()}
-                    onSelect={(rows) => {
-                      const admins = Object.entries(rows).filter(([_, v]) => v).map(([k, _]) => Number(k))
-                      field.onChange(admins)
-                    }}
-                    filterBy={{ id: 'email', display: "Email" }}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </form>
-      </Form>
+      <DataTable
+        columns={columns}
+        data={admins}
+        enableRowSelection={(row) => !row.original.permanent}
+        getRowId={row => row.id.toString()}
+        onSelect={(rows) => {
+          const admins = rows.map(id => Number(id))
+          setToDelete(admins)
+        }}
+        filterBy={{ id: 'email', display: "Email" }}
+      />
       <div className="w-full flex flex-row-reverse gap-4">
         <Dialog open={addAdminOpen} onOpenChange={setAddAdminOpen}>
           <DialogTrigger asChild>
@@ -160,10 +146,11 @@ export default function AdminList({ admins }: { admins: Admin[] }) {
             </Form>
           </DialogContent>
         </Dialog>
-        {removeForm.getValues().admins.length > 0 ?
-          <Button variant="destructive" type="submit" form="remove-admins" className="self-start">Borrar ({removeForm.getValues().admins.length})</Button>
+        {toDelete.length > 0 ?
+          <Button variant="destructive" onClick={() => removeAdmins(toDelete)} className="self-start">Borrar ({toDelete.length})</Button>
           : null
         }
+        <Button onClick={() => openToast()}>Open toast</Button>
       </div>
     </div>
   )

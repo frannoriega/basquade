@@ -1,5 +1,6 @@
 'use client'
 import { buttonVariants } from "@/components/ui/button";
+import { Toaster } from "@/components/ui/toaster";
 import { cn } from "@/lib/utils";
 import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList } from "@radix-ui/react-navigation-menu";
 import { LayoutDashboard, Settings, UsersRound, Map, ListTodo, BookText, Globe } from "lucide-react";

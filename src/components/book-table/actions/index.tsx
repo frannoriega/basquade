@@ -19,14 +19,13 @@ type Shelf = {
 }
 
 type ActionsParams = {
-  formId: string,
   book: BookInfo,
   languages: Language[],
   shelves: Shelf[],
   authors: Author[]
 }
 
-export default function Actions({ formId, book, languages, shelves, authors }: ActionsParams) {
+export default function Actions({ book, languages, shelves, authors }: ActionsParams) {
   return (
     <div className="flex flex-row w-full gap-4">
       <Link href={`/api/pdf/${book.id}`} className={buttonVariants({ variant: 'ghost' })}><EyeIcon /></Link>
@@ -41,7 +40,7 @@ export default function Actions({ formId, book, languages, shelves, authors }: A
               <DialogDescription>Pantalla para editar libro {book.title}</DialogDescription>
             </VisuallyHidden>
           </DialogHeader>
-          <UpdateForm formId={formId} book={book} languages={languages} shelves={shelves} authors={authors} />
+          <UpdateForm book={book} languages={languages} shelves={shelves} authors={authors} />
         </DialogContent>
       </Dialog>
     </div>

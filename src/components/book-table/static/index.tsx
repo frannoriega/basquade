@@ -25,24 +25,33 @@ function getHeaderFunc(label: string): ColumnDefTemplate<HeaderContext<BookPrevi
 
 export const columns: ColumnDef<BookPreview>[] = [
   {
-    id: 'Título',
     accessorKey: 'title',
-    header: getHeaderFunc('Título')
+    header: getHeaderFunc('Título'),
+    meta: {
+      name: 'Título'
+    }
   },
   {
-    id: 'Descripción',
     accessorKey: 'description',
-    header: getHeaderFunc('Descripción')
+    header: getHeaderFunc('Descripción'),
+    meta: {
+      name: 'Descripción'
+    }
   },
   {
-    id: 'Autores',
     accessorKey: 'authors',
-    header: getHeaderFunc('Autores')
+    header: getHeaderFunc('Autores'),
+    meta: {
+      name: 'Autores'
+    }
   },
   {
-    id: 'Acciones',
     accessorKey: 'id',
-    header: getHeaderFunc('Acciones'),
+    header: 'Acciones',
+    enableSorting: false,
+    meta: {
+      name: 'Acciones'
+    },
     cell: ({ cell }) => {
       const session = useSession()
       const router = useRouter()

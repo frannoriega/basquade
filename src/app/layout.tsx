@@ -6,6 +6,8 @@ import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { ThemeProvider } from "next-themes";
 import NextAuthProvider from "@/components/next-auth-provider";
+import * as Toast from "@radix-ui/react-toast"
+import { Toaster } from "@/components/ui/toaster";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -34,6 +36,7 @@ export default async function RootLayout({
             <main className="flex-1 flex overflow-y-auto h-full w-full">
               {children}
             </main>
+            <Toaster />
             <Footer />
           </ThemeProvider>
         </NextAuthProvider>

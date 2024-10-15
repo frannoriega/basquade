@@ -23,7 +23,7 @@ export default async function PendingBookPage({ params }: { params: { id: number
   const authors = await getAuthors()
   const shelves = await getShelves()
   return (
-    <UpdateForm book={strippedBook} languages={languages} authors={authors} shelves={shelves} formId={"pending-indiv-form"} >
+    <UpdateForm book={strippedBook} languages={languages} authors={authors} shelves={shelves} >
     </UpdateForm>
   )
 }
