@@ -100,7 +100,7 @@ return (
           <FormItem className="flex flex-col gap-2">
             <FormLabel>Título</FormLabel>
             <FormControl>
-              <input {...field} value={field.value ?? ''} type="text" required className="rounded-sm" />
+              <Input {...field} value={field.value ?? ''} type="text" required className="rounded-sm" />
             </FormControl>
             <FormMessage className="text-red-300 italic" />
           </FormItem>
@@ -113,7 +113,7 @@ return (
           <FormItem className="flex flex-col gap-2">
             <FormLabel>Descripción</FormLabel>
             <FormControl>
-              <input {...field} value={field.value ?? ''} type="text" required className="rounded-sm" />
+              <Input {...field} value={field.value ?? ''} type="text" required className="rounded-sm" />
             </FormControl>
             <FormMessage className="text-red-300 italic" />
           </FormItem>
