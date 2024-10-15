@@ -2,9 +2,12 @@
 "use client"
 import { Button, buttonVariants } from "@/components/ui/button";
 import { BookPreview } from "@/data/book-preview";
+import { reportBook } from "@/lib/db/books";
 import { ColumnDef, ColumnDefTemplate, HeaderContext } from "@tanstack/react-table";
-import { ArrowUpDown, Eye } from "lucide-react";
+import { ArrowUpDown, Eye, Flag } from "lucide-react";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 function getHeaderFunc(label: string): ColumnDefTemplate<HeaderContext<BookPreview, unknown>> {
   return ({ column }: HeaderContext<BookPreview, unknown>) => (
@@ -39,6 +42,22 @@ export const columns: ColumnDef<BookPreview>[] = [
     id: 'Acciones',
     accessorKey: 'id',
     header: getHeaderFunc('Acciones'),
-    cell: ({ cell }) => <Link href={`/api/pdf/${cell.getValue()}`} className={buttonVariants({ variant: 'ghost' })}><Eye /></Link>
+    cell: ({ cell }) => {
+      const session = useSession()
+      const router = useRouter()
+      const bookId = cell.getValue()
+
+      async function report(id: number) {
+        await reportBook(id)
+        router.refresh()
+      }
+      return (
+        <div className="flex flex-row">
+          <Link href={`/api/pdf/${bookId}`} className={buttonVariants({ variant: 'ghost' })}><Eye /></Link>
+          {session.data?.user &&
+            <Button variant='ghost' onClick={() => report(Number(bookId))}><Flag /></Button>}
+        </div>
+      )
+    }
   }
 ]

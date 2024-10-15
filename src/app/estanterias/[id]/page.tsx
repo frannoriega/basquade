@@ -25,7 +25,7 @@ export default async function Page({ params }: { params: { id: number } }) {
       <DataTable
         columns={columns}
         data={previews}
-        filterBy="Título"
+        filterBy={ { id: 'title', display: 'Título' } }
       />
     </div>
   )

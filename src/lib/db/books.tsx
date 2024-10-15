@@ -249,4 +249,15 @@ async function deleteBooks(books: number[]) {
   return await prisma.$transaction([deleteAuthorRelations, deleteBookMapRelations, deleteBooks])
 }
 
-export { getBooks, getBooksByShelf, searchBooks, getPDF, getPendingPDF, getPendingRevision as getPending, getPendingById, updateBook, createBook, deleteBooks };
+async function reportBook(id: number) {
+  return await prisma.book.update({
+    where: {
+      id
+    },
+    data: {
+      needs_revision: true
+    }
+  })
+}
+
+export { getBooks, getBooksByShelf, searchBooks, getPDF, getPendingPDF, getPendingRevision as getPending, getPendingById, updateBook, createBook, deleteBooks, reportBook };
