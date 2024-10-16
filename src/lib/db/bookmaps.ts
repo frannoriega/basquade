@@ -2,6 +2,10 @@
 import { Prisma } from "@prisma/client"
 import prisma from "../prisma"
 
+async function getBookMapCount(): Promise<number> {
+  return await prisma.bookMap.count({})
+}
+
 async function getBookMaps() {
   return await prisma.bookMap.findMany({
     select: {
@@ -152,4 +156,4 @@ async function updateBookMap(col: UpdateBookMap) {
   })
 }
 
-export { getBookMapById, getBookMaps, searchBookMaps, createBookMap, updateBookMap }
+export { getBookMapCount, getBookMapById, getBookMaps, searchBookMaps, createBookMap, updateBookMap }

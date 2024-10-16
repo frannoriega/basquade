@@ -4,6 +4,10 @@ import prisma from "@/lib/prisma";
 import { BookInfo, BookUpdate, BookWithAll, BookWithAuthor, BookWithDisplayAuthor, CreateBook } from "@/types/books";
 import * as crypto from 'crypto'
 
+async function getBookCount(): Promise<number> {
+  return await prisma.book.count({})
+}
+
 async function getBooks(page: number = 1, limit: number = 10): Promise<BookInfo[]> {
   return (await prisma.book.findMany({
     select: {
@@ -260,4 +264,4 @@ async function reportBook(id: number) {
   })
 }
 
-export { getBooks, getBooksByShelf, searchBooks, getPDF, getPendingPDF, getPendingRevision as getPending, getPendingById, updateBook, createBook, deleteBooks, reportBook };
+export { getBookCount, getBooks, getBooksByShelf, searchBooks, getPDF, getPendingPDF, getPendingRevision as getPending, getPendingById, updateBook, createBook, deleteBooks, reportBook };

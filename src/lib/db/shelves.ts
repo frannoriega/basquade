@@ -1,6 +1,10 @@
 import prisma from "@/lib/prisma";
 import { Shelf, Prisma } from "@prisma/client";
 
+async function getShelfCount(): Promise<number> {
+  return await prisma.shelf.count({})
+}
+
 async function getShelf(id: number): Promise<ShelfWithoutIcon | null> {
   return prisma.shelf.findUnique({
     select: {
@@ -39,4 +43,4 @@ async function getShelves(): Promise<ShelfWithoutIcon[]> {
   })
 }
 
-export { getShelf, getUsedShelves, getShelves }
+export { getShelfCount, getShelf, getUsedShelves, getShelves }
