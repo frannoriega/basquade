@@ -3,7 +3,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { Toaster } from "@/components/ui/toaster";
 import { cn } from "@/lib/utils";
 import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList } from "@radix-ui/react-navigation-menu";
-import { LayoutDashboard, Settings, UsersRound, Map, ListTodo, BookText, Globe } from "lucide-react";
+import { LayoutDashboard, Settings, UsersRound, Map, ListTodo, BookText, Globe, CloudCog } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -28,6 +28,11 @@ const links = [
     title: 'Pendientes',
     link: '/admin/pendientes',
     icon: <ListTodo />
+  },
+  {
+    title: 'Procesamiento',
+    link: '/admin/procesamiento',
+    icon: <CloudCog />
   },
   {
     title: 'Mapas conceptuales',
@@ -68,9 +73,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         </div>
       </div>
       <div className="flex flex-col w-full items-center justify-items-center pt-4 lg:hidden">
-        <NavigationMenu className="h-fit bg-accent rounded-xl overflow-hidden">
-          <NavigationMenuList className="flex flex-row">
-            {links.map((e, i) => (
+        <NavigationMenu className="h-fit max-w-[calc(100%-32px)] bg-accent rounded-xl overflow-hidden">
+          <NavigationMenuList className="flex flex-row flex-wrap content-evenly justify-evenly place-content-evenly">
+            {links.map((e) => (
               <NavigationMenuItem key={e.link}>
                 {/* TODO: Implement pending page */}
                 <Link href={e.link} legacyBehavior passHref>
