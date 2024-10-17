@@ -11,6 +11,7 @@ import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { deleteBooks } from "@/lib/db/books";
 import { useRouter } from "next/navigation";
+import { getHeaderFunc, getSelectableColumn } from "@/lib/table";
 
 type Language = {
   id: number,
@@ -24,50 +25,9 @@ type Shelf = {
   name: string
 }
 
-function getHeaderFunc(label: string): ColumnDefTemplate<HeaderContext<BookInfo, unknown>> {
-  return ({ column }: HeaderContext<BookInfo, unknown>) => (
-    <Button
-      variant="ghost"
-      onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-      className="hover:bg-inherit pl-0"
-    >
-      {label}
-      <ArrowUpDown className="hidden md:block ml-2 h-4 w-4" />
-    </Button>
-  )
-}
-
 export function columns(languages: Language[], shelves: Shelf[], authors: Author[]): ColumnDef<BookInfo>[] {
   return [
-    {
-      id: "select",
-      header: ({ table }) => (
-        <Checkbox
-          checked={
-            table.getIsAllPageRowsSelected() ||
-            (table.getIsSomePageRowsSelected() && "indeterminate")
-          }
-          onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-          aria-label="Seleccionar todos"
-          className="hidden md:block"
-        />
-      ),
-      cell: ({ cell, row }) => {
-        if (cell.getValue<boolean>()) {
-          return null
-        }
-        return (
-          <Checkbox
-            checked={row.getIsSelected()}
-            onCheckedChange={(value) => row.toggleSelected(!!value)}
-            aria-label="Seleccionar fila"
-            className="hidden md:block"
-          />
-        )
-      },
-      enableSorting: false,
-      enableHiding: false,
-    },
+    getSelectableColumn("select"),
     {
       accessorKey: 'title',
       header: getHeaderFunc('Título'),

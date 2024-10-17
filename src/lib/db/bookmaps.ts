@@ -6,7 +6,7 @@ async function getBookMapCount(): Promise<number> {
   return await prisma.bookMap.count({})
 }
 
-async function getBookMaps() {
+async function getBookMaps(): Promise<BookMap[]> {
   return await prisma.bookMap.findMany({
     select: {
       id: true,
@@ -18,7 +18,14 @@ async function getBookMaps() {
         }
       }
     }
-  })
+  }).then(books => books.map(b => {
+      return {
+        id: b.id,
+        name: b.name,
+        description: b.description,
+        book_count: b._count.books
+      }
+    }))
 }
 
 async function searchBookMaps(term: string) {
@@ -145,7 +152,7 @@ async function updateBookMap(col: UpdateBookMap) {
         createMany: {
           data: col.books.map((b) => {
             return {
-              description: b.description,
+              description: b.description ?? '',
               startId: b.start,
               endId: b.end ?? b.start,
             }

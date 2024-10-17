@@ -1,10 +1,11 @@
+import { Input } from '@/components/ui/input';
 import {
   BaseEdge,
   EdgeLabelRenderer,
-  getStraightPath,
+  getBezierPath,
   useReactFlow,
 } from '@xyflow/react';
-import { ChangeEvent } from 'react';
+import { useState } from 'react';
 
 type BookEdgeParams = {
   id: string,
@@ -14,12 +15,13 @@ type BookEdgeParams = {
   targetY: number,
   data: {
     description: string
-  }
+  },
 }
 
 export default function BookEdge({ id, sourceX, sourceY, targetX, targetY, data }: BookEdgeParams) {
+  const [width, setWidth] = useState(data.description.length + 8)
   const { setEdges } = useReactFlow();
-  const [edgePath, labelX, labelY] = getStraightPath({
+  const [edgePath, labelX, labelY] = getBezierPath({
     sourceX,
     sourceY,
     targetX,
@@ -40,19 +42,20 @@ export default function BookEdge({ id, sourceX, sourceY, targetX, targetY, data 
         return res
       }
     }))
+    setWidth(event.target.value.length + 8)
   }
 
   return (
     <>
       <BaseEdge id={id} path={edgePath} />
       <EdgeLabelRenderer>
-        <input
+        <Input
           style={{
-            position: 'absolute',
             transform: `translate(-50%, -50%) translate(${labelX}px, ${labelY}px)`,
+            width: `${width}ch`,
             pointerEvents: 'all',
           }}
-          className='w-fit bg-inherit text-black'
+          className='border-0 focus:bg-gray-200 dark:focus:bg-gray-700 text-center bg-inherit h-2 rounded-md text-[8px]'
           defaultValue={data.description}
           onChange={changeEdge}
         />

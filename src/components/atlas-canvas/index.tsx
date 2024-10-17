@@ -24,6 +24,7 @@ import BookMapNode from './bookmap-node';
 import { searchBookMaps } from '@/lib/db/bookmaps';
 import { BookMap } from '@prisma/client';
 import BookMapEdge from './bookmap-edge';
+import { Input } from '../ui/input';
 
 type Atlas = {
   start: {
@@ -182,10 +183,10 @@ export default function AtlasCanvas({ atlas }: AtlasCanvasParams) {
         <div className='absolute bottom-2 w-full grid grid-cols-4 items-center justify-items-center'>
           <Dialog>
             <DialogTrigger asChild>
-              <Button className='bg-green-300 col-start-2 w-fit'>Agregar libro</Button>
+              <Button className='bg-green-300 col-start-2 w-fit'>Agregar mapa</Button>
             </DialogTrigger>
             <DialogContent>
-              <input onChange={changeSearchTerm} />
+              <Input onChange={changeSearchTerm} />
               {bookMaps.map((b) => <DialogClose asChild><Button key={b.id} onClick={() => addNode(b)}>{b.name}</Button></DialogClose>)}
             </DialogContent>
           </Dialog>

@@ -25,6 +25,7 @@
     "seed": "tsx prisma/seed.ts"
   },
   "dependencies": {
+    "@dagrejs/dagre": "^1.1.4",
     "@hookform/resolvers": "^3.9.0",
     "@prisma/client": "^5.12.1",
     "@radix-ui/colors": "^3.0.0",

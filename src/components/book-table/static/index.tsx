@@ -4,24 +4,12 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { BookPreview } from "@/data/book-preview";
 import { reportBook } from "@/lib/db/books";
-import { ColumnDef, ColumnDefTemplate, HeaderContext } from "@tanstack/react-table";
-import { ArrowUpDown, Eye, Flag } from "lucide-react";
+import { getHeaderFunc } from "@/lib/table";
+import { ColumnDef } from "@tanstack/react-table";
+import { Eye, Flag } from "lucide-react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-
-function getHeaderFunc(label: string): ColumnDefTemplate<HeaderContext<BookPreview, unknown>> {
-  return ({ column }: HeaderContext<BookPreview, unknown>) => (
-    <Button
-      variant="ghost"
-      onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-      className="hover:bg-inherit pl-0"
-    >
-      {label}
-      <ArrowUpDown className="hidden md:block ml-2 h-4 w-4" />
-    </Button>
-  )
-}
 
 export const columns: ColumnDef<BookPreview>[] = [
   {

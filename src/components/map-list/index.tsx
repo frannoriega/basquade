@@ -11,6 +11,7 @@ import React from "react";
 import * as Toast from "@radix-ui/react-toast";
 import { createBookMap } from "@/lib/db/bookmaps";
 import Link from "next/link";
+import { Input } from "../ui/input";
 
 type BookMapListParams = {
   bookMaps: {
@@ -103,9 +104,9 @@ export default function BookMapList({ bookMaps, shelves }: BookMapListParams) {
           </DialogTrigger>
           <DialogContent className="bg-gray-700">
             <DialogHeader>
-              <DialogTitle>Agregar nuevo caso</DialogTitle>
+              <DialogTitle>Agregar nuevo mapa</DialogTitle>
               <VisuallyHidden>
-                <DialogDescription>Formulario para agregar a un nuevo caso</DialogDescription>
+                <DialogDescription>Formulario para agregar a un nuevo mapa</DialogDescription>
               </VisuallyHidden>
             </DialogHeader>
             <Form {...addBookMap}>
@@ -117,7 +118,7 @@ export default function BookMapList({ bookMaps, shelves }: BookMapListParams) {
                     <FormItem>
                       <FormLabel>Nombre</FormLabel>
                       <FormControl>
-                        <input {...field} />
+                        <Input {...field} />
                       </FormControl>
                     </FormItem>
                   )}
@@ -129,7 +130,7 @@ export default function BookMapList({ bookMaps, shelves }: BookMapListParams) {
                     <FormItem>
                       <FormLabel>Descripción</FormLabel>
                       <FormControl>
-                        <input {...field} />
+                        <Input {...field} />
                       </FormControl>
                     </FormItem>
                   )}
